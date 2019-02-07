@@ -15,6 +15,9 @@
     <nav>
         <ul>
             <li><a href="<?php echo url_for('/index.php'); ?>">Public Index</a></li>
-            <li><a href="<?php echo url_for('/student/index.php'); ?>">Students</a></li>
+            <li><a href="<?php echo url_for('/student/index.php'); ?>">Leaderboard</a></li>
+            <li><a href="<?php echo url_for('/student/profile.php'); ?>">Profile</a></li>
+            <li><a href="<?php echo url_for('/student/ranks.php'); ?>">Ranks</a></li>
+            <li><a href="<?php echo url_for('/student/progress.php'); ?>">Progress</a></li>
         </ul>
     </nav>
