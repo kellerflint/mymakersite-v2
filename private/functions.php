@@ -21,4 +21,17 @@ function error_500() {
     exit();
 }
 
+function redirect_to($location) {
+    header("Location: " . $location);
+    exit;
+}
+
+function request_is_post() {
+    return $_SERVER['REQUEST_METHOD'] == 'POST';
+}
+
+function request_is_get() {
+    return $_SERVER['REQUEST_METHOD'] == 'GET';
+}
+
 ?>
