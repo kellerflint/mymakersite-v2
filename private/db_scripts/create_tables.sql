@@ -1,4 +1,4 @@
-/* source /var/www/html/maker-site/db_scripts/db_create_tables.sql */
+/* source /var/www/html/mymakersite.com/private/db_scripts/create_tables.sql */
 
 CREATE TABLE User
 (
@@ -11,6 +11,15 @@ CREATE TABLE User
     join_date datetime NOT NULL,
 
     PRIMARY KEY (user_id)
+);
+
+CREATE TABLE Image
+(
+    image_id int NOT NULL AUTO_INCREMENT,
+    image_title varchar(50) NOT NULL,
+    image_path varchar(200) NOT NULL,
+
+    PRIMARY KEY (image_id)
 );
 
 CREATE TABLE Subject
@@ -33,7 +42,7 @@ CREATE TABLE Rank
     image_id int,
 
     PRIMARY KEY (rank_id),
-    FOREIGN KEY (subject_id) REFERENCES Subject (subject_id) ON UPDATE CASCADE
+    FOREIGN KEY (subject_id) REFERENCES Subject (subject_id) ON UPDATE CASCADE,
     FOREIGN KEY (image_id) REFERENCES Image (image_id) ON UPDATE CASCADE
 );
 
@@ -47,7 +56,7 @@ CREATE TABLE Badge
     image_id int,
 
     PRIMARY KEY (badge_id),
-    FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE
+    FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE,
     FOREIGN KEY (image_id) REFERENCES Image (image_id) ON UPDATE CASCADE
 
 );
@@ -72,12 +81,4 @@ CREATE TABLE User_Rank
     PRIMARY KEY (user_id, rank_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
     FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE
-);
-
-CREATE TABLE Image
-(
-    image_id int NOT NULL AUTO_INCREMENT,
-    image blob,
-
-    PRIMARY KEY (image_id)
 );
