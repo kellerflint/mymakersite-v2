@@ -17,8 +17,10 @@ CREATE TABLE Subject
 (
     subject_id int NOT NULL AUTO_INCREMENT,
     subject_title varchar(50) NOT NULL,
+    image_id int,
 
-    PRIMARY KEY (subject_id)
+    PRIMARY KEY (subject_id),
+    FOREIGN KEY (image_id) REFERENCES Image (image_id) ON UPDATE CASCADE
 );
 
 
@@ -40,9 +42,8 @@ CREATE TABLE Badge
     badge_id int NOT NULL AUTO_INCREMENT,
     badge_title varchar(50) NOT NULL,
     rank_id int,
-    badge_required varchar(5) NOT NULL,
-    badge_link varchar(200),
     badge_description varchar(500),
+    badge_link varchar(200),
     image_id int,
 
     PRIMARY KEY (badge_id),

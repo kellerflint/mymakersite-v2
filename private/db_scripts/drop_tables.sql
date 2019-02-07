@@ -5,4 +5,5 @@ DROP TABLE User_Rank;
 DROP TABLE Badge;
 DROP TABLE Rank;
 DROP TABLE Subject;
+DROP TABLE Image;
 DROP TABLE User;
