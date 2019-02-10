@@ -27,6 +27,11 @@ if (!isset($page_title)) {
                 <li><a href="<?php echo url_for('/student/ranks.php'); ?>">Ranks</a></li>
                 <li><a href="<?php echo url_for('/student/progress.php'); ?>">Progress</a></li>
                 <!--If role is instructor/admin show these links-->
-                <li><a href="<?php echo url_for('/instructor/add_user.php'); ?>">Add User</a></li>
+                <li class="instructor"><a href="<?php echo url_for('/instructor/add_user.php'); ?>">Add User</a></li>
+                <li class="instructor"><a href="<?php echo url_for('/instructor/give_badge.php'); ?>">Give Badge</a>
+                </li>
+                <li class="instructor"><a href="<?php echo url_for('/instructor/give_rank.php'); ?>">Give Rank</a></li>
+                <!--If role is admin show these-->
+                <li class="admin"><a href="<?php echo url_for('/instructor/add_badge.php'); ?>">Add Badge</a></li>
             </ul>
         </nav>

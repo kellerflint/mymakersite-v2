@@ -8,9 +8,8 @@ function find_all_users()
     return $user_set;
 }
 
-// Returns data set from highest rank (currently returns all rows ordered by badge level cause I'm bad at SQL)
-// As opposed to something like find_all_user_ranks() which would return the full set (i.e. what it does now... kill me)
-function find_user_rank($user_id)
+// returns all ranks the user has ordered by the rank level (descending)
+function find_user_ranks($user_id)
 {
     /*
     SELECT User_Rank.user_id, User_Rank.rank_id, Rank.rank_level, Rank.rank_title, Rank.image_id
@@ -25,8 +24,7 @@ function find_user_rank($user_id)
     $sql .= $user_id;
     $sql .= " ORDER BY Rank.rank_level DESC";
     $rank_set = mysqli_query($db, $sql);
-    $rank = mysqli_fetch_assoc($rank_set);
-    return $rank;
+    return $rank_set;
 }
 
 // Given image_id return image assoc
@@ -38,4 +36,13 @@ function find_image($image_id)
     $image_set = mysqli_query($db, $sql);
     $image = mysqli_fetch_assoc($image_set);
     return $image;
+}
+
+// Returns all ranks
+function find_all_ranks()
+{
+    global $db;
+    $sql = "SELECT * FROM Rank";
+    $rank_set = mysqli_query($db, $sql);
+    return $rank_set;
 }

@@ -4,11 +4,11 @@ CREATE TABLE User
 (
     user_id int NOT NULL AUTO_INCREMENT,
     user_name varchar(50) NOT NULL UNIQUE,
-    first_name varchar(50) NOT NULL,
-    last_name varchar(50) NOT NULL,
+    user_first varchar(50) NOT NULL,
+    user_last varchar(50) NOT NULL,
     user_password varchar(50) NOT NULL,
     user_role varchar(50) NOT NULL,
-    join_date datetime NOT NULL,
+    user_join_date datetime NOT NULL,
 
     PRIMARY KEY (user_id)
 );

@@ -1,6 +1,6 @@
 <?php require_once '../../private/initialize.php'; ?>
 
-<?php $page_title = 'Add User' ?>
+<?php $page_title = 'Add User'; ?>
 
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
 
@@ -50,7 +50,7 @@ if (request_is_post()) {
             echo "Default rank insert failed: " . mysqli_error($db);
         }
 
-        echo 'Redirecting in 5 seconds... ';
+        //echo 'Redirecting in 5 seconds... ';
 
         //sleep(5);
         // TODO Should redirect to user profile page once implemented
