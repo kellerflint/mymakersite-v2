@@ -11,7 +11,11 @@ if (!isset($page_title)) {
         <meta charset="UTF-8">
         <title>MyMakerSite - <?php echo $page_title; ?></title>
         <link rel="stylesheet" href="<?php echo url_for('/style/student.css'); ?>">
-        <link rel="stylesheet" href="<?php echo url_for('/style/leaderboard.css'); ?>">
+        <?php if (isset($page_style)) { ?>
+        <link rel="stylesheet" href="<?php echo url_for('/style/' . $page_style . '.css'); ?>">
+        <?php 
+    } ?>
+
     </head>
 
     <body>

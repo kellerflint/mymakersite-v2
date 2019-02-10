@@ -1,0 +1,47 @@
+.content {
+    margin: 0px;
+    background: linear-gradient(rgb(255,255,255), rgb(5,5,5)); 
+}
+
+.rank-item {
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 50px;
+    width: 100%;
+}
+
+.rank-img {
+    width: 426.66px;
+    height: 213.33px;  
+}
+
+#unranked {
+    background: linear-gradient(rgb(255,255,255), rgb(220,220,220));
+    color: rgb(5,5,5);
+}
+
+#novice {
+    background: linear-gradient(rgb(220,220,220), rgb(190,190,190));
+    color: rgb(10,10,10);
+}
+
+#apprentice{
+    background: linear-gradient(rgb(190,190,190), rgb(150,150,150));
+    color: rgb(20,20,20);
+}
+
+#adept {
+    background: linear-gradient(rgb(150,150,150), rgb(120,120,120));
+    color: rgb(50,50,50);
+}
+
+#expert {
+    background: linear-gradient(rgb(120,120,120), rgb(50,50,50));
+    color: rgb(200,200,200);
+}
+
+#master {
+    background: linear-gradient(rgb(50,50,50), rgb(5,5,5));
+    color: rgb(250,250,250);
+}
