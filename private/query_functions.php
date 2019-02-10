@@ -8,6 +8,26 @@ function find_all_users()
     return $user_set;
 }
 
+// Returns assoc for user identified by their username
+function find_user($username)
+{
+    global $db;
+    $sql = "SELECT * from User where user_name = '" . $username . "';";
+    $user_set = mysqli_query($db, $sql);
+    $user = mysqli_fetch_assoc($user_set);
+    return $user;
+}
+
+// Returns assoc for user identified by their username
+function find_rank($rank)
+{
+    global $db;
+    $sql = "SELECT * from Rank where rank_title = '" . $rank . "';";
+    $rank_set = mysqli_query($db, $sql);
+    $rank = mysqli_fetch_assoc($rank_set);
+    return $rank;
+}
+
 // returns all ranks the user has ordered by the rank level (descending)
 function find_user_ranks($user_id)
 {
@@ -45,4 +65,23 @@ function find_all_ranks()
     $sql = "SELECT * FROM Rank";
     $rank_set = mysqli_query($db, $sql);
     return $rank_set;
+}
+
+// Returns table
+function find_user_badges($user_id, $rank_id)
+{
+    global $db;
+    $sql = "SELECT
+        User_Badge . user_id,
+        User_Badge . badge_id,
+        Badge . rank_id,
+        Badge . badge_title,
+        Badge . badge_required
+        FROM
+        User_Badge
+        INNER JOIN Badge ON User_Badge . badge_id = Badge . badge_id
+        where
+        user_id = " . $user_id . " and rank_id = " . $rank_id . ";";
+    $badge_set = mysqli_query($db, $sql);
+    return $badge_set;
 }

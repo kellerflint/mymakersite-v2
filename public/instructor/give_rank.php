@@ -9,13 +9,31 @@ $page_style = 'give_rank';
 
 <?php if (request_is_post()) { ?>
 
+<?php 
 
+$user_name = $_POST['username'];
+$rank_title = $_POST['rank'];
+
+$user = find_user($user_name);
+confirm_result($user);
+
+$rank = find_rank($rank_title);
+confirm_result($rank);
+
+$badge_set = find_user_badges($user['user_id'], $rank['rank_id']);
+confirm_result($badge_set);
+
+while ($badge = mysqli_fetch_assoc($badge_set)) {
+    echo $badge['badge_title'];
+    //select * from Badge where rank_id = 2 and badge_required = "true";
+}
+
+?>
 
 <?php 
 } else { ?>
 
 <div class="content">
-
 
     <div id="user-box">
         <h2>Users</h2>
