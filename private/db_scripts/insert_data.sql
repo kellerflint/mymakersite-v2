@@ -40,30 +40,30 @@ insert into User_Rank values (@keller, @adept, now());
 
 /* Novice Badges */
 
-insert into Badge values (default, 'Animate from Scratch', @novice, 'novice badge 1', 
+insert into Badge values (default, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '1');
 
-insert into Badge values (default, 'Musical Storyteller', @novice, 'novice badge 2', 
+insert into Badge values (default, 'Musical Storyteller', @novice, 'true', 'novice badge 2', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '1');
 
-insert into Badge values (default, 'My First Game', @novice, 'novice badge 3', 
+insert into Badge values (default, 'My First Game', @novice, 'true', 'novice badge 3', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '1');
 
 /* Apprentice Badges */
 
-insert into Badge values (default, 'Move to the Code', @apprentice, 'apprentice badge 1', 
+insert into Badge values (default, 'Move to the Code', @apprentice, 'true', 'apprentice badge 1', 
 'https://codeclubprojects.org/en-GB/scratch/lost-in-space/', '1');
 
-insert into Badge values (default, 'Who You Gonna Call', @apprentice, 'apprentice badge 2', 
+insert into Badge values (default, 'Who You Gonna Call', @apprentice, 'true', 'apprentice badge 2', 
 'https://codeclubprojects.org/en-GB/scratch/ghostbusters/', '1');
 
-insert into Badge values (default, 'Talk to the Bot', @apprentice, 'apprentice badge 3', 
+insert into Badge values (default, 'Talk to the Bot', @apprentice, 'true', 'apprentice badge 3', 
 'https://codeclubprojects.org/en-GB/scratch/chatbot/', '1');
 
-insert into Badge values (default, 'Artistic License', @apprentice, 'apprentice badge 4', 
+insert into Badge values (default, 'Artistic License', @apprentice, 'true', 'apprentice badge 4', 
 'https://codeclubprojects.org/en-GB/scratch/paint-box/', '1');
 
-insert into Badge values (default, 'Whatever Floats Your Boat', @apprentice, 'apprentice badge 5', 
+insert into Badge values (default, 'Whatever Floats Your Boat', @apprentice, 'true', 'apprentice badge 5', 
 'https://codeclubprojects.org/en-GB/scratch/boat-race/', '1');
 
 /* Adept Badges */
