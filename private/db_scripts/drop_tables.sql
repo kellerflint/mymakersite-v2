@@ -1,4 +1,4 @@
-/* source /var/www/html/mymakersite.com/private/db_scripts/db_drop_tables.sql */
+/* source /var/www/html/mymakersite.com/private/db_scripts/drop_tables.sql */
 
 DROP TABLE User_Badge;
 DROP TABLE User_Rank;

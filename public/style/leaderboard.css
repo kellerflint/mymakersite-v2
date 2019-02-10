@@ -1,0 +1,13 @@
+/* Leaderboard styles */
+
+.user-container {
+    width: 350px;
+    height: 200px;
+    display: inline-block;
+    text-align: center;
+}
+
+.leader-rank-image {
+    width: 256px;
+    height: 128px;
+}

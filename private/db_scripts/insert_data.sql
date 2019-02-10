@@ -3,18 +3,30 @@
 insert into User values (default, 'kellerflint', 'Keller', 'Flint', 'adminpass', 'admin', now());
 
 insert into Image values (default, 'unranked', '/mymakersite.com/public/style/img/rank/unranked.png');
+insert into Image values (default, 'novice', '/mymakersite.com/public/style/img/rank/novice.png');
+insert into Image values (default, 'apprentice', '/mymakersite.com/public/style/img/rank/apprentice.png');
+insert into Image values (default, 'adept', '/mymakersite.com/public/style/img/rank/adept.png');
+insert into Image values (default, 'expert', '/mymakersite.com/public/style/img/rank/expert.png');
+insert into Image values (default, 'master', '/mymakersite.com/public/style/img/rank/master.png');
+
+set @unranked_img = (select image_id from Image where image_name = 'unranked');
+set @novice_img = (select image_id from Image where image_name = 'novice');
+set @apprentice_img = (select image_id from Image where image_name = 'apprentice');
+set @adept_img = (select image_id from Image where image_name = 'adept');
+set @expert_img = (select image_id from Image where image_name = 'expert');
+set @master_img = (select image_id from Image where image_name = 'master');
 
 insert into Subject values (default, 'Scratch', '1');
 insert into Subject values (default, 'Gamemaker', '1');
 
 set @scratch = (select subject_id from Subject where subject_title = 'Scratch');
 
-insert into Rank values (default, @scratch, 'Unranked', 0, '1');
-insert into Rank values (default, @scratch, 'Novice', 1, '1');
-insert into Rank values (default, @scratch, 'Apprentice', 2, '1');
-insert into Rank values (default, @scratch, 'Adept', 3, '1');
-insert into Rank values (default, @scratch, 'Expert', 4, '1');
-insert into Rank values (default, @scratch, 'Master', 5, '1');
+insert into Rank values (default, @scratch, 'Unranked', 0, @unranked_img);
+insert into Rank values (default, @scratch, 'Novice', 1, @novice_img);
+insert into Rank values (default, @scratch, 'Apprentice', 2, @apprentice_img);
+insert into Rank values (default, @scratch, 'Adept', 3, @adept_img);
+insert into Rank values (default, @scratch, 'Expert', 4, @expert_img);
+insert into Rank values (default, @scratch, 'Master', 5, @master_img);
 
 set @unranked = (select rank_id from Rank where rank_title = 'Unranked');
 set @novice = (select rank_id from Rank where rank_title = 'Novice');

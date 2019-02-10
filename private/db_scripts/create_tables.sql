@@ -16,7 +16,7 @@ CREATE TABLE User
 CREATE TABLE Image
 (
     image_id int NOT NULL AUTO_INCREMENT,
-    image_title varchar(50) NOT NULL,
+    image_name varchar(50) NOT NULL,
     image_path varchar(200) NOT NULL,
 
     PRIMARY KEY (image_id)
