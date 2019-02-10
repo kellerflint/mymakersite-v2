@@ -10,7 +10,7 @@ if (!isset($page_title)) {
     <head>
         <meta charset="UTF-8">
         <title>MyMakerSite - <?php echo $page_title; ?></title>
-        <link rel="stylesheet" href="<?php echo url_for('/style/student.css'); ?>">
+        <link rel="stylesheet" href="<?php echo url_for('/style/default.css'); ?>">
         <?php if (isset($page_style) && $page_style != '') { ?>
         <link rel="stylesheet" href="<?php echo url_for('/style/' . $page_style . '.css'); ?>">
         <?php 

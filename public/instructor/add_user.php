@@ -2,7 +2,7 @@
 
 <?php $page_title = 'Add User' ?>
 
-<?php include_once SHARED_PATH . '/student_header.php'; ?>
+<?php include_once SHARED_PATH . '/default_header.php'; ?>
 
 <?php
 if (request_is_post()) {
@@ -95,7 +95,7 @@ if (request_is_post()) {
 </div>
 
 
-<?php include_once SHARED_PATH . '/student_footer.php'; ?>
+<?php include_once SHARED_PATH . '/default_footer.php'; ?>
 
 <?php 
 } ?>

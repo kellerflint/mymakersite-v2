@@ -4,7 +4,7 @@
 $page_title = 'Leaderboard';
 $page_style = 'leaderboard'; ?>
 
-<?php include_once SHARED_PATH . '/student_header.php'; ?>
+<?php include_once SHARED_PATH . '/default_header.php'; ?>
 
 <div class="content">
 
@@ -40,4 +40,4 @@ $page_style = 'leaderboard'; ?>
 <?php mysqli_free_result($user_set); ?>
 
 
-<?php include_once SHARED_PATH . '/student_footer.php'; ?>
+<?php include_once SHARED_PATH . '/default_footer.php'; ?>

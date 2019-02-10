@@ -3,7 +3,7 @@
 <?php $page_title = 'Progress' ?>
 <?php $page_style = 'progress' ?>
 
-<?php include_once(SHARED_PATH . '/student_header.php'); ?>
+<?php include_once(SHARED_PATH . '/default_header.php'); ?>
 
 
 <div class="content">
@@ -54,4 +54,4 @@
 </div>
 
 
-<?php include_once(SHARED_PATH . '/student_footer.php'); ?>
+<?php include_once(SHARED_PATH . '/default_footer.php'); ?>
