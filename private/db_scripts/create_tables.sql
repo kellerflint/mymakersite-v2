@@ -39,6 +39,7 @@ CREATE TABLE Rank
     subject_id int,
     rank_title varchar(50) NOT NULL,
     rank_level int NOT NULL,
+    rank_description varchar(5000);
     image_id int,
 
     PRIMARY KEY (rank_id),

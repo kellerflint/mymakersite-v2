@@ -7,6 +7,16 @@ $page_style = 'give_rank';
 
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
 
+<?php 
+$user_name = '';
+$rank_title = '';
+
+if (request_is_post()) {
+    $user_name = $_POST['username'];
+    $rank_title = $_POST['rank'];
+}
+?>
+
 <div class="content">
 
     <div id="user-box">
@@ -43,24 +53,22 @@ $page_style = 'give_rank';
     <div id="form-box">
         <form action="give_rank.php" method="POST">
             <label for="username">Username: </label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" value="<?php echo $user_name; ?>">
             <br>
             <label for="username">Rank: </label>
-            <input type="text" name="rank" id="rank">
+            <input type="text" name="rank" id="rank" value="<?php echo $rank_title; ?>">
             <br>
             <button name="submit" value="pre">Check Prerequisites</button>
             <button name="submit" value="give">Give Rank</button>
         </form>
         <!-- Results of the Check Prerequisites -->
         <div id="result">
-            <?php if (request_is_post()) { ?>
+            <?php 
+            if (request_is_post()) { ?>
 
             <?php
 
             if ($_POST['submit'] == 'pre') {
-
-                $user_name = $_POST['username'];
-                $rank_title = $_POST['rank'];
 
                 $user = find_user($user_name);
                 confirm_result($user);
@@ -89,8 +97,6 @@ $page_style = 'give_rank';
         }
     }
 } else {
-    $user_name = $_POST['username'];
-    $rank_title = $_POST['rank'];
 
     $user = find_user($user_name);
     confirm_result($user);
