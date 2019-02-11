@@ -60,6 +60,7 @@ if (request_is_post()) {
             <br>
             <button name="submit" value="pre">Check Prerequisites</button>
             <button name="submit" value="give">Give Rank</button>
+            <button name="submit" value="remove">Remove Rank</button>
         </form>
         <!-- Results of the Check Prerequisites -->
         <div id="result">
@@ -96,6 +97,33 @@ if (request_is_post()) {
             <?php 
         }
     }
+} else if ($_POST['submit'] == 'remove') {
+    $user = find_user($user_name);
+    confirm_result($user);
+
+    $rank = find_rank($rank_title);
+    confirm_result($rank);
+
+    $sql = "SELECT * FROM User_Rank WHERE user_id = " . $user['user_id'] . ";";
+    $user_ranks_set = mysqli_query($db, $sql);
+    
+    // Only execute delete if the user has more than 1 badge (cannot remove a user's only badge)
+    if (mysqli_num_rows($user_ranks_set) > 1) {
+        $sql = "DELETE FROM User_Rank WHERE user_id = " . $user['user_id'] . " AND rank_id = " . $rank['rank_id'] . ";";
+        $result = mysqli_query($db, $sql);
+
+        if ($result) {
+            echo "Rank " . $rank_title . " removed from user " . $user_name;
+        } else {
+            echo "Rank deletion failed: " . mysqli_error($db);
+        }
+    } else {
+        echo "User must have at least one rank. If you wish to remove a badge, 
+        you must first give the user the rank you want them to have and then remove the higher badges.";
+    }
+
+
+
 } else {
 
     $user = find_user($user_name);

@@ -65,25 +65,44 @@ if (request_is_get()) {
             <label for="badge">Badge: </label>
             <input type="text" name="badge" id="badge" value="<?php echo $badge_title; ?>">
             <br>
-            <button name="submit">Give Badge</button>
+            <button name="submit" value="give">Give Badge</button>
+            <button name="submit" value="remove">Remove Badge</button>
         </form>
         <!-- Displays result of give badge query -->
         <div id="result">
             <?php 
             if (request_is_post()) {
-                $user = find_user($user_name);
-                confirm_result($user);
+                if ($_POST['submit'] == 'give') {
+                    $user = find_user($user_name);
+                    confirm_result($user);
 
-                $badge = find_badge($badge_title);
-                confirm_result($badge);
+                    $badge = find_badge($badge_title);
+                    confirm_result($badge);
 
-                $sql = "INSERT INTO User_Badge VALUES (" . $user['user_id'] . ", " . $badge['badge_id'] . ", now())";
-                $result = mysqli_query($db, $sql);
+                    $sql = "INSERT INTO User_Badge VALUES (" . $user['user_id'] . ", " . $badge['badge_id'] . ", now())";
+                    $result = mysqli_query($db, $sql);
 
-                if ($result) {
-                    echo "Badge " . $badge_title . " given to user " . $user_name;
+                    if ($result) {
+                        echo "Badge " . $badge_title . " given to user " . $user_name;
+                    } else {
+                        echo "Badge insert failed: " . mysqli_error($db);
+                    }
                 } else {
-                    echo "Badge insert failed: " . mysqli_error($db);
+                    $user = find_user($user_name);
+                    confirm_result($user);
+
+                    $badge = find_badge($badge_title);
+                    confirm_result($badge);
+
+                    $sql = "DELETE FROM User_Badge WHERE user_id = " . $user['user_id'] . " AND badge_id = " . $badge['badge_id'] . ";";
+                    $result = mysqli_query($db, $sql);
+
+                    if ($result) {
+                        echo "Rank " . $badge_title . " removed from user " . $user_name;
+                    } else {
+                        echo "Rank deletion failed: " . mysqli_error($db);
+                    }
+
                 }
 
             } ?>

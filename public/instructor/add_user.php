@@ -27,11 +27,8 @@ if (request_is_post()) {
         echo 'New user created with id ' . $new_id;
 
         // add unranked as default rank
-        $sql = "SELECT rank_id FROM Rank where rank_title = 'unranked'";
-
-        $result_set = mysqli_query($db, $sql);
-        confirm_result($result_set);
-        $rank = mysqli_fetch_assoc($result_set);
+        $rank = find_rank('Unranked');
+        confirm_result($rank);
 
         echo "<br>" . $sql . "<br>";
 
