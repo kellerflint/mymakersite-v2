@@ -61,3 +61,8 @@ p {
     display: inline;
 }
 
+.warning {
+    color: red;
+    font-size: 1.4em;
+    font-weight: bold;
+}

@@ -85,3 +85,11 @@ function find_user_badges($user_id, $rank_id)
     $badge_set = mysqli_query($db, $sql);
     return $badge_set;
 }
+
+function find_required_for_rank($rank_id)
+{
+    global $db;
+    $sql = "SELECT * FROM Badge WHERE rank_id = " . $rank_id . " AND badge_required = 'true';";
+    $badge_set = mysqli_query($db, $sql);
+    return $badge_set;
+}

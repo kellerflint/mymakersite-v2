@@ -40,7 +40,7 @@ $page_style = 'ranks';
 
         <p>Student can make a variety of complex games with many sprites and complex interactions.
             They understand how to use variables, decision logic and all blocks in scratch.
-            With time,this rank should be accessible to any student with regular attendance and good effort in class.
+            With time, this rank should be accessible to any student with regular attendance and good effort in class.
         </p>
     </div>
     <div class="rank-item" id="expert">
@@ -56,7 +56,8 @@ $page_style = 'ranks';
             including lists, definitions and cloning.
             They demonstrate strong control of variable logic and exceptional use of decision logic.
             They make well thought out design decisions and are independent, capable troubleshooters.
-            They are likely working on extremely complex projects involving multi-nested control.
+            They are capable doing extremely complex projects involving multi-nested control statements
+            and understand the underlying mathematical principles behind Scratch game design.
         </p>
     </div>
     <div class="rank-item" id="master">
@@ -64,7 +65,7 @@ $page_style = 'ranks';
 
         <img class="rank-img" src="<?php echo url_for('/style/img/rank/master.png'); ?>" alt="master">
         <p>You could run the makerspace.</p>
-        <p>Use custom CSS to figure out how to give yourself the Master badge. If
+        <p>Use custom CSS to give yourself the Master badge on your profile page. If
             you're really a master, you'll figure it out ;)</p>
         <p>PS: Pinky swear not to give the answer away!</p>
     </div>

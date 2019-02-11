@@ -20,12 +20,24 @@ confirm_result($user);
 $rank = find_rank($rank_title);
 confirm_result($rank);
 
-$badge_set = find_user_badges($user['user_id'], $rank['rank_id']);
-confirm_result($badge_set);
+$full_badge_set = find_required_for_rank($rank['rank_id']);
+confirm_result($full_badge_set);
 
-while ($badge = mysqli_fetch_assoc($badge_set)) {
-    echo $badge['badge_title'];
-    //select * from Badge where rank_id = 2 and badge_required = "true";
+while ($badge = mysqli_fetch_assoc($full_badge_set)) {
+    $has_badge = false;
+    $user_badge_set = find_user_badges($user['user_id'], $rank['rank_id']);
+    confirm_result($user_badge_set);
+
+    while ($user_badge = mysqli_fetch_assoc($user_badge_set)) {
+        if ($user_badge['badge_id'] == $badge['badge_id']) {
+            $has_badge = true;
+        }
+    }
+    if ($has_badge == false) {
+        ?>
+<p class="warning"><?php echo 'WARNING: ' . $user_name . ' is missing the ' . $badge['badge_title'] . ' badge!'; ?></p>
+<?php 
+}
 }
 
 ?>
