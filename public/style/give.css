@@ -66,3 +66,29 @@ p {
     font-size: 1.4em;
     font-weight: bold;
 }
+
+/* give_badge changes */
+
+#badge-box {
+    float: left;
+    width: 31%;
+    background-color: pink;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.badge-item {
+    height: 100px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.badge-img {
+    height: 40px;
+    display: inline;
+}
+
+select {
+    font-size: 1.4em;
+}

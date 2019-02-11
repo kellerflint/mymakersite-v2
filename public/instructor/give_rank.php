@@ -2,7 +2,7 @@
 
 <?php 
 $page_title = 'Give Rank';
-$page_style = 'give_rank';
+$page_style = 'give';
 ?>
 
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
@@ -76,7 +76,7 @@ if (request_is_post()) {
                 $rank = find_rank($rank_title);
                 confirm_result($rank);
 
-                $full_badge_set = find_required_for_rank($rank['rank_id']);
+                $full_badge_set = find_badges_for_rank($rank['rank_id']);
                 confirm_result($full_badge_set);
 
                 while ($badge = mysqli_fetch_assoc($full_badge_set)) {
@@ -110,7 +110,7 @@ if (request_is_post()) {
     if ($result) {
         echo "Rank " . $rank_title . " given to user " . $user_name;
     } else {
-        echo "Default rank insert failed: " . mysqli_error($db);
+        echo "Rank insert failed: " . mysqli_error($db);
     }
 
 } ?>
@@ -149,6 +149,6 @@ if (request_is_post()) {
 
 </div>
 
-<script src="<?php echo '../../private/scripts/rank_fill_form.js'; ?>"></script>
+<script src="<?php echo '../../private/scripts/give_fill_form.js'; ?>"></script>
 
 <?php include_once SHARED_PATH . '/default_footer.php'; ?>

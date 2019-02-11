@@ -8,7 +8,7 @@ function find_all_users()
     return $user_set;
 }
 
-// Returns assoc for user identified by their username
+// Returns assoc for user identified by their user_name
 function find_user($username)
 {
     global $db;
@@ -18,7 +18,7 @@ function find_user($username)
     return $user;
 }
 
-// Returns assoc for user identified by their username
+// Returns assoc for user identified by their rank_title
 function find_rank($rank)
 {
     global $db;
@@ -67,7 +67,7 @@ function find_all_ranks()
     return $rank_set;
 }
 
-// Returns table
+// Returns table of all badges a user has for a given rank
 function find_user_badges($user_id, $rank_id)
 {
     global $db;
@@ -86,10 +86,21 @@ function find_user_badges($user_id, $rank_id)
     return $badge_set;
 }
 
-function find_required_for_rank($rank_id)
+// Returns all required badges for given rank_id
+function find_badges_for_rank($rank_id)
 {
     global $db;
     $sql = "SELECT * FROM Badge WHERE rank_id = " . $rank_id . " AND badge_required = 'true';";
     $badge_set = mysqli_query($db, $sql);
     return $badge_set;
+}
+
+// Returns assoc for user identified by their badge_title
+function find_badge($badge)
+{
+    global $db;
+    $sql = "SELECT * from Badge where badge_title = '" . $badge . "';";
+    $badge_set = mysqli_query($db, $sql);
+    $badge = mysqli_fetch_assoc($badge_set);
+    return $badge;
 }
