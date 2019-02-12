@@ -102,8 +102,9 @@ if (request_is_post()) {
                     } else if ($_POST['submit-option'] == 'remove') {
                         remove_badge($user_name, $badge_title);
                     }
-                }
 
+                }
+                display_user_badges($user_name, $for_rank);
             } ?>
         </div>
         <!--End of form div-->
@@ -161,52 +162,93 @@ if (request_is_post()) {
 
 // Page function definitions
 
+// Shows users current badges
+    function display_user_badges($user_name, $for_rank)
+    {
+        ?>
+    <h2>Current Badges:</h2>
+    <?php
+    if ($user_name != '') {
+
+        $user = find_user($user_name);
+        confirm_result($user);
+
+        $rank = find_rank($for_rank);
+        confirm_result($rank);
+
+        $badge_set = find_user_badges($user['user_id'], $rank['rank_id']);
+        confirm_result($badge_set);
+        $count = 0;
+        while ($badge = mysqli_fetch_assoc($badge_set)) { ?>
+
+    <div data-rank="<?php echo $badge['badge_title']; ?>"
+        class="badge-item 
+        <?php 
+        if ($count % 2 == 0)
+            echo "odd";
+        else
+            echo "even";
+        ?>">
+        <p>
+            <?php 
+            echo $badge['badge_title'];
+            if ($badge['badge_required'] == 'true')
+                echo "*";
+            ?>
+        </p>
+    </div>
+
+    <?php $count++;
+}
+}
+}
+
 // Given user_name and badge_title gives user badge or displays errors
-    function give_badge($user_name, $badge_title)
-    {
-        global $db;
-        if ($user_name != '' && $badge_title != '') {
-            $user = find_user($user_name);
-            confirm_result($user);
+function give_badge($user_name, $badge_title)
+{
+    global $db;
+    if ($user_name != '' && $badge_title != '') {
+        $user = find_user($user_name);
+        confirm_result($user);
 
-            $badge = find_badge($badge_title);
-            confirm_result($badge);
+        $badge = find_badge($badge_title);
+        confirm_result($badge);
 
-            $sql = "INSERT INTO User_Badge VALUES (" . $user['user_id'] . ", " . $badge['badge_id'] . ", now())";
-            $result = mysqli_query($db, $sql);
+        $sql = "INSERT INTO User_Badge VALUES (" . $user['user_id'] . ", " . $badge['badge_id'] . ", now())";
+        $result = mysqli_query($db, $sql);
 
-            if ($result) {
-                echo "Badge " . $badge_title . " given to user " . $user_name;
-            } else {
-                echo "Badge insert failed: " . mysqli_error($db);
-            }
+        if ($result) {
+            echo "Badge " . $badge_title . " given to user " . $user_name;
         } else {
-            echo "Badge insert failed: You must select a user and badge.";
+            echo "Badge insert failed: " . mysqli_error($db);
         }
+    } else {
+        echo "Badge insert failed: You must select a user and badge.";
     }
+}
 
-    function remove_badge($user_name, $badge_title)
-    {
-        global $db;
-        if ($user_name != '' && $badge_title != '') {
+function remove_badge($user_name, $badge_title)
+{
+    global $db;
+    if ($user_name != '' && $badge_title != '') {
 
-            $user = find_user($user_name);
-            confirm_result($user);
+        $user = find_user($user_name);
+        confirm_result($user);
 
-            $badge = find_badge($badge_title);
-            confirm_result($badge);
+        $badge = find_badge($badge_title);
+        confirm_result($badge);
 
-            $sql = "DELETE FROM User_Badge WHERE user_id = " . $user['user_id'] . " AND badge_id = " . $badge['badge_id'] . ";";
-            $result = mysqli_query($db, $sql);
+        $sql = "DELETE FROM User_Badge WHERE user_id = " . $user['user_id'] . " AND badge_id = " . $badge['badge_id'] . ";";
+        $result = mysqli_query($db, $sql);
 
-            if ($result) {
-                echo "Rank " . $badge_title . " removed from user " . $user_name;
-            } else {
-                echo "Rank deletion failed: " . mysqli_error($db);
-            }
+        if ($result) {
+            echo "Rank " . $badge_title . " removed from user " . $user_name;
         } else {
-            echo "Badge deletion failed: You must select a user and badge.";
+            echo "Rank deletion failed: " . mysqli_error($db);
         }
+    } else {
+        echo "Badge deletion failed: You must select a user and badge.";
     }
+}
 
-    ?>
+?>
