@@ -40,13 +40,21 @@ if (request_is_post()) {
         confirm_result($user_set);
 
         // Iterate over all users, display name
+        $count = 0;
         while ($user = mysqli_fetch_assoc($user_set)) { ?>
-        <div data-user="<?php echo $user['user_name'] ?>" class="user-item">
+        <div data-user="<?php echo $user['user_name'] ?>"
+            class="user-item 
+            <?php 
+            if ($count % 2 == 0)
+                echo "odd";
+            else
+                echo "even";
+            ?>">
             <p class="user-p">
                 <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
             </p>
         </div>
-        <?php 
+        <?php $count++;
     } ?>
         <!-- End of userbox -->
     </div>
@@ -78,9 +86,9 @@ if (request_is_post()) {
             <label for="badge">Badge: </label>
             <input type="text" name="badge" id="badge" value="<?php echo $badge_title; ?>">
             <br>
-            <button name="submit-option" value="give" onclick="this.form.submit(); delayed_refresh();">Give
+            <button name="submit-option" value="give" onclick="this.form.submit();">Give
                 Badge</button>
-            <button name="submit-option" value="remove" onclick="this.form.submit() delayed_refresh();">Remove
+            <button name="submit-option" value="remove" onclick="this.form.submit();">Remove
                 Badge</button>
         </form>
         <!-- Displays result of give badge query -->
@@ -117,11 +125,19 @@ if (request_is_post()) {
 
                 $badge_set = find_missing_badges($user['user_id'], $rank['rank_id']);
                 confirm_result($badge_set);
-
+                $count = 0;
                 while ($badge = mysqli_fetch_assoc($badge_set)) { ?>
 
-        <div data-rank="<?php echo $badge['badge_title']; ?>" class="badge-item">
-            <p><?php 
+        <div data-rank="<?php echo $badge['badge_title']; ?>"
+            class="badge-item 
+        <?php 
+        if ($count % 2 == 0)
+            echo "odd";
+        else
+            echo "even";
+        ?>">
+            <p>
+                <?php 
                 echo $badge['badge_title'];
                 if ($badge['badge_required'] == 'true')
                     echo "*";
@@ -129,7 +145,7 @@ if (request_is_post()) {
             </p>
         </div>
 
-        <?php 
+        <?php $count++;
     }
 }
 }
@@ -137,7 +153,6 @@ if (request_is_post()) {
 
     </div>
 
-    <script src="<?php echo '../../private/scripts/functions.js'; ?>"></script>
     <script src="<?php echo '../../private/scripts/give_fill_form.js'; ?>"></script>
 
     <?php include_once SHARED_PATH . '/default_footer.php'; ?>
