@@ -8,20 +8,16 @@ $page_style = 'give';
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
 
 <?php 
+
+// Default form submit values
 $user_name = '';
 $badge_title = '';
 $for_rank = 'Unranked';
 
+// Defaults are overriden on submission if they are submitted TODO
 if (request_is_post()) {
     $user_name = $_POST['username'];
     $badge_title = $_POST['badge'];
-}
-
-if (request_is_get()) {
-    if (isset($_GET['ranks']))
-        $for_rank = $_GET['ranks'];
-    if (isset($_GET['username']))
-        $user_name = $_GET['username'];
 }
 
 ?>
@@ -31,35 +27,23 @@ if (request_is_get()) {
     <div id="user-box">
         <h2>Users</h2>
         <?php 
+
+        // Get and confirm user set
         $user_set = find_all_users();
         confirm_result($user_set);
-        $user_count = 0;
-        while ($user = mysqli_fetch_assoc($user_set)) {
-            $ranks_set = find_user_ranks($user['user_id']);
-            confirm_result($ranks_set);
-            $rank = mysqli_fetch_assoc($ranks_set);
-            $rank_img = find_image($rank['image_id']);
-            confirm_result($rank_img);
-            ?>
 
-        <div data-user="<?php echo $user['user_name'] ?>"
-            class="user-item 
-            <?php
-            if ($user_count % 2 == 0)
-                echo 'even ';
-            else
-                echo 'odd ';
-            ?>">
-            <p>
-                <?php echo $user['user_first'] . ' ' . $user['user_last'] . ' [' . $user['user_name'] . ']'; ?>
-                <img class="rank-img-user" src="<?php echo $rank_img['image_path']; ?>" alt="">
+        // Iterate over all users, display name
+        while ($user = mysqli_fetch_assoc($user_set)) {
+            ?>
+        <div data-user="<?php echo $user['user_name'] ?>" class="user-item 
+            ">
+            <p class="user-p">
+                <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
             </p>
         </div>
-
-        <?php
-        $user_count++;
+        <?php 
     } ?>
-
+        <!-- End of userbox -->
     </div>
 
     <div id="form-box">
