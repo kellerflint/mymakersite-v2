@@ -14,11 +14,18 @@ $for_rank = 'Unranked';
 $user_name = '';
 $badge_title = '';
 
-// Defaults are overriden on submission if they are submitted TODO
+// Defaults are overriden on submission if they are set
 if (request_is_post()) {
-    $for_rank = $_POST['rank'];
-    $user_name = $_POST['username'];
-    $badge_title = $_POST['badge'];
+
+    if (isset($_POST['rank']))
+        $for_rank = $_POST['rank'];
+
+    if (isset($_POST['username']))
+        $user_name = $_POST['username'];
+
+    if (isset($_POST['badge']))
+        $badge_title = $_POST['badge'];
+
 }
 ?>
 
@@ -33,10 +40,8 @@ if (request_is_post()) {
         confirm_result($user_set);
 
         // Iterate over all users, display name
-        while ($user = mysqli_fetch_assoc($user_set)) {
-            ?>
-        <div data-user="<?php echo $user['user_name'] ?>" class="user-item 
-            ">
+        while ($user = mysqli_fetch_assoc($user_set)) { ?>
+        <div data-user="<?php echo $user['user_name'] ?>" class="user-item">
             <p class="user-p">
                 <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
             </p>
@@ -68,8 +73,8 @@ if (request_is_post()) {
             <label for="badge">Badge: </label>
             <input type="text" name="badge" id="badge" value="">
             <br>
-            <button name="submit" value="give">Give Badge</button>
-            <button name="submit" value="remove">Remove Badge</button>
+            <button name="submit-option" value="give" onclick="this.form.submit()">Give Badge</button>
+            <button name="submit-option" value="remove" onclick="this.form.submit()">Remove Badge</button>
         </form>
         <!--End of form div-->
     </div>
@@ -78,13 +83,15 @@ if (request_is_post()) {
     <div id="result-box">
         <?php 
         if (request_is_post()) {
-            echo "anything?";
-            if ($_POST['submit'] == 'give') {
-                echo "give";
+            // if submit-option is set then run give or remove, else run update
+            if (isset($_POST['submit-option'])) {
+                if ($_POST['submit-option'] == 'give') {
+                    echo "give";
                 //give_badge($user, $badge);
-            } else if ($_POST['submit'] == 'remove') {
-                echo "remove";
+                } else if ($_POST['submit-option'] == 'remove') {
+                    echo "remove";
                 //remove_badge($user, $badge);
+                }
             } else {
                 echo "update";
             }
@@ -104,7 +111,6 @@ if (request_is_post()) {
     <script src="<?php echo '../../private/scripts/give_fill_form.js'; ?>"></script>
 
     <?php include_once SHARED_PATH . '/default_footer.php'; ?>
-
 
 
 
