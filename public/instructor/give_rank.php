@@ -44,7 +44,7 @@ if (request_is_post()) {
                 echo 'selected';
             ?>">
             <p>
-                <?php echo $user['user_first'] . ' ' . $user['user_last'] . ' [' . $user['user_name'] . ']'; ?>
+                <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
                 <img class="rank-img-user" src="<?php echo $rank_img['image_path']; ?>" alt="">
             </p>
         </div>
@@ -141,7 +141,8 @@ if (request_is_post()) {
     $result = mysqli_query($db, $sql);
 
     if ($result) {
-        echo "Rank " . $rank_title . " given to user " . $user_name;
+        echo "<p>Rank " . $rank_title . " given to user " . $user_name . "</p>";
+        echo "<p>The change will not show on this page until it is refreshed</p>";
     } else {
         echo "Rank insert failed: " . mysqli_error($db);
     }

@@ -12,7 +12,7 @@ function find_all_users()
 function find_user($username)
 {
     global $db;
-    $sql = "SELECT * from User where user_name = '" . $username . "';";
+    $sql = "SELECT * FROM User WHERE user_name = '" . $username . "';";
     $user_set = mysqli_query($db, $sql);
     $user = mysqli_fetch_assoc($user_set);
     return $user;
@@ -22,7 +22,7 @@ function find_user($username)
 function find_rank($rank)
 {
     global $db;
-    $sql = "SELECT * from Rank where rank_title = '" . $rank . "';";
+    $sql = "SELECT * FROM Rank WHERE rank_title = '" . $rank . "';";
     $rank_set = mysqli_query($db, $sql);
     $rank = mysqli_fetch_assoc($rank_set);
     return $rank;
@@ -51,7 +51,7 @@ function find_user_ranks($user_id)
 function find_image($image_id)
 {
     global $db;
-    $sql = "SELECT * FROM Image where image_id = ";
+    $sql = "SELECT * FROM Image WHERE image_id = ";
     $sql .= $image_id;
     $image_set = mysqli_query($db, $sql);
     $image = mysqli_fetch_assoc($image_set);
@@ -95,11 +95,22 @@ function find_badges_for_rank($rank_id)
     return $badge_set;
 }
 
+// Return all badges the user doesn't have
+function find_missing_badges($user, $rank)
+{
+    global $db;
+    $sql = "SELECT * FROM Badge WHERE rank_id = " . $rank;
+    $sql .= " AND badge_id NOT IN (SELECT badge_id FROM User_Badge WHERE user_id = ";
+    $sql .= $user . ");";
+    $badge_set = mysqli_query($db, $sql);
+    return $badge_set;
+}
+
 // Returns assoc for user identified by their badge_title
 function find_badge($badge)
 {
     global $db;
-    $sql = "SELECT * from Badge where badge_title = '" . $badge . "';";
+    $sql = "SELECT * FROM Badge WHERE badge_title = '" . $badge . "';";
     $badge_set = mysqli_query($db, $sql);
     $badge = mysqli_fetch_assoc($badge_set);
     return $badge;
