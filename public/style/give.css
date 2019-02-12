@@ -90,9 +90,11 @@ p {
     display: inline;
 }
 
+/*
 select {
     font-size: 1.4em;
 }
+*/
 
 .user-p {
     padding-top: 15px;
