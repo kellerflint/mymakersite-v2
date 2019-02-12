@@ -32,6 +32,6 @@ if (!isset($page_title)) {
                 </li>
                 <li class="instructor"><a href="<?php echo url_for('/instructor/give_rank.php'); ?>">Give Rank</a></li>
                 <!--If role is admin show these-->
-                <li class="admin"><a href="<?php echo url_for('/instructor/add_badge.php'); ?>">Add Badge</a></li>
+                <li class="admin"><a href="<?php echo url_for('/admin/add_badge.php'); ?>">Add Badge</a></li>
             </ul>
         </nav>

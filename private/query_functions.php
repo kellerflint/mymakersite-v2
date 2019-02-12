@@ -80,8 +80,8 @@ function find_user_badges($user_id, $rank_id)
         FROM
         User_Badge
         INNER JOIN Badge ON User_Badge . badge_id = Badge . badge_id
-        where
-        user_id = " . $user_id . " and rank_id = " . $rank_id . ";";
+        WHERE
+        user_id = " . $user_id . " AND rank_id = " . $rank_id . ";";
     $badge_set = mysqli_query($db, $sql);
     return $badge_set;
 }
