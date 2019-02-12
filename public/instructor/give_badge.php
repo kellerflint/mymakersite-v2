@@ -10,7 +10,7 @@ $page_style = 'give';
 <?php 
 $user_name = '';
 $badge_title = '';
-$badges_for_rank = 'Unranked';
+$for_rank = 'Unranked';
 
 if (request_is_post()) {
     $user_name = $_POST['username'];
@@ -19,7 +19,9 @@ if (request_is_post()) {
 
 if (request_is_get()) {
     if (isset($_GET['ranks']))
-        $badges_for_rank = $_GET['ranks'];
+        $for_rank = $_GET['ranks'];
+    if (isset($_GET['username']))
+        $user_name = $_GET['username'];
 }
 
 ?>
@@ -43,8 +45,11 @@ if (request_is_get()) {
         <div data-user="<?php echo $user['user_name'] ?>"
             class="user-item 
             <?php
-            if ($user_count % 2 == 0) echo 'even';
-            else echo 'odd'; ?>">
+            if ($user_count % 2 == 0)
+                echo 'even ';
+            else
+                echo 'odd ';
+            ?>">
             <p>
                 <?php echo $user['user_first'] . ' ' . $user['user_last'] . ' [' . $user['user_name'] . ']'; ?>
                 <img class="rank-img-user" src="<?php echo $rank_img['image_path']; ?>" alt="">
@@ -110,8 +115,8 @@ if (request_is_get()) {
     </div>
 
     <div id="badge-box">
-        <form action="give_badge.php" method="GET">
-            <select name="ranks" id="rank-options" onchange="this.form.submit()">
+        <form action="give_badge.php" method="GET" id="ranks-form">
+            <select name="ranks" id="rank-options" onchange="this.form.submit();">
                 <?php 
                 $ranks_set = find_all_ranks();
                 confirm_result($ranks_set);
@@ -123,9 +128,9 @@ if (request_is_get()) {
             } ?>
             </select>
         </form>
-        <h2>Badges for <?php echo $badges_for_rank; ?></h2>
+        <h2>Badges for <?php echo $for_rank; ?></h2>
         <?php 
-        $rank = find_rank($badges_for_rank);
+        $rank = find_rank($for_rank);
         $badge_set = find_badges_for_rank($rank['rank_id']);
         confirm_result($badge_set);
         $badge_count = 0;

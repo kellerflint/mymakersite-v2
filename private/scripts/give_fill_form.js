@@ -28,7 +28,6 @@ for (let index = 0; index < users.length; index++) {
         users[index].classList.remove('selected');
         users[index].classList.add('selected');
 
-
         for (let i = 0; i < users.length; i++) {
             if (index != i) {
                 users[i].classList.remove('selected');

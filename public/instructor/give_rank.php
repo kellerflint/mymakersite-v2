@@ -36,8 +36,13 @@ if (request_is_post()) {
         <div data-user="<?php echo $user['user_name'] ?>"
             class="user-item 
             <?php
-            if ($user_count % 2 == 0) echo 'even';
-            else echo 'odd'; ?>">
+            if ($user_count % 2 == 0)
+                echo 'even ';
+            else
+                echo 'odd ';
+            if ($user_name == $user['user_name'])
+                echo 'selected';
+            ?>">
             <p>
                 <?php echo $user['user_first'] . ' ' . $user['user_last'] . ' [' . $user['user_name'] . ']'; ?>
                 <img class="rank-img-user" src="<?php echo $rank_img['image_path']; ?>" alt="">
@@ -161,8 +166,14 @@ if (request_is_post()) {
 
         <div data-rank="<?php echo $rank['rank_title']; ?>"
             class=" rank-item 
-            <?php if ($rank_count % 2 == 0) echo 'even';
-            else echo 'odd'; ?>">
+            <?php 
+            if ($rank_count % 2 == 0)
+                echo 'even ';
+            else
+                echo 'odd ';
+            if ($rank_title == $rank['rank_title'])
+                echo 'selected';
+            ?>">
             <p>
                 <img class="rank-img-rank" src="<?php echo $rank_img['image_path']; ?>"
                     alt="<?php echo $rank_img['image_name']; ?>">
