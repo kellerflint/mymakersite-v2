@@ -225,7 +225,7 @@ function give_badge($user_name, $badge_title)
             echo "Badge insert failed: " . mysqli_error($db);
         }
     } else {
-        echo "Badge insert failed: You must select a user and badge.";
+        echo "Badge insert failed: You must select a user and a badge.";
     }
 }
 
