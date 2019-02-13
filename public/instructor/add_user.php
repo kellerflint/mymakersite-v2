@@ -67,14 +67,14 @@ if (request_is_post()) {
 <div class="content">
 
     <form action="add_user.php" method="POST">
-        <label for='username'>Username: </label>
-        <input type="text" name="username" id="username">
-        <br>
         <label for='firstname'>First Name: </label>
         <input type="text" name="firstname" id="firstname">
         <br>
         <label for='lastname'>Last Name: </label>
         <input type="text" name="lastname" id="lastname">
+        <br>
+        <label for='username'>Username: </label>
+        <input type="text" name="username" id="username">
         <br>
         <label for='password'>Password: </label>
         <input type="text" name="password" id="password">
@@ -91,7 +91,7 @@ if (request_is_post()) {
 
 </div>
 
-
+<script src="../../private/scripts/autofill_uname.js"></script>
 <?php include_once SHARED_PATH . '/default_footer.php'; ?>
 
 <?php 
