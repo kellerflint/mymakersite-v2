@@ -39,7 +39,7 @@
             ?>"
                 src="<?php echo $image['image_path']; ?>" alt="<?php echo $image['image_name']; ?>">
         </a>
-        <p><?php echo $badge['badge_title']; ?></p>
+        <h2><?php echo $badge['badge_title']; ?></h2>
         <p><?php echo $badge['badge_description']; ?></p>
 
     </div>

@@ -48,11 +48,22 @@ function find_user_ranks($user_id)
 }
 
 // Given image_id return image assoc
-function find_image($image_id)
+function find_image_by_id($image_id)
 {
     global $db;
     $sql = "SELECT * FROM Image WHERE image_id = ";
     $sql .= $image_id;
+    $image_set = mysqli_query($db, $sql);
+    $image = mysqli_fetch_assoc($image_set);
+    return $image;
+}
+
+// Given image_title return image assoc
+function find_image($image_name)
+{
+    global $db;
+    $sql = "SELECT * FROM Image WHERE image_name = '";
+    $sql .= $image_name . "'";
     $image_set = mysqli_query($db, $sql);
     $image = mysqli_fetch_assoc($image_set);
     return $image;

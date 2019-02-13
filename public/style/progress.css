@@ -24,5 +24,13 @@
 }
 
 .required {
-    border: 5px solid maroon;
+    border: 5px solid red;
+}
+
+.badge-image:hover {
+    border: 5px solid green;
+}
+
+p {
+    font-size: 1.4em;
 }

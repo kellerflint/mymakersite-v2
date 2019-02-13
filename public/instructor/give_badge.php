@@ -154,7 +154,8 @@ if (request_is_post()) {
 
     </div>
 
-    <script src="<?php echo '../../private/scripts/give_fill_form.js'; ?>"></script>
+    <script src="<?php echo '../../private/scripts/give_fill_form.js'; ?>">
+    </script>
 
     <?php include_once SHARED_PATH . '/default_footer.php'; ?>
 
@@ -214,7 +215,8 @@ function give_badge($user_name, $badge_title)
         $badge = find_badge($badge_title);
         confirm_result($badge);
 
-        $sql = "INSERT INTO User_Badge VALUES (" . $user['user_id'] . ", " . $badge['badge_id'] . ", now())";
+        $sql = "INSERT INTO User_Badge VALUES (" . $user['user_id'] . ", ";
+        $sql .= $badge['badge_id'] . ", now())";
         $result = mysqli_query($db, $sql);
 
         if ($result) {
@@ -238,7 +240,8 @@ function remove_badge($user_name, $badge_title)
         $badge = find_badge($badge_title);
         confirm_result($badge);
 
-        $sql = "DELETE FROM User_Badge WHERE user_id = " . $user['user_id'] . " AND badge_id = " . $badge['badge_id'] . ";";
+        $sql = "DELETE FROM User_Badge WHERE user_id = " . $user['user_id'];
+        $sql .= " AND badge_id = " . $badge['badge_id'] . ";";
         $result = mysqli_query($db, $sql);
 
         if ($result) {

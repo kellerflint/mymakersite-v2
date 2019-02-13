@@ -29,7 +29,7 @@ if (request_is_post()) {
             $ranks_set = find_user_ranks($user['user_id']);
             confirm_result($ranks_set);
             $rank = mysqli_fetch_assoc($ranks_set);
-            $rank_img = find_image($rank['image_id']);
+            $rank_img = find_image_by_id($rank['image_id']);
             confirm_result($rank_img);
             ?>
 
@@ -162,7 +162,7 @@ if (request_is_post()) {
         confirm_result($rank_set);
         $rank_count = 0;
         while ($rank = mysqli_fetch_assoc($rank_set)) {
-            $rank_img = find_image($rank['image_id']);
+            $rank_img = find_image_by_id($rank['image_id']);
             confirm_result($rank_img); ?>
 
         <div data-rank="<?php echo $rank['rank_title']; ?>"

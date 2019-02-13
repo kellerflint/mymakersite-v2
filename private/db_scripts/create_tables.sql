@@ -16,7 +16,7 @@ CREATE TABLE User
 CREATE TABLE Image
 (
     image_id int NOT NULL AUTO_INCREMENT,
-    image_name varchar(50) NOT NULL,
+    image_name varchar(50) NOT NULL UNIQUE,
     image_path varchar(200) NOT NULL,
 
     PRIMARY KEY (image_id)
@@ -25,7 +25,7 @@ CREATE TABLE Image
 CREATE TABLE Subject
 (
     subject_id int NOT NULL AUTO_INCREMENT,
-    subject_title varchar(50) NOT NULL,
+    subject_title varchar(50) NOT NULL UNIQUE,
     image_id int,
 
     PRIMARY KEY (subject_id),
@@ -37,9 +37,9 @@ CREATE TABLE Rank
 (
     rank_id int NOT NULL AUTO_INCREMENT,
     subject_id int,
-    rank_title varchar(50) NOT NULL,
+    rank_title varchar(50) NOT NULL UNIQUE,
     rank_level int NOT NULL,
-    rank_description varchar(5000);
+    rank_description varchar(5000),
     image_id int,
 
     PRIMARY KEY (rank_id),
@@ -50,7 +50,7 @@ CREATE TABLE Rank
 CREATE TABLE Badge
 (
     badge_id int NOT NULL AUTO_INCREMENT,
-    badge_title varchar(50) NOT NULL,
+    badge_title varchar(50) NOT NULL UNIQUE,
     rank_id int,
     badge_required varchar(5) NOT NULL,
     badge_description varchar(500),

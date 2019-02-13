@@ -24,7 +24,7 @@ $page_style = 'leaderboard'; ?>
             $user_ranks = find_user_ranks($user['user_id']);
             confirm_result($user_ranks);
             $user_rank = mysqli_fetch_assoc($user_ranks);
-            $rank_img = find_image($user_rank['image_id']);
+            $rank_img = find_image_by_id($user_rank['image_id']);
             confirm_result($rank_img);
             ?>
 

@@ -53,7 +53,9 @@ $page_title = 'Add Badge';
         $badge_link = $_POST['badge_link'];
         $badge_description = $_POST['badge_description'];
 
-        $badge_img = '1';
+        $image_assoc = find_image("badge_default");
+        confirm_result($image_assoc);
+        $img = $image_assoc['image_id'];
 
         $rank = find_rank($badge_rank);
         confirm_result($rank);
@@ -64,7 +66,7 @@ $page_title = 'Add Badge';
         $sql .= "'" . $badge_required . "', ";
         $sql .= "'" . $badge_description . "', ";
         $sql .= "'" . $badge_link . "', ";
-        $sql .= "'" . $badge_img . "');";
+        $sql .= "'" . $img . "');";
 
         $result = mysqli_query($db, $sql);
 
