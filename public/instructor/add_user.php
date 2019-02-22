@@ -12,55 +12,56 @@ if (request_is_post()) {
     $password = $_POST['password'];
     $role = $_POST['role'];
 
-    $sql = "INSERT INTO User VALUES (default, ";
-    $sql .= "'" . hsc($username) . "', ";
-    $sql .= "'" . hsc($firstname) . "', ";
-    $sql .= "'" . hsc($lastname) . "', ";
-    $sql .= "'" . hsc($password) . "', ";
-    $sql .= "'" . $role . "', ";
-    $sql .= "now());";
+    echo $username . '<br>';
+    echo has_value($username) . '<br>';
 
-    $result = mysqli_query($db, $sql);
-
-    if ($result) {
-        $new_id = mysqli_insert_id($db);
-        echo 'New user created with id ' . $new_id;
-
-        // add unranked as default rank
-        $rank = find_rank('Unranked');
-        confirm_result($rank);
-
-        echo "<br>" . $sql . "<br>";
-
-        $sql = "INSERT INTO User_Rank VALUES('";
-        $sql .= $new_id . "',  '";
-        $sql .= $rank['rank_id'] . "', ";
+    if (has_value($username) &&
+        has_value($firstname) &&
+        has_value($lastname) &&
+        has_value($password)) {
+        $sql = "INSERT INTO User VALUES (default, ";
+        $sql .= "'" . hsc($username) . "', ";
+        $sql .= "'" . hsc($firstname) . "', ";
+        $sql .= "'" . hsc($lastname) . "', ";
+        $sql .= "'" . hsc($password) . "', ";
+        $sql .= "'" . $role . "', ";
         $sql .= "now());";
 
-        echo "<br>" . $sql . "<br>";
+        $result = mysqli_query($db, $sql);
 
-        $rank_result = mysqli_query($db, $sql);
+        if ($result) {
+            $new_id = mysqli_insert_id($db);
+            echo 'New user created with id ' . $new_id;
 
-        if ($rank_result) {
-            echo "Default rank assigned to user " . "";
+        // add unranked as default rank
+            $rank = find_rank('Unranked');
+            confirm_result($rank);
+
+            echo "<br>" . $sql . "<br>";
+
+            $sql = "INSERT INTO User_Rank VALUES('";
+            $sql .= $new_id . "',  '";
+            $sql .= $rank['rank_id'] . "', ";
+            $sql .= "now());";
+
+            echo "<br>" . $sql . "<br>";
+
+            $rank_result = mysqli_query($db, $sql);
+
+            if ($rank_result) {
+                echo "Default rank assigned to user " . "";
+            } else {
+                echo "Default rank insert failed: " . mysqli_error($db);
+            }
+
         } else {
-            echo "Default rank insert failed: " . mysqli_error($db);
+            echo '<br>Insert failed: ' . mysqli_error($db);
+            db_disconnect($db);
+            exit;
         }
-
-        //echo 'Redirecting in 5 seconds... ';
-
-        //sleep(5);
-        // TODO Should redirect to user profile page once implemented
-        //redirect_to('student/index.php');
-
-
-
     } else {
-        echo '<br>Insert failed: ' . mysqli_error($db);
-        db_disconnect($db);
-        exit;
+        echo 'Error: All fields for user are required and must not be empty.';
     }
-
 
 } else { ?>
 

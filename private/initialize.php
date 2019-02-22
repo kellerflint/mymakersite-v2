@@ -7,6 +7,7 @@ define("SHARED_PATH", PRIVATE_PATH . '/shared');
 
 define("WWW_ROOT", '/mymakersite.com/public');
 
+require_once 'validation.php';
 require_once 'functions.php';
 require_once 'database.php';
 require_once 'query_functions.php';
