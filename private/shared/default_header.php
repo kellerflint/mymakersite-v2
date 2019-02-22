@@ -21,7 +21,7 @@ if (!isset($page_title)) {
     <body>
         <nav>
             <ul>
-                <li><a href="<?php echo url_for('/index.php'); ?>">Public Index</a></li>
+                <!--If role is any show these links-->
                 <li><a href="<?php echo url_for('/student/index.php'); ?>">Leaderboard</a></li>
                 <li><a href="<?php echo url_for('/student/profile.php'); ?>">Profile</a></li>
                 <li><a href="<?php echo url_for('/student/ranks.php'); ?>">Ranks</a></li>
@@ -33,5 +33,8 @@ if (!isset($page_title)) {
                 <li class="instructor"><a href="<?php echo url_for('/instructor/give_rank.php'); ?>">Give Rank</a></li>
                 <!--If role is admin show these-->
                 <li class="admin"><a href="<?php echo url_for('/admin/add_badge.php'); ?>">Add Badge</a></li>
+                <!--Always show these-->
+                <li><a href="<?php echo url_for('/logout.php'); ?>">Logout</a></li>
+                <li><a href="">User: <?php echo $_SESSION['username'] ?? ''; ?></a></li>
             </ul>
         </nav>

@@ -12,9 +12,6 @@ if (request_is_post()) {
     $password = $_POST['password'];
     $role = $_POST['role'];
 
-    echo $username . '<br>';
-    echo has_value($username) . '<br>';
-
     if (has_value($username) &&
         has_value($firstname) &&
         has_value($lastname) &&
