@@ -1,6 +1,8 @@
 /* source /var/www/html/mymakersite.com/private/db_scripts/insert_data.sql */
 
-insert into User values (default, 'kellerflint', 'Keller', 'Flint', 'adminpass', 'admin', now());
+/* Hashed password is adminpass */
+insert into User values (default, 'kellerflint', 'Keller', 'Flint', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'admin', now());
 
 insert into Image values (default, 'unranked', '/mymakersite.com/public/style/img/rank/unranked.png');
 insert into Image values (default, 'novice', '/mymakersite.com/public/style/img/rank/novice.png');

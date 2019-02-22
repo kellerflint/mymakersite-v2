@@ -3,12 +3,24 @@
 <?php 
 
 if (request_is_post()) {
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $_SESSION['username'] = $username;
+    $user = find_user($username);
 
-    redirect_to(url_for('/student/index.php'));
+    if ($user) {
+        if (password_verify($password, $user['user_password'])) {
+            log_in($user);
+            redirect_to(url_for('/student/index.php'));
+        } else {
+            echo "Login was unsuccessful.";
+        }
+    } else {
+        echo "Login was unsuccessful.";
+    }
+
+
 }
 
 ?>

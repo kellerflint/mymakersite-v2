@@ -16,11 +16,14 @@ if (request_is_post()) {
         has_value($firstname) &&
         has_value($lastname) &&
         has_value($password)) {
+
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
         $sql = "INSERT INTO User VALUES (default, ";
         $sql .= "'" . hsc($username) . "', ";
         $sql .= "'" . hsc($firstname) . "', ";
         $sql .= "'" . hsc($lastname) . "', ";
-        $sql .= "'" . hsc($password) . "', ";
+        $sql .= "'" . hsc($hashed_password) . "', ";
         $sql .= "'" . $role . "', ";
         $sql .= "now());";
 
