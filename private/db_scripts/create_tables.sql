@@ -32,7 +32,6 @@ CREATE TABLE Subject
     FOREIGN KEY (image_id) REFERENCES Image (image_id) ON UPDATE CASCADE
 );
 
-
 CREATE TABLE Rank
 (
     rank_id int NOT NULL AUTO_INCREMENT,
@@ -83,4 +82,25 @@ CREATE TABLE User_Rank
     PRIMARY KEY (user_id, rank_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
     FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE
+);
+
+CREATE TABLE Profile_Style
+(
+    style_id int,
+    style_title varchar(255) UNIQUE,
+    style_css varchar(5000),
+
+    PRIMARY KEY (style_id)
+);
+
+CREATE TABLE Profile
+(
+    profile_id int,
+    user_id int UNIQUE,
+    style_id int,
+    profile_css varchar(5000),
+
+    PRIMARY KEY (profile_id),
+    FOREIGN KEY (style_id) REFERENCES Profile_Style (style_id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE
 );
