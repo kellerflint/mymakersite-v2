@@ -1,5 +1,5 @@
 <?php require_once '../../private/initialize.php'; ?>
-
+<?php require_role(ADM); ?>
 <?php 
 $page_title = 'Add Badge';
 //$page_style = 'give';

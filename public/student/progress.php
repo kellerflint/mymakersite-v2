@@ -1,5 +1,5 @@
 <?php require_once('../../private/initialize.php'); ?>
-
+<?php require_role(STU); ?>
 <?php $page_title = 'Progress' ?>
 <?php $page_style = 'progress' ?>
 

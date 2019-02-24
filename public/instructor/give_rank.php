@@ -1,4 +1,5 @@
 <?php require_once '../../private/initialize.php'; ?>
+<?php require_role(INS); ?>
 
 <?php 
 $page_title = 'Give Rank';

@@ -1,5 +1,5 @@
 <?php require_once '../../private/initialize.php'; ?>
-
+<?php require_role(INS); ?>
 <?php $page_title = 'Add User'; ?>
 
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
@@ -82,9 +82,9 @@ if (request_is_post()) {
         <br>
         <label for='role'>Role: </label>
         <select name="role" id="role">
-            <option value="student">Student</option>
-            <option value="instructor">Instructor</option>
-            <option value="admin">Admin</option>
+            <option value="<?php echo STU; ?>">Student</option>
+            <option value="<?php echo INS; ?>">Instructor</option>
+            <option value="<?php echo ADM; ?>">Admin</option>
         </select>
         <br>
         <button name="submit">Add User</button>
