@@ -1,0 +1,130 @@
+#user-box {
+    float: left;
+    width: 31%;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#form-box {
+    float: left;
+    width: 31%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#rank-box {
+    float: left;
+    width: 31%;
+    background-color: pink;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+p {
+    padding-top: 0px;
+}
+
+.user-item {
+    height: 60px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgb(200,200,200);
+    padding-bottom: 5px;
+    margin: 15px;
+}
+
+.rank-item {
+    height: 100px;
+    border-radius: 10px;
+}
+
+.even {
+    background-color: rgb(230, 230, 230);
+}
+
+.odd {
+    background-color: rgb(200, 200, 200);
+}
+
+.selected {
+    background-color: green;
+}
+
+
+.rank-img-user {
+    height: 40px;
+    display: inline;
+}
+
+.rank-img-rank {
+    height: 100px;
+    display: inline;
+}
+
+.warning {
+    color: red;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/* give_badge changes */
+
+#badge-box {
+    float: left;
+    width: 31%;
+    background-color: pink;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.badge-item {
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 5px;
+    margin: 15px;
+}
+
+.badge-img {
+    height: 40px;
+    display: inline;
+}
+
+
+select {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-weight: 600;
+}
+
+label {
+    font-size: 1.4em;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 1.4em;
+}
+
+button {
+    padding: 5px;
+    font-size: 1.4em;
+    border-radius: 10px;
+    border: 3px solid rgb(200,200,200);
+}
+
+button:hover {
+    padding: 5px;
+    border: 3px solid rgb(100,100,100);
+}
+
+.user-p {
+    padding-top: 15px;
+}
+

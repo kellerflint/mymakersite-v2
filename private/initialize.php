@@ -4,10 +4,10 @@ session_start();
 
 define("PRIVATE_PATH", dirname(__FILE__));
 define("PROJECT_PATH", dirname(PRIVATE_PATH));
-define("PUBLIC_PATH", PROJECT_PATH . '/public');
+define("PUBLIC_PATH", PROJECT_PATH . '/public_html');
 define("SHARED_PATH", PRIVATE_PATH . '/shared');
 
-define("WWW_ROOT", '/mymakersite.com/public');
+define("WWW_ROOT", '/mymakersite.com/public_html');
 
 require_once 'validation.php';
 require_once 'functions.php';
@@ -16,3 +16,8 @@ require_once 'query_functions.php';
 require_once 'auth_functions.php';
 
 $db = db_connect();
+
+/*
+SERVER:
+define("WWW_ROOT", '/');
+*/
