@@ -19,5 +19,5 @@ $db = db_connect();
 
 /*
 SERVER:
-define("WWW_ROOT", '/');
+define("WWW_ROOT", '');
 */
