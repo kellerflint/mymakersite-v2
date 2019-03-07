@@ -23,6 +23,7 @@ if (!isset($page_title)) {
             <ul>
                 <!--If role is student show these links-->
                 <?php if (check_role_access(STU)) { ?>
+                <li><a href="<?php echo url_for('/student/resources.php'); ?>">Resources</a></li>
                 <li><a href="<?php echo url_for('/student/index.php'); ?>">Leaderboard</a></li>
                 <!--<li><a href="<?php echo url_for('/student/profile.php'); ?>">Profile</a></li>-->
                 <li><a href="<?php echo url_for('/student/ranks.php'); ?>">Ranks</a></li>
