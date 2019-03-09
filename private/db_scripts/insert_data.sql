@@ -2,7 +2,18 @@
 
 /* Hashed password is adminpass */
 insert into User values (default, 'kellerflint', 'Keller', 'Flint', 
-'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'admin', now());
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'kflint0068@gmail.com', now());
+
+set @keller = (select user_id from User where user_name = 'kellerflint');
+
+insert into Session values (default, 'Session 1', 'Session 1 Descript');
+insert into Session values (default, 'Session 2', 'Session 2 Descript');
+
+set @session1 = (select session_id from Session where session_title = 'Session 1');
+set @session2 = (select session_id from Session where session_title = 'Session 2');
+
+insert into User_Session values (@keller, @session1, 3, now());
+insert into User_Session values (@keller, @session2, 3, now());
 
 insert into Image values (default, 'unranked', '/mymakersite.com/public/style/img/rank/unranked.png');
 insert into Image values (default, 'novice', '/mymakersite.com/public/style/img/rank/novice.png');
@@ -19,17 +30,12 @@ set @adept_img = (select image_id from Image where image_name = 'adept');
 set @expert_img = (select image_id from Image where image_name = 'expert');
 set @master_img = (select image_id from Image where image_name = 'master');
 
-insert into Subject values (default, 'Scratch', '1');
-insert into Subject values (default, 'Gamemaker', '1');
-
-set @scratch = (select subject_id from Subject where subject_title = 'Scratch');
-
-insert into Rank values (default, @scratch, 'Unranked', 0, "TODO", @unranked_img);
-insert into Rank values (default, @scratch, 'Novice', 1, "TODO", @novice_img);
-insert into Rank values (default, @scratch, 'Apprentice', 2, "TODO", @apprentice_img);
-insert into Rank values (default, @scratch, 'Adept', 3, "TODO", @adept_img);
-insert into Rank values (default, @scratch, 'Expert', 4, "TODO", @expert_img);
-insert into Rank values (default, @scratch, 'Master', 5, "TODO", @master_img);
+insert into Rank values (default, @session1, 'Unranked', 0, "TODO", @unranked_img);
+insert into Rank values (default, @session1, 'Novice', 1, "TODO", @novice_img);
+insert into Rank values (default, @session1, 'Apprentice', 2, "TODO", @apprentice_img);
+insert into Rank values (default, @session2, 'Adept', 3, "TODO", @adept_img);
+insert into Rank values (default, @session2, 'Expert', 4, "TODO", @expert_img);
+insert into Rank values (default, @session2, 'Master', 5, "TODO", @master_img);
 
 set @unranked = (select rank_id from Rank where rank_title = 'Unranked');
 set @novice = (select rank_id from Rank where rank_title = 'Novice');
@@ -38,35 +44,40 @@ set @adept = (select rank_id from Rank where rank_title = 'Adept');
 set @expert = (select rank_id from Rank where rank_title = 'Expert');
 set @master = (select rank_id from Rank where rank_title = 'Master');
 
-set @keller = (select user_id from User where user_name = 'kellerflint');
 insert into User_Rank values (@keller, @adept, now());
 
+/* Unlabled badges */
+insert into Badge values (default, @session1, 'Animate from Scratch NORANK', null, 'true', 'novice badge 1', 
+'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
+
+insert into Badge values (default, @session2, 'Animate from Scratch NORANK', null, 'true', 'novice badge 1', 
+'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
+
 /* Novice Badges */
-
-insert into Badge values (default, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
+insert into Badge values (default, @session1, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-insert into Badge values (default, 'Musical Storyteller', @novice, 'true', 'novice badge 2', 
+insert into Badge values (default, @session1, 'Musical Storyteller', @novice, 'true', 'novice badge 2', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-insert into Badge values (default, 'My First Game', @novice, 'true', 'novice badge 3', 
+insert into Badge values (default, @session2, 'My First Game', @novice, 'true', 'novice badge 3', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
 /* Apprentice Badges */
 
-insert into Badge values (default, 'Move to the Code', @apprentice, 'true', 'apprentice badge 1', 
+insert into Badge values (default, @session1, 'Move to the Code', @apprentice, 'true', 'apprentice badge 1', 
 'https://codeclubprojects.org/en-GB/scratch/lost-in-space/', '7');
 
-insert into Badge values (default, 'Who You Gonna Call', @apprentice, 'true', 'apprentice badge 2', 
+insert into Badge values (default, @session1, 'Who You Gonna Call', @apprentice, 'true', 'apprentice badge 2', 
 'https://codeclubprojects.org/en-GB/scratch/ghostbusters/', '7');
 
-insert into Badge values (default, 'Talk to the Bot', @apprentice, 'true', 'apprentice badge 3', 
+insert into Badge values (default, @session1, 'Talk to the Bot', @apprentice, 'true', 'apprentice badge 3', 
 'https://codeclubprojects.org/en-GB/scratch/chatbot/', '7');
 
-insert into Badge values (default, 'Artistic License', @apprentice, 'true', 'apprentice badge 4', 
+insert into Badge values (default, @session2, 'Artistic License', @apprentice, 'true', 'apprentice badge 4', 
 'https://codeclubprojects.org/en-GB/scratch/paint-box/', '7');
 
-insert into Badge values (default, 'Whatever Floats Your Boat', @apprentice, 'true', 'apprentice badge 5', 
+insert into Badge values (default, @session2, 'Whatever Floats Your Boat', @apprentice, 'true', 'apprentice badge 5', 
 'https://codeclubprojects.org/en-GB/scratch/boat-race/', '7');
 
 /* Adept Badges */
