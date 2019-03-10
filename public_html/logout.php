@@ -2,7 +2,7 @@
 
 <?php 
 
-unset($_SESSION['username']);
+unset($_SESSION['user_name']);
 unset($_SESSION['user_role']);
 unset($_SESSION['user_id']);
 

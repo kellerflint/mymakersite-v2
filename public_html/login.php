@@ -19,8 +19,6 @@ if (request_is_post()) {
     } else {
         echo "Login was unsuccessful.";
     }
-
-
 }
 
 ?>

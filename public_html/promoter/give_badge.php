@@ -1,7 +1,7 @@
 <?php require_once '../../private/initialize.php'; ?>
 <?php 
-    require_role(ADM);
-    $page_title = 'Add User';
+    require_role(PMT);
+    $page_title = 'Give Badge';
     //$page_style = 'give';
 ?>
 
