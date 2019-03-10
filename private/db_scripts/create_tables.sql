@@ -136,6 +136,39 @@ CREATE TABLE Style
     FOREIGN KEY (badge_id) REFERENCES Badge (badge_id) ON UPDATE CASCADE
 );
 
+CREATE TABLE Page_Item
+(
+    page_item_id int,
+    page_item_title varchar(255) NOT NULL,
+    page_item_code varchar(255) NOT NULL,
+
+    PRIMARY KEY (page_item_id)
+);
+
+CREATE TABLE Custom_Page
+(
+    custom_page_id int,
+    session_id int,
+    custom_page_title varchar(255) NOT NULL,
+    style_id int,
+
+    PRIMARY KEY (custom_page_id),
+    FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
+    FOREIGN KEY (style_id) REFERENCES Style (style_id) ON UPDATE CASCADE
+);
+
+CREATE TABLE Custom_Page_Item
+(
+    custom_page_id int,
+    page_item_id int,
+    page_item_priority int,
+    page_item_content varchar(5000),
+
+    PRIMARY KEY (custom_page_id, page_item_id, page_item_priority),
+    FOREIGN KEY (custom_page_id) REFERENCES Custom_Page (custom_page_id) ON UPDATE CASCADE,
+    FOREIGN KEY (page_item_id) REFERENCES Page_Item (page_item_id) ON UPDATE CASCADE
+);
+
 CREATE TABLE Profile
 (
     session_id int,
