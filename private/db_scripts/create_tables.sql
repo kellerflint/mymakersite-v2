@@ -35,12 +35,35 @@ CREATE TABLE User_Session
 (
     user_id int,
     session_id int,
-    user_access_level int NOT NULL,
     session_join_date datetime NOT NULL,
 
     PRIMARY KEY (user_id, session_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
     FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE
+);
+
+CREATE TABLE Permission 
+(
+    permission_id int NOT NULL AUTO_INCREMENT,
+    permission_title varchar(255) NOT NULL,
+    permission_description varchar(5000) NOT NULL,
+
+    PRIMARY KEY (permission_id)
+);
+
+CREATE TABLE User_Permission
+(
+    user_id int,
+    session_id int,
+    permission_id int,
+    user_permission_date datetime NOT NULL,
+
+    PRIMARY KEY (user_id, session_id, permission_id),
+    FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
+    FOREIGN KEY (permission_id) REFERENCES Permission (permission_id) ON UPDATE CASCADE
+
+
 );
 
 CREATE TABLE Rank
@@ -64,7 +87,7 @@ CREATE TABLE Badge
     badge_title varchar(255) NOT NULL,
     rank_id int,
     badge_required varchar(5) NOT NULL,
-    badge_description varchar(500),
+    badge_description varchar(5000),
     badge_link varchar(255),
     image_id int,
 

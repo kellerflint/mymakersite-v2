@@ -12,8 +12,24 @@ insert into Session values (default, 'Session 2', 'Session 2 Descript');
 set @session1 = (select session_id from Session where session_title = 'Session 1');
 set @session2 = (select session_id from Session where session_title = 'Session 2');
 
-insert into User_Session values (@keller, @session1, 3, now());
-insert into User_Session values (@keller, @session2, 3, now());
+insert into User_Session values (@keller, @session1, now());
+insert into User_Session values (@keller, @session2, now());
+
+insert into Permission values (default, 'viewer', 'Can view the session. Has a private profile in the session.');
+insert into Permission values (default, 'user', 'Is visible in the session. Has a public profile in the session.');
+insert into Permission values (default, 'grader', 'Can give badges to any user in a session.');
+insert into Permission values (default, 'promoter', 'Can give ranks to any user in a session.');
+insert into Permission values (default, 'invitor', 'Can invite users to a session. Can remove users from a session except admins and owners (unless they are also admins or the owner). Can grant and revoke permission (other than admin and owner)');
+insert into Permission values (default, 'admin', 'Can add, edit and delete badges and ranks in a session. Can grant and revoke any permission (other than owner).');
+insert into Permission values (default, 'owner', 'Can delete a session. Can grant and revoke any permission.');
+
+insert into User_Permission values (@keller, @session1, 1, now());
+insert into User_Permission values (@keller, @session1, 2, now());
+insert into User_Permission values (@keller, @session1, 3, now());
+insert into User_Permission values (@keller, @session1, 4, now());
+insert into User_Permission values (@keller, @session1, 5, now());
+insert into User_Permission values (@keller, @session1, 6, now());
+insert into User_Permission values (@keller, @session1, 7, now());
 
 insert into Image values (default, 'unranked', '/mymakersite.com/public/style/img/rank/unranked.png');
 insert into Image values (default, 'novice', '/mymakersite.com/public/style/img/rank/novice.png');
