@@ -104,10 +104,12 @@ CREATE TABLE User_Badge
     badge_id int,
     user_badge_priority int NOT NULL,
     user_badge_date datetime NOT NULL,
+    user_badge_giver int NOT NULL,
 
     PRIMARY KEY (user_id, badge_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
-    FOREIGN KEY (badge_id) REFERENCES Badge (badge_id) ON UPDATE CASCADE
+    FOREIGN KEY (badge_id) REFERENCES Badge (badge_id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_badge_giver) REFERENCES User (user_id) ON UPDATE CASCADE
 );
 
 CREATE TABLE User_Rank
@@ -115,10 +117,12 @@ CREATE TABLE User_Rank
     user_id int,
     rank_id int,
     user_rank_date datetime NOT NULL,
+    user_rank_giver int  NOT NULL,
 
     PRIMARY KEY (user_id, rank_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
-    FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE
+    FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_rank_giver) REFERENCES User (user_id) ON UPDATE CASCADE
 );
 
 CREATE TABLE Style
@@ -126,7 +130,7 @@ CREATE TABLE Style
     style_id int,
     style_title varchar(255) UNIQUE,
     style_css varchar(5000),
-    session_id int,
+    session_id int NOT NULL,
     rank_id int,
     badge_id int,
 
@@ -148,7 +152,7 @@ CREATE TABLE Page_Item
 CREATE TABLE Custom_Page
 (
     custom_page_id int,
-    session_id int,
+    session_id int NOT NULL,
     custom_page_title varchar(255) NOT NULL,
     style_id int,
 

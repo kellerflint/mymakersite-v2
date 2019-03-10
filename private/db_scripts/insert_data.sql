@@ -1,9 +1,13 @@
 /* source /var/www/html/mymakersite.com/private/db_scripts/insert_data.sql */
 
 /* Hashed password is adminpass */
+insert into User values (default, 'SYSTEM', 'SYSTEM', 'SYSTEM', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'kflint0068@gmail.com', now());
+
 insert into User values (default, 'kellerflint', 'Keller', 'Flint', 
 '$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'kflint0068@gmail.com', now());
 
+set @system = (select user_id from User where user_name = 'SYSTEM');
 set @keller = (select user_id from User where user_name = 'kellerflint');
 
 insert into Session values (default, 'Session 1', 'Session 1 Descript');
@@ -65,7 +69,7 @@ set @adept = (select rank_id from Rank where rank_title = 'Adept');
 set @expert = (select rank_id from Rank where rank_title = 'Expert');
 set @master = (select rank_id from Rank where rank_title = 'Master');
 
-insert into User_Rank values (@keller, @adept, now());
+insert into User_Rank values (@keller, @unranked, now(), @system);
 
 /* Unlabled badges */
 insert into Badge values (default, @session1, 'Animate from Scratch NORANK', null, 'true', 'novice badge 1', 
