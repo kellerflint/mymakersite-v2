@@ -18,7 +18,15 @@ $page_style = 'login';
         <input type="password" name="password" id="password">
         <br>
         <button name="submit" id="submitBtn">Login</button>
+        <br>
+        <h3>OR</h3>
+        <br>
+        <button id="new-account">
+            <a href="<?php echo url_for('/account/signup.php'); ?>">Create a New Account</a>
+        </button>
     </form>
 </div>
+
+
 
 <?php include_once '../private/shared/default_footer.php'; ?>

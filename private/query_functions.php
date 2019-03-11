@@ -12,5 +12,7 @@ function find_user_by_username($username)
 
     $user_set = $stmt->get_result();
 
+    $stmt->close();
+    
     return mysqli_fetch_assoc($user_set);
 }

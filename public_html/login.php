@@ -12,7 +12,7 @@ if (request_is_post()) {
     if ($user) {
         if (password_verify($password, $user['user_password'])) {
             log_in($user);
-            redirect_to(url_for('/user/leaders.php'));
+            redirect_to(url_for('/account/sessions.php'));
         } else {
             redirect_to(url_for('/index.php'));
         }

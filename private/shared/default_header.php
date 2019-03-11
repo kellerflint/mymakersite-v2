@@ -23,9 +23,9 @@ if (!isset($page_title)) {
             <ul>
                 <?php if (is_logged_in()){ ?>
                 <div class="dropdown">
-                    <button class="dropdown-button"><a href=""><?php echo $_SESSION['user_name'] ?? ''; ?></a></button>
+                    <button class="dropdown-button"><?php echo $_SESSION['user_name'] ?? ''; ?></button>
                     <div class="dropdown-content">
-                        <a href="<?php echo url_for('/logout.php'); ?>">Account</a>
+                        <a href="<?php echo url_for('/account/account.php'); ?>">Account</a>
                         <a href="<?php echo url_for('/logout.php'); ?>">Logout</a>
                     </div>
                 </div>
