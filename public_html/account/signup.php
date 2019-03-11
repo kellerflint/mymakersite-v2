@@ -11,11 +11,14 @@ if(request_is_post()) {
     
     $hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    add_new_user(hsc($_POST['username']),
-                 hsc($_POST['firstname']),
-                 hsc($_POST['lastname']),
-                 $hashed_password,
-                 hsc($_POST['email']));
+    $new_user = [];
+    $new_user['user_name'] = hsc($_POST['username']);
+    $new_user['user_first'] = hsc($_POST['firstname']);
+    $new_user['user_last'] = hsc($_POST['lastname']);
+    $new_user['user_password'] = $hashed_password;
+    $new_user['user_email'] = hsc($_POST['email']);
+    
+    $result = add_new_user($new_user);
 } 
 ?>
 
