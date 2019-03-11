@@ -1,5 +1,7 @@
 <?php 
 
+define('MAX_LENGTH', 255);
+
 // returns true if value is empty
 function is_empty($value)
 {

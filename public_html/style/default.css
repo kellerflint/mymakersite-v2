@@ -5,12 +5,9 @@ body {
 
 /* Nav styles */
 nav {
-    margin-bottom: 20px;
-}
-
-ul {
   list-style-type: none;
   margin: 0;
+  margin-bottom: 20px;
   padding: 0;
   overflow: hidden;
   background-color: #333;
@@ -80,4 +77,19 @@ a {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/* Errors */
+
+.errors {
+  color: red;
+}
+
+.errors ul {
+  margin-top: 0px;
+}
+
+.errors ul li {
+  float: none;
+  border: none;
 }
