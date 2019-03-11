@@ -34,15 +34,50 @@ li a:hover {
 }
 
 .content {
-    margin-left: 2%;
-    margin-right: 2%;
-    text-align: center;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: center;
 }
 
-.instructor {
-  background-color: darkred;
+/* signin dropdown menu */
+
+.dropdown {
+  float: right;
 }
 
-.admin {
-  background-color: darkblue;
+.dropdown-button {
+  background-color: #333;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  border: none;
+  border-left:1px solid #bbb;
+}
+
+.dropdown-content {
+  width: 100%;
+  display: none;
+  position: absolute;
+  background-color: #333;
+  z-index: 1;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-content a {
+  border-top: 1px solid #bbb;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-left:1px solid #bbb;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

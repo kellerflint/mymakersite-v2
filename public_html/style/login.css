@@ -1,0 +1,32 @@
+.content {
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: left;
+    padding: 20px;
+    padding-top: 5px;
+    border: 1px solid black;
+}
+
+input {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+button {
+    padding: 5px;
+    width: 100%;
+    font-size: 1.2em;
+    border-width: 0px;
+}
+
+button:hover {
+    background-color: rgb(200,200,200);
+}
+
+label {
+    font-size: 1.2em;
+    font-weight: bold;
+}

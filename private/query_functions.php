@@ -1,10 +1,16 @@
 <?php
-/* Example query function so I remember how to do it.
-function find_all_users()
+
+function find_user_by_username($username)
 {
     global $db;
-    $sql = "SELECT * FROM User";
-    $user_set = mysqli_query($db, $sql);
-    return $user_set;
+    $query = "SELECT * FROM User WHERE user_name = ?";
+    
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("s", $username);
+
+    $stmt->execute();
+
+    $user_set = $stmt->get_result();
+
+    return mysqli_fetch_assoc($user_set);
 }
-*/
