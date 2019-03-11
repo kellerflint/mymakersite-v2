@@ -6,6 +6,19 @@ $page_style = 'signup';
 
 <?php include_once '../../private/shared/default_header.php'; ?>
 
+<?php 
+if(request_is_post()) {
+    
+    $hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+    add_new_user(hsc($_POST['username']),
+                 hsc($_POST['firstname']),
+                 hsc($_POST['lastname']),
+                 $hashed_password,
+                 hsc($_POST['email']));
+} 
+?>
+
 <div class="content">
 
     <h2>Create a New Account</h2>
