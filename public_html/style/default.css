@@ -16,6 +16,7 @@ nav {
 li {
   float: right;
   border-left:1px solid #bbb;
+  list-style-type: none;
 }
 
 li a {

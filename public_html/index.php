@@ -9,6 +9,10 @@ $page_style = 'login';
 <?php 
 if (request_is_post()) {
 
+    if ($_POST['submit'] == "new-account") {
+        redirect_to(url_for('/account/signup.php'));
+    }
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -39,12 +43,12 @@ if (request_is_post()) {
         <br>
         <input type="password" name="password" id="password">
         <br>
-        <button name="submit" id="submitBtn">Login</button>
+        <button name="submit" id="submitBtn" value="login">Login</button>
         <br>
         <h3>OR</h3>
         <br>
-        <button id="new-account">
-            <a href="<?php echo url_for('/account/signup.php'); ?>">Create a New Account</a>
+        <button name="submit" value="new-account">
+            Create a New Account
         </button>
     </form>
 </div>
