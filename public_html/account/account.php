@@ -1,7 +1,10 @@
 <?php require_once '../../private/initialize.php' ?>
 <?php 
 $page_title = 'Account';
-$page_style = 'account'; 
+$page_style = 'account';
+
+require_login();
+
 ?>
 
 <?php include_once '../../private/shared/default_header.php'; ?>

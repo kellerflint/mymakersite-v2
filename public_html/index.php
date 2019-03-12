@@ -48,7 +48,7 @@ if (request_is_post()) {
         <h3>OR</h3>
         <br>
         <button name="submit" value="new-account">
-            Create a New Account
+            Create New Account
         </button>
     </form>
 </div>

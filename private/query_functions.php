@@ -61,7 +61,7 @@ function add_new_user($new_user)
 }
 
 function edit_user($user, $id) {
-global $db;
+    global $db;
 
     $errors = validate_edit_user($user);
 
@@ -87,6 +87,36 @@ global $db;
         return false;
     }
 }
+//select Session.Session_id, Session.session_title from Session
+//	inner join User_Session on Session.session_id = User_Session.session_id where user_id = 2;
+function find_sessions_by_user($user_id) {
+    global $db;
+
+    $query = "SELECT Session.Session_id, Session.session_title FROM Session ";
+    $query .= "INNER JOIN User_Session on Session.session_id = User_Session.session_id ";
+    $query .= "WHERE user_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+
+    $session_set = $stmt->get_result();
+
+    $stmt->close();
+    
+    return $session_set;
+}
+
+function get_user_permissions($user_id) {
+    /*
+    SELECT Session.session_id, session_title, user_name, permission_title from Permission 
+	inner join User_Permission on Permission.permission_id = User_Permission.permission_id
+    inner join Session on User_Permission.session_id = Session.session_id
+    inner join User on User_Permission.user_id = User.user_id where Session.session_id = 1; */
+}
+
+
+/* Validation functions */
 
 function validate_new_user($user) {
     $errors = [];

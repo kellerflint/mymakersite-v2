@@ -21,7 +21,7 @@ insert into User_Session values (@keller, @session2, now());
 
 insert into Permission values (default, 'viewer', 'Can view the session. Has a private profile in the session.');
 insert into Permission values (default, 'user', 'Is visible in the session. Has a public profile in the session.');
-insert into Permission values (default, 'promoter', 'Can give badges and ranks to any user in a session. Can remove badges and ranks from any use in a session.');
+insert into Permission values (default, 'grader', 'Can give badges and ranks to any user in a session. Can remove badges and ranks from any use in a session.');
 insert into Permission values (default, 'manager', 'Can invite users to a session. Can remove users from a session except managers, admins and the owner (unless they are also admins or the owner). Can grant and revoke any permission other than manager, admin and promoter.');
 insert into Permission values (default, 'admin', 'Can add, edit and delete badges and ranks in a session. Can grant and revoke any permission (other than owner).');
 insert into Permission values (default, 'owner', 'Can delete, edit or duplicate a session. Can grant and revoke any permission.');

@@ -1,0 +1,14 @@
+.content {
+    margin-left: 30%;
+    width: 40%;
+    margin-right: 30%;
+}
+
+.session-wrapper {
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.session-wrapper p {
+    font-size: 1.5em;
+}

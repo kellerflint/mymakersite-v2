@@ -25,6 +25,7 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  font-size: 1.2em;
 }
 
 li a:hover {
@@ -51,6 +52,7 @@ li a:hover {
   padding: 14px 16px;
   border: none;
   border-left:1px solid #bbb;
+  font-size: 1.2em;
 }
 
 .dropdown-content {
@@ -59,12 +61,15 @@ li a:hover {
   position: absolute;
   background-color: #333;
   z-index: 1;
+  font-size: 1.2em;
+
 }
 
 a {
   text-decoration: none;
   color: white;
   text-decoration: none;
+  
 }
 
 .dropdown-content a {

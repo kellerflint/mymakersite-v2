@@ -25,6 +25,7 @@ if (!isset($page_title)) {
                 <div class="dropdown">
                     <button class="dropdown-button"><?php echo $_SESSION['user_name'] ?? ''; ?></button>
                     <div class="dropdown-content">
+                        <a href="<?php echo url_for("account/sessions.php") ?>">Sessions</a>
                         <a href="<?php echo url_for('/account/account.php'); ?>">Account</a>
                         <a href="<?php echo url_for('/logout.php'); ?>">Logout</a>
                     </div>
