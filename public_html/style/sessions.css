@@ -9,6 +9,19 @@
     margin-bottom: 20px;
 }
 
+.selected {
+    background-color: lightgreen;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
 .session-wrapper p {
     font-size: 1.5em;
+    margin: 10px;
 }

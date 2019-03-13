@@ -92,7 +92,7 @@ function edit_user($user, $id) {
 function find_sessions_by_user($user_id) {
     global $db;
 
-    $query = "SELECT Session.Session_id, Session.session_title FROM Session ";
+    $query = "SELECT Session.session_id, Session.session_title FROM Session ";
     $query .= "INNER JOIN User_Session on Session.session_id = User_Session.session_id ";
     $query .= "WHERE user_id = ?";
 
@@ -107,12 +107,23 @@ function find_sessions_by_user($user_id) {
     return $session_set;
 }
 
-function get_user_permissions($user_id) {
-    /*
-    SELECT Session.session_id, session_title, user_name, permission_title from Permission 
-	inner join User_Permission on Permission.permission_id = User_Permission.permission_id
-    inner join Session on User_Permission.session_id = Session.session_id
-    inner join User on User_Permission.user_id = User.user_id where Session.session_id = 1; */
+function get_session_permissions($session_id, $user_id) {
+    global $db;
+
+    $query = "SELECT Session.session_id, session_title, User.user_id, permission_title from Permission ";
+	$query .= "inner join User_Permission on Permission.permission_id = User_Permission.permission_id ";
+    $query .= "inner join Session on User_Permission.session_id = Session.session_id ";
+    $query .= "inner join User on User_Permission.user_id = User.user_id where Session.session_id = ? and User.user_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $session_id, $user_id);
+    $stmt->execute();
+
+    $permission_set = $stmt->get_result();
+
+    $stmt->close();
+
+    return $permission_set;
 }
 
 

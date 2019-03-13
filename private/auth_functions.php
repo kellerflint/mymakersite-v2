@@ -14,6 +14,8 @@ function log_in($user)
     $_SESSION['user_id'] = $user['user_id'];
     $_SESSION['last_login'] = time();
     $_SESSION['user_name'] = $user['user_name'];
+    // These don't happen on login, they happen on session selection/submission
+    //$_SESSION[] = 
     //$_SESSION['permission'] = get_user_permissions($user['user_id']);
     return true;
 }
