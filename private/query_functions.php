@@ -107,6 +107,7 @@ function find_sessions_by_user($user_id) {
     return $session_set;
 }
 
+// Returns an array with permission titles of user for session
 function get_session_permissions($session_id, $user_id) {
     global $db;
 
@@ -123,7 +124,13 @@ function get_session_permissions($session_id, $user_id) {
 
     $stmt->close();
 
-    return $permission_set;
+    $permissions = [];
+
+    while($perm = mysqli_fetch_assoc($permission_set)) {
+        $permissions[] = $perm['permission_title'];
+    }
+
+    return $permissions;
 }
 
 

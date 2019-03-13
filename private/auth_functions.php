@@ -14,9 +14,6 @@ function log_in($user)
     $_SESSION['user_id'] = $user['user_id'];
     $_SESSION['last_login'] = time();
     $_SESSION['user_name'] = $user['user_name'];
-    // These don't happen on login, they happen on session selection/submission
-    //$_SESSION[] = 
-    //$_SESSION['permission'] = get_user_permissions($user['user_id']);
     return true;
 }
 
@@ -30,8 +27,13 @@ function require_login() {
     }
 }
 
-function require_permission($permission) {
-    
+// Redirects to sessions if permissions are invalid, redirects to login if not logged in
+// @param permission title required
+function require_permission($required) {
+    require_login();
+    if (!in_array($required, $_SESSION['permissions'])) {
+        redirect_to(url_for("/account/sessions.php"));
+    }
 }
 
 ?>
