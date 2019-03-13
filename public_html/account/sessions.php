@@ -24,18 +24,20 @@ if (request_is_post()) {
         $permission_set = get_session_permissions($session['session_id'], $_SESSION['user_id']);
         ?>
 
-        <div class="session-wrapper">
+        <div class="session-wrapper 
+        <?php 
+        if (in_data_set($permission_set, "permission_title", OWN)) {
+            echo OWN;
+        }
+        ?>">
+            <input class="hidden" name="session_id" type="text" value="<?php echo $session['session_id'] ?>">
             <p><?php echo $session['session_title']; ?></p>
             <div class="options hidden">
-                <input class="hidden" name="session_id" type="text" value="<?php echo $session['session_id'] ?>">
-                <button name="submit" value="connect">Connect</button>
-                <?php 
-                $permission_string = '';
-                while ($permission = mysqli_fetch_assoc($permission_set)) {
-                    $permission_string .= $permission['permission_title'][0];
-                }
-                echo "<p>" . strtoupper($permission_string) . "</p>";
-                ?>
+                <button name="submit hidden" value="connect">Connect</button>
+            </div>
+            <br>
+            <div class="descript hidden">
+                <p><?php echo $session["session_description"]; ?></p>
             </div>
         </div>
 

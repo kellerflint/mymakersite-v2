@@ -56,4 +56,13 @@ function display_errors($errors=array()) {
     return $output;
 }
 
+function in_data_set($set, $param, $value) {
+    while ($data = mysqli_fetch_assoc($set)) {
+        if ($data[$param] == $value) {
+            return true;
+        }
+    }
+    return false;
+}
+
 ?>

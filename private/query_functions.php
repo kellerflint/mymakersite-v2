@@ -92,7 +92,7 @@ function edit_user($user, $id) {
 function find_sessions_by_user($user_id) {
     global $db;
 
-    $query = "SELECT Session.session_id, Session.session_title FROM Session ";
+    $query = "SELECT Session.session_id, Session.session_title, Session.session_description FROM Session ";
     $query .= "INNER JOIN User_Session on Session.session_id = User_Session.session_id ";
     $query .= "WHERE user_id = ?";
 

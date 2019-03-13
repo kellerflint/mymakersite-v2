@@ -9,8 +9,22 @@
     margin-bottom: 20px;
 }
 
-.selected {
-    background-color: lightgreen;
+.owner {
+    background-color: lightcyan;
+}
+
+.options {
+    display: inline-block;
+}
+
+.session-wrapper p {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+.descript {
+    display: block;
 }
 
 .hidden {
@@ -18,10 +32,5 @@
 }
 
 .visible {
-    display: block;
-}
-
-.session-wrapper p {
-    font-size: 1.5em;
-    margin: 10px;
+    display: inline-block;
 }

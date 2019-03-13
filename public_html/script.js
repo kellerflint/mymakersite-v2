@@ -1,22 +1,23 @@
 
 // Selecting sessions and displaying or hiding options
 let sessions = document.getElementsByClassName('session-wrapper');
+let options = document.getElementsByClassName('options');
+let descript = document.getElementsByClassName('descript');
 
 for (let i = 0; i < sessions.length; i++) {
     sessions[i].addEventListener("click", function () {
-        // Removes selected from all others
-        for (let c = 0; c < sessions.length; c++) {
-            sessions[c].classList.remove("selected");
-        }
-
-        // Adds hidden/removes visible from options div
-        sessions[i].classList.add("selected");
-        for (let c = 0; c < sessions.length; c++) {
-            // childNodes[3] is the location of the options div
-            sessions[c].childNodes[3].classList.add("hidden");
-            sessions[c].childNodes[3].classList.remove("visible");
-        }
-
-        sessions[i].childNodes[3].classList.add("visible");
+        remove_visible_sections();
+        options[i].classList.add("visible");
+        descript[i].classList.add("visible");
     });
+}
+
+// Adds hidden and removes visible from options and descript divs
+function remove_visible_sections() {
+    for (let c = 0; c < options.length; c++) {
+        options[c].classList.add("hidden");
+        options[c].classList.remove("visible");
+        descript[c].classList.add("hidden");
+        descript[c].classList.remove("visible");
+    }
 }
