@@ -5,10 +5,18 @@ insert into User values (default, 'SYSTEM', 'SYSTEM', 'SYSTEM',
 '$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'kflint0068@gmail.com', now());
 
 insert into User values (default, 'kellerflint', 'Keller', 'Flint', 
-'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'kflint0068@gmail.com', now());
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'system@gmail.com', now());
+
+insert into User values (default, 'testuser1', 'TestA', 'UserA', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'something@gmail.com', now());
+
+insert into User values (default, 'testuser2', 'TestB', 'UserB', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'nothing@gmail.com', now());
 
 set @system = (select user_id from User where user_name = 'SYSTEM');
 set @keller = (select user_id from User where user_name = 'kellerflint');
+set @testuser1 = (select user_id from User where user_name = 'testuser1');
+set @testuser2 = (select user_id from User where user_name = 'testuser2');
 
 insert into Session values (default, 'Session 1', 'Session 1 Descript');
 insert into Session values (default, 'Session 2', 'Session 2 Descript');
@@ -18,6 +26,9 @@ set @session2 = (select session_id from Session where session_title = 'Session 2
 
 insert into User_Session values (@keller, @session1, now());
 insert into User_Session values (@keller, @session2, now());
+
+insert into User_Session values (@testuser1, @session1, now());
+insert into User_Session values (@testuser2, @session1, now());
 
 insert into Permission values (default, 'viewer', 'Can view the session. Has a private profile in the session.');
 insert into Permission values (default, 'user', 'Is visible in the session. Has a public profile in the session.');
@@ -39,6 +50,12 @@ insert into User_Permission values (@keller, @session2, 3, now());
 insert into User_Permission values (@keller, @session2, 4, now());
 insert into User_Permission values (@keller, @session2, 5, now());
 insert into User_Permission values (@keller, @session2, 6, now());
+
+insert into User_Permission values (@testuser1, @session1, 1, now());
+insert into User_Permission values (@testuser1, @session1, 2, now());
+
+insert into User_Permission values (@testuser2, @session1, 1, now());
+insert into User_Permission values (@testuser2, @session1, 2, now());
 
 insert into Image values (default, 'unranked', '/mymakersite.com/public/style/img/rank/unranked.png');
 insert into Image values (default, 'novice', '/mymakersite.com/public/style/img/rank/novice.png');
@@ -70,6 +87,16 @@ set @expert = (select rank_id from Rank where rank_title = 'Expert');
 set @master = (select rank_id from Rank where rank_title = 'Master');
 
 insert into User_Rank values (@keller, @unranked, now(), @system);
+insert into User_Rank values (@keller, @novice, now(), @system);
+insert into User_Rank values (@keller, @apprentice, now(), @system);
+insert into User_Rank values (@keller, @adept, now(), @system);
+insert into User_Rank values (@keller, @expert, now(), @system);
+insert into User_Rank values (@keller, @master, now(), @system);
+
+insert into User_Rank values (@testuser1, @unranked, now(), @system);
+insert into User_Rank values (@testuser1, @novice, now(), @system);
+
+insert into User_Rank values (@testuser2, @unranked, now(), @system);
 
 /* Unlabled badges */
 insert into Badge values (default, @session1, 'Animate from Scratch NORANK', null, 'true', 'novice badge 1', 

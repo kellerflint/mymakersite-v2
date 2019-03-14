@@ -16,7 +16,7 @@ CREATE TABLE User
     user_first varchar(255) NOT NULL,
     user_last varchar(255) NOT NULL,
     user_password varchar(255) NOT NULL,
-    user_email varchar(255) NOT NULL,
+    user_email varchar(255) NOT NULL UNIQUE,
     user_join_date datetime NOT NULL,
 
     PRIMARY KEY (user_id)
