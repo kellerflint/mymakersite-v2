@@ -60,6 +60,7 @@ function add_new_user($new_user)
     }
 }
 
+// sql to update user
 function edit_user($user, $id) {
     global $db;
 
@@ -87,8 +88,7 @@ function edit_user($user, $id) {
         return false;
     }
 }
-//select Session.Session_id, Session.session_title from Session
-//	inner join User_Session on Session.session_id = User_Session.session_id where user_id = 2;
+
 function find_sessions_by_user($user_id) {
     global $db;
 
@@ -133,6 +133,31 @@ function get_session_permissions($session_id, $user_id) {
     return $permissions;
 }
 
+function find_leader_data($session_id) {
+
+    global $db;
+
+    $query = "SELECT User.user_first, Rank.rank_title, Image.image_path FROM User INNER JOIN
+    (SELECT User_Rank.user_id, max(Rank.rank_level) AS Maxrank FROM Rank
+    INNER JOIN User_Rank ON User_Rank.rank_id = Rank.rank_id
+    INNER JOIN User_Session ON User_Session.user_id = User_Rank.user_id
+    WHERE User_Session.session_id = ? AND Rank.session_id = ?
+    GROUP BY user_id) Maxrank ON User.user_id = Maxrank.user_id
+    INNER JOIN User_Rank ON User.user_id = User_Rank.user_id
+    INNER JOIN Rank ON User_Rank.rank_id = Rank.rank_id
+    INNER JOIN Image ON Rank.image_id = Image.image_id
+    WHERE Rank.rank_level = Maxrank.Maxrank ORDER BY Maxrank.Maxrank DESC;";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $session_id, $session_id);
+    $stmt->execute();
+
+    $leader_set = $stmt->get_result();
+
+    $stmt->close();
+
+    return $leader_set;
+}
 
 /* Validation functions */
 
