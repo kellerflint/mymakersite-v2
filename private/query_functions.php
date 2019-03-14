@@ -133,11 +133,35 @@ function get_session_permissions($session_id, $user_id) {
     return $permissions;
 }
 
+function has_permission ($session_id, $user_id, $required) {
+    global $db;
+
+    $query = "SELECT Permission.permission_title FROM User
+	INNER JOIN User_Permission ON User_Permission.user_id = User.user_id
+    INNER JOIN User_Session ON User_Session.user_id = User.user_id
+    INNER JOIN Permission ON Permission.permission_id = User_Permission.permission_id
+    WHERE User_Session.session_id = ? AND User.user_id = ? GROUP BY Permission.permission_title;";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $session_id, $user_id);
+    $stmt->execute();
+
+    $permission_set = $stmt->get_result();
+
+
+    while($perm = mysqli_fetch_assoc($permission_set)) {
+        if ($perm['permission_title'] == $required)
+            return true;
+    }
+
+    return false;
+}
+
 function find_leader_data($session_id) {
 
     global $db;
 
-    $query = "SELECT User.user_first, Rank.rank_title, Image.image_path FROM User INNER JOIN
+    $query = "SELECT User.user_id, User.user_first, Rank.rank_title, Image.image_path FROM User INNER JOIN
     (SELECT User_Rank.user_id, max(Rank.rank_level) AS Maxrank FROM Rank
     INNER JOIN User_Rank ON User_Rank.rank_id = Rank.rank_id
     INNER JOIN User_Session ON User_Session.user_id = User_Rank.user_id

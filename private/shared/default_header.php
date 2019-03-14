@@ -32,6 +32,9 @@ if (!isset($page_title)) {
                 </div>
                 <?php } else { ?>
                 <li><a href="<?php echo url_for("index.php") ?>">Login</a></li>
+                <?php }?>
+                <?php if (check_permission(VWR)) { ?>
+                <li><a href="<?php echo url_for("leaders.php") ?>">Leaders</a></li>
                 <?php } ?>
             </ul>
         </nav>

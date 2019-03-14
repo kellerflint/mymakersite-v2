@@ -36,4 +36,16 @@ function require_permission($required) {
     }
 }
 
+// Returns true if user is logged in and has permission
+function check_permission($required) {
+    
+    if (is_logged_in()) {
+        if (in_array($required, $_SESSION['permissions'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 ?>

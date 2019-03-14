@@ -1,6 +1,5 @@
 <?php require_once('../../private/initialize.php'); ?>
-<?php require_role(STU); ?>
-
+<?php require_permission(VWR); ?>
 <?php 
 $page_title = 'Ranks';
 $page_style = 'ranks';

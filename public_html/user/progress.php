@@ -1,5 +1,5 @@
 <?php require_once('../../private/initialize.php'); ?>
-<?php require_role(STU); ?>
+<?php require_permission(VWR); ?>
 <?php $page_title = 'Progress' ?>
 <?php $page_style = 'progress' ?>
 
@@ -36,8 +36,7 @@
                 echo 'required';
             }
              /* TODO: implement unearned badges are faded */
-            ?>"
-                src="<?php echo $image['image_path']; ?>" alt="<?php echo $image['image_name']; ?>">
+            ?>" src="<?php echo $image['image_path']; ?>" alt="<?php echo $image['image_name']; ?>">
         </a>
         <h2><?php echo $badge['badge_title']; ?></h2>
         <p><?php echo $badge['badge_description']; ?></p>
