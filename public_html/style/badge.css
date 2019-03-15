@@ -7,10 +7,12 @@ h1 {
 }
 
 p {
+    font-size: 1.4em;
     text-align: left;
 }
 
 .badge-link {
-    color: black;
-    
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
 }
