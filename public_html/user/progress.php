@@ -13,17 +13,22 @@
     <div id="rank-image-wrapper">
         <img class="badge-rank-img" src="<?php echo $rank['image_path']; ?>" alt="<?php echo $rank['rank_title']; ?>">
     </div>
-    <?php $badge_set = find_earned_badges($_SESSION['user_id'], $rank['rank_id']);
+    <?php $badge_set = find_user_badges($_SESSION['user_id'], $rank['rank_id']);
         while ($badge = mysqli_fetch_assoc($badge_set)) { 
+            $class_list = "";
+            if ($badge['badge_earned'] == 'true') {
+                $class_list .= "earned ";
+            }
+            if ($badge['badge_required'] == 'true') {
+                $class_list .= "required ";
+            }
         ?>
-    <div class="badge-item">
-
-        <a href="" target="_blank">
+    <div class="badge-item <?php echo $class_list; ?>">
+        <a href="<?php echo url_for('/user/badge.php?id=' . $badge['badge_id']); ?>">
             <img class="badge-image" src="<?php echo $badge['image_path']; ?>"
                 alt="<?php echo $badge['badge_title']; ?>">
         </a>
         <h2><?php echo $badge['badge_title']; ?></h2>
-
     </div>
     <?php } } ?>
 </div>

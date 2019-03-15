@@ -201,16 +201,20 @@ function find_rank_data($session_id) {
     return $rank_set;
 }
 
-function find_earned_badges($user_id, $rank_id) {
+function find_user_badges($user_id, $rank_id) {
     global $db;
 
-    $query = "SELECT Badge.badge_id, Badge.badge_title, Badge.badge_required, Image.image_path FROM Badge
+    $query = "SELECT Badge.badge_id, Badge.badge_title, Badge.badge_required, Image.image_path, 'false' as badge_earned FROM Badge
+	INNER JOIN Image ON Badge.image_id = Image.image_id
+    WHERE Badge.rank_id = ? AND Badge.badge_id NOT IN (SELECT badge_id FROM User_Badge WHERE user_id = ?)
+    UNION ALL
+    SELECT Badge.badge_id, Badge.badge_title, Badge.badge_required, Image.image_path, 'true' as badge_earned FROM Badge
     INNER JOIN Image ON Badge.image_id = Image.image_id
     INNER JOIN User_Badge ON Badge.badge_id = User_Badge.badge_id
     WHERE User_Badge.user_id = ? AND Badge.rank_id = ?";
 
     $stmt = $db->prepare($query);
-    $stmt->bind_param("ii", $user_id, $rank_id);
+    $stmt->bind_param("iiii", $rank_id, $user_id, $user_id, $rank_id);
     $stmt->execute();
 
     $badge_set = $stmt->get_result();
@@ -220,11 +224,20 @@ function find_earned_badges($user_id, $rank_id) {
     return $badge_set;
 }
 
-function find_unearned_badges($user_id, $rank_id) {
-    /* Closest attempt so far that still doesn't work in any way
-    SELECT Badge.badge_title FROM Badge
-    where Badge.badge_id NOT IN (SELECT badge_id FROM User_Badge)
-    */
+function find_badge_by_id($badge_id) {
+    global $db;
+    
+    $query = "SELECT * FROM Badge WHERE badge_id = ?";
+    
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("i", $badge_id);
+    $stmt->execute();
+
+    $badge_set = $stmt->get_result();
+
+    $stmt->close();
+    
+    return mysqli_fetch_assoc($badge_set);
 }
 
 /* Validation functions */

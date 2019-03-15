@@ -102,7 +102,7 @@ insert into User_Rank values (@testuser2, @unranked, now(), @system);
 insert into Badge values (default, @session1, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-insert into Badge values (default, @session1, 'Musical Storyteller', @novice, 'true', 'novice badge 2', 
+insert into Badge values (default, @session1, 'Musical Storyteller', @novice, 'false', 'novice badge 2', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
 insert into Badge values (default, @session2, 'My First Game', @novice, 'true', 'novice badge 3', 
