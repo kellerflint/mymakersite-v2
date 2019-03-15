@@ -1,9 +1,14 @@
-content {
+.content {
+    padding: 10px;
+    float: left;
     text-align: left;
+    border: 3px solid black;
+    width: 40%;
+    margin-left: 5%;
 }
 
 h1 {
-    text-align: left;
+    margin-bottom: 0px;
 }
 
 p {
@@ -11,8 +16,57 @@ p {
     text-align: left;
 }
 
+form#update-badge {
+    padding: 10px;
+    float: left;
+    text-align: left;
+    width: 40%;
+    border: 3px solid black;
+    margin-left: 5%;
+}
+
 .badge-link {
     color: blue;
     font-weight: bold;
     text-decoration: underline;
+}
+
+input {
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+label {
+    width: 20%;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+input#required-edit {
+    width: 4%;
+}
+
+textarea {
+    width: 95%;
+}
+
+button {
+    padding: 5px;
+    width: 95%;
+    font-size: 1.2em;
+    border-width: 0px;
+}
+
+button:hover {
+    background-color: rgb(200,200,200);
+}
+
+button#delete {
+    margin-left: 5%;
+    width: 90.8%;
+    margin-bottom: 20px;
+    color: red;
+    font-weight: bold;
 }

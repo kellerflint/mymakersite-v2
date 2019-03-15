@@ -7,7 +7,7 @@
 
 
 <div class="content">
-    <?php $rank_set = find_rank_data($_SESSION['session_id']); 
+    <?php $rank_set = find_rank_data($_SESSION['session_id']);
     while ($rank = mysqli_fetch_assoc($rank_set)) {
     ?>
     <div id="rank-image-wrapper">
@@ -23,13 +23,15 @@
                 $class_list .= "required ";
             }
         ?>
-    <div class="badge-item <?php echo $class_list; ?>">
-        <a href="<?php echo url_for('/user/badge.php?id=' . $badge['badge_id']); ?>">
+    <a class="badge-a" href="<?php echo url_for('/user/badge.php?id=' . $badge['badge_id']); ?>">
+        <div class="badge-item <?php echo $class_list; ?>">
+
             <img class="badge-image" src="<?php echo $badge['image_path']; ?>"
                 alt="<?php echo $badge['badge_title']; ?>">
-        </a>
-        <h2><?php echo $badge['badge_title']; ?></h2>
-    </div>
+
+            <h2><?php echo $badge['badge_title']; ?></h2>
+        </div>
+    </a>
     <?php } } ?>
 </div>
 

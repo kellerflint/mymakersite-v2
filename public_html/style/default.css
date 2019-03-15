@@ -38,6 +38,10 @@ li a:hover {
   text-align: center;
 }
 
+ul {
+  margin: 0px;
+}
+
 /* signin dropdown menu */
 
 .dropdown {

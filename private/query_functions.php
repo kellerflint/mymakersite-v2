@@ -227,7 +227,9 @@ function find_user_badges($user_id, $rank_id) {
 function find_badge_by_id($badge_id) {
     global $db;
     
-    $query = "SELECT * FROM Badge WHERE badge_id = ?";
+    $query = "SELECT Badge.badge_id, Badge.badge_title, Badge.badge_description, Badge.badge_link, 
+    Badge.badge_required, Rank.rank_title FROM Badge 
+    INNER JOIN Rank on Badge.rank_id = Rank.rank_id WHERE badge_id = ?";
     
     $stmt = $db->prepare($query);
     $stmt->bind_param("i", $badge_id);
@@ -240,7 +242,57 @@ function find_badge_by_id($badge_id) {
     return mysqli_fetch_assoc($badge_set);
 }
 
+function find_badge_session_by_id($badge_id) {
+    global $db;
+
+    $query = "SELECT Rank.session_id FROM Rank
+    INNER JOIN Badge ON Badge.rank_id = Rank.rank_id
+    WHERE Badge.badge_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("i", $badge_id);
+    $stmt->execute();
+
+    $badge_set = $stmt->get_result();
+
+    $stmt->close();
+
+    return mysqli_fetch_assoc($badge_set);
+}
+
+function edit_badge($badge) {
+    global $db;
+
+    $errors = validate_edit_badge($badge);
+
+    if(!empty($errors)) {
+        return $errors;
+    }
+
+    $query = "UPDATE Badge SET badge_title = ?, rank_id = ?, badge_required = ?, 
+    badge_description = ?, badge_link = ? WHERE badge_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('sisssi', $badge['badge_title'], $badge['rank_id'], 
+    $badge['badge_required'], $badge['badge_description'], $badge['badge_link'], $badge['badge_id']);
+    
+    $result = $stmt->execute();
+
+    echo $result;
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /* Validation functions */
+
+function validate_edit_badge($badge) {
+    $errors = [];
+    return $errors;
+}
 
 function validate_new_user($user) {
     $errors = [];

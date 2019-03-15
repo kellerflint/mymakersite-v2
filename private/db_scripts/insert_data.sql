@@ -99,30 +99,30 @@ insert into User_Rank values (@testuser1, @novice, now(), @system);
 insert into User_Rank values (@testuser2, @unranked, now(), @system);
 
 /* Novice Badges */
-insert into Badge values (default, @session1, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
+insert into Badge values (default, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-insert into Badge values (default, @session1, 'Musical Storyteller', @novice, 'false', 'novice badge 2', 
+insert into Badge values (default, 'Musical Storyteller', @novice, 'false', 'novice badge 2', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-insert into Badge values (default, @session2, 'My First Game', @novice, 'true', 'novice badge 3', 
+insert into Badge values (default, 'My First Game', @novice, 'true', 'novice badge 3', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
 /* Apprentice Badges */
 
-insert into Badge values (default, @session1, 'Move to the Code', @apprentice, 'true', 'apprentice badge 1', 
+insert into Badge values (default, 'Move to the Code', @apprentice, 'true', 'apprentice badge 1', 
 'https://codeclubprojects.org/en-GB/scratch/lost-in-space/', '7');
 
-insert into Badge values (default, @session1, 'Who You Gonna Call', @apprentice, 'true', 'apprentice badge 2', 
+insert into Badge values (default, 'Who You Gonna Call', @apprentice, 'true', 'apprentice badge 2', 
 'https://codeclubprojects.org/en-GB/scratch/ghostbusters/', '7');
 
-insert into Badge values (default, @session1, 'Talk to the Bot', @apprentice, 'true', 'apprentice badge 3', 
+insert into Badge values (default, 'Talk to the Bot', @apprentice, 'true', 'apprentice badge 3', 
 'https://codeclubprojects.org/en-GB/scratch/chatbot/', '7');
 
-insert into Badge values (default, @session2, 'Artistic License', @apprentice, 'true', 'apprentice badge 4', 
+insert into Badge values (default, 'Artistic License', @apprentice, 'true', 'apprentice badge 4', 
 'https://codeclubprojects.org/en-GB/scratch/paint-box/', '7');
 
-insert into Badge values (default, @session2, 'Whatever Floats Your Boat', @apprentice, 'true', 'apprentice badge 5', 
+insert into Badge values (default, 'Whatever Floats Your Boat', @expert, 'true', 'apprentice badge 5', 
 'https://codeclubprojects.org/en-GB/scratch/boat-race/', '7');
 
 /* Adept Badges */

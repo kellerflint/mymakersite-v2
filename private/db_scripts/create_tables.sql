@@ -83,7 +83,6 @@ CREATE TABLE Rank
 CREATE TABLE Badge
 (
     badge_id int NOT NULL AUTO_INCREMENT,
-    session_id int NOT NULL,
     badge_title varchar(255) NOT NULL,
     rank_id int NOT NULL,
     badge_required varchar(5) NOT NULL,
@@ -92,7 +91,6 @@ CREATE TABLE Badge
     image_id int,
 
     PRIMARY KEY (badge_id),
-    FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
     FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE,
     FOREIGN KEY (image_id) REFERENCES Image (image_id) ON UPDATE CASCADE
 
