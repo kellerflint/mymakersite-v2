@@ -7,49 +7,25 @@
 
 
 <div class="content">
-
-    <?php 
-    $ranks = array('Novice', 'Apprentice', 'Adept', 'Expert', 'Master');
-    foreach ($ranks as $rank) { ?>
+    <?php $rank_set = find_rank_data($_SESSION['session_id']); 
+    while ($rank = mysqli_fetch_assoc($rank_set)) {
+    ?>
     <div id="rank-image-wrapper">
-        <img class="badge-rank-img" src="<?php echo WWW_ROOT . '/style/img/rank/' . strtolower($rank) . ".png"; ?>" .
-            alt="<?php echo $rank; ?>">
+        <img class="badge-rank-img" src="<?php echo $rank['image_path']; ?>" alt="<?php echo $rank['rank_title']; ?>">
     </div>
-    <?php 
-    $sql = "SELECT * FROM Badge WHERE rank_id = (SELECT rank_id FROM Rank WHERE rank_title = '" . $rank . "' );";
-
-    $badge_set = mysqli_query($db, $sql);
-    confirm_result($badge_set);
-
-    while ($badge = mysqli_fetch_assoc($badge_set)) {
-        $sql = "SELECT * FROM Image WHERE image_id = '" . $badge['image_id'] . "'";
-        $image_set = mysqli_query($db, $sql);
-        $image = mysqli_fetch_assoc($image_set);
+    <?php $badge_set = find_earned_badges($_SESSION['user_id'], $rank['rank_id']);
+        while ($badge = mysqli_fetch_assoc($badge_set)) { 
         ?>
-
     <div class="badge-item">
 
-        <a href="<?php echo $badge['badge_link']; ?>" target="_blank">
-            <img class="badge-image 
-            <?php
-            if ($badge['badge_required'] == 'true') {
-                echo 'required';
-            }
-             /* TODO: implement unearned badges are faded */
-            ?>" src="<?php echo $image['image_path']; ?>" alt="<?php echo $image['image_name']; ?>">
+        <a href="" target="_blank">
+            <img class="badge-image" src="<?php echo $badge['image_path']; ?>"
+                alt="<?php echo $badge['badge_title']; ?>">
         </a>
         <h2><?php echo $badge['badge_title']; ?></h2>
-        <p><?php echo $badge['badge_description']; ?></p>
 
     </div>
-
-    <?php 
-} ?>
-
-
-
-    <?php 
-} ?>
+    <?php } } ?>
 </div>
 
 

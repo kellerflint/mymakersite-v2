@@ -31,6 +31,10 @@
     border: 5px solid green;
 }
 
+.earned {
+    opacity: 0.5;
+}
+
 p {
     font-size: 1.4em;
 }

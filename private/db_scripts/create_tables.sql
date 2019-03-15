@@ -69,7 +69,7 @@ CREATE TABLE User_Permission
 CREATE TABLE Rank
 (
     rank_id int NOT NULL AUTO_INCREMENT,
-    session_id int,
+    session_id int NOT NULL,
     rank_title varchar(255) NOT NULL,
     rank_level int NOT NULL,
     rank_description varchar(5000),
@@ -83,9 +83,9 @@ CREATE TABLE Rank
 CREATE TABLE Badge
 (
     badge_id int NOT NULL AUTO_INCREMENT,
-    session_id int,
+    session_id int NOT NULL,
     badge_title varchar(255) NOT NULL,
-    rank_id int,
+    rank_id int NOT NULL,
     badge_required varchar(5) NOT NULL,
     badge_description varchar(5000),
     badge_link varchar(255),

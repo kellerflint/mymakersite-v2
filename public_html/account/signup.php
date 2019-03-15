@@ -2,6 +2,7 @@
 <?php 
 $page_title = 'Signup';
 $page_style = 'signup'; 
+unset_session();
 ?>
 
 <?php include_once '../../private/shared/default_header.php'; ?>

@@ -38,13 +38,26 @@ function require_permission($required) {
 
 // Returns true if user is logged in and has permission
 function check_permission($required) {
-    
     if (is_logged_in()) {
         if (in_array($required, $_SESSION['permissions'])) {
             return true;
         } else {
             return false;
         }
+    }
+}
+
+function in_session() {
+    return isset($_SESSION['session_id']);
+}
+
+function unset_session() {
+    if(isset($_SESSION['session_id'])) {
+        unset($_SESSION['session_id']);
+    }
+    
+    if(isset($_SESSION['permissions'])) {
+        unset($_SESSION['permissions']);
     }
 }
 

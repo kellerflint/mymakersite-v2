@@ -2,7 +2,7 @@
 <?php 
 $page_title = 'Sessions';
 $page_style = 'sessions'; 
-
+unset_session();
 require_login();
 ?>
 

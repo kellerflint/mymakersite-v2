@@ -98,13 +98,6 @@ insert into User_Rank values (@testuser1, @novice, now(), @system);
 
 insert into User_Rank values (@testuser2, @unranked, now(), @system);
 
-/* Unlabled badges */
-insert into Badge values (default, @session1, 'Animate from Scratch NORANK', null, 'true', 'novice badge 1', 
-'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
-
-insert into Badge values (default, @session2, 'Animate from Scratch NORANK', null, 'true', 'novice badge 1', 
-'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
-
 /* Novice Badges */
 insert into Badge values (default, @session1, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
@@ -137,3 +130,7 @@ insert into Badge values (default, @session2, 'Whatever Floats Your Boat', @appr
 /* Expert Badges */
 
 /* Master Badges */
+
+set @novice_badge1 = (select badge_id from Badge where badge_title = "Animate from Scratch");
+
+insert into User_Badge values (@keller, @novice_badge1, 1, now(), @SYSTEM);

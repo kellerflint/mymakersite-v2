@@ -2,6 +2,7 @@
 <?php 
 $page_title = 'Login';
 $page_style = 'login'; 
+unset_session();
 ?>
 
 <?php include_once '../private/shared/default_header.php'; ?>
