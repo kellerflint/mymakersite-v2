@@ -278,7 +278,56 @@ function edit_badge($badge) {
     
     $result = $stmt->execute();
 
-    echo $result;
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function create_badge($badge) {
+    global $db;
+
+    $errors = validate_edit_badge($badge);
+
+    if(!empty($errors)) {
+        return $errors;
+    }
+
+    $query = "INSERT INTO Badge VALUES (default, ?, ?, ?, ?, ?, 7)";
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('sisss', $badge['badge_title'], $badge['rank_id'], 
+    $badge['badge_required'], $badge['badge_description'], $badge['badge_link']);
+    
+    $result = $stmt->execute();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function delete_badge($badge_id) {
+    global $db;
+    
+    $query = "DELETE FROM User_Badge WHERE Badge_id = ?";
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('i', $badge_id);
+    
+    $result = $stmt->execute();
+
+    $query = "DELETE FROM Badge WHERE Badge_id = ?";
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('i', $badge_id);
+    
+    $result = $stmt->execute();
 
     if ($result) {
         return true;
@@ -290,6 +339,11 @@ function edit_badge($badge) {
 /* Validation functions */
 
 function validate_edit_badge($badge) {
+    $errors = [];
+    return $errors;
+}
+
+function validate_create_badge($badge) {
     $errors = [];
     return $errors;
 }

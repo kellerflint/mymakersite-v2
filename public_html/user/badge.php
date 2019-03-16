@@ -12,28 +12,24 @@ if ($_SESSION['session_id'] != find_badge_session_by_id($_GET['id'])['session_id
 <?php include_once(SHARED_PATH . '/default_header.php'); ?>
 
 <?php if(request_is_post()) {
-
+    
     $badge['badge_id'] = $_GET['id'];
     $badge['badge_title'] = $_POST['badge_title'];
     $badge['rank_id'] = $_POST['rank_id'];
     $badge['badge_link'] = $_POST['badge_link'];
     $badge['badge_required'] = $_POST['badge_required'];
     $badge['badge_description'] = $_POST['badge_description'];
-
-    $result = edit_badge($badge);
+    
+    if ($_POST['submit'] == 'delete') {
+        $result = delete_badge($badge['badge_id']);
+    } else if ($_POST['submit'] == 'update') {
+        $result = edit_badge($badge);
+    }
 
     if ($result !== true) {
         $errors = $result;
     }
 } ?>
-
-<?php if (check_permission(ADM)) { ?>
-
-<form action="badge.php" method="POST">
-    <button name="submit" id="delete" value="delete">Delete</button>
-</form>
-
-<?php } ?>
 
 <div class="content">
     <?php $badge = find_badge_by_id($_GET['id']); ?>
@@ -49,7 +45,7 @@ if ($_SESSION['session_id'] != find_badge_session_by_id($_GET['id'])['session_id
 
 <?php if (check_permission(ADM)) { ?>
 
-<form id="update-badge" action="badge.php?id=<?php echo $badge['badge_id'];?>" method="POST">
+<form id="update-badge" action="badge.php?id=<?php echo $badge['badge_id']; ?>" method="POST">
     <label for="title-edit">Edit Title</label>
     <input name="badge_title" id="title-edit" type="text" value="<?php echo $badge['badge_title']; ?>">
     <br>
@@ -79,7 +75,8 @@ if ($_SESSION['session_id'] != find_badge_session_by_id($_GET['id'])['session_id
     <textarea name="badge_description" id="description-edit" cols="50" rows="5"><?php echo $badge['badge_description']; ?>
     </textarea>
     <br>
-    <button name="submit" id="update" value="update">Update</button>
+    <button type="submit" name="submit" id="update" value="update">Update</button>
+    <button type="submit" name="submit" id="delete" value="delete">Delete</button>
 </form>
 <?php } ?>
 

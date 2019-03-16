@@ -38,5 +38,9 @@ if (!isset($page_title)) {
                 <li><a href="<?php echo url_for("/user/progress.php"); ?>">Progress</a></li>
                 <li><a href="<?php echo url_for("/user/ranks.php"); ?>">Ranks</a></li>
                 <?php } ?>
+
+                <?php if (in_session() && check_permission(ADM)) { ?>
+                <li><a href="<?php echo url_for("/admin/create_badge.php"); ?>">Create Badge</a></li>
+                <?php } ?>
             </ul>
         </nav>
