@@ -353,6 +353,42 @@ function delete_badge($badge_id) {
     }
 }
 
+function give_user_badge($user_id, $badge_id, $giver_id) {
+    global $db;
+
+    $query = "INSERT INTO User_Badge VALUES (?, ?, 0, now(), ?)";
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('iii', $user_id, $badge_id, $giver_id);
+    
+    $result = $stmt->execute();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function remove_user_badge($user_id, $badge_id) {
+    global $db;
+
+    $query = "DELETE FROM User_Badge WHERE user_id = ? AND badge_id = ?";
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('ii', $user_id, $badge_id);
+    
+    $result = $stmt->execute();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /* Validation functions */
 
 function validate_edit_badge($badge) {

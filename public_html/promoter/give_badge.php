@@ -12,7 +12,7 @@ $page_style = 'give';
 // Default form submit values
 $rank_id = '1';
 $user_id = '';
-$badge_title = '';
+$badge_id = '';
 
 // Defaults are overriden on submission if they are set
 if (request_is_post()) {
@@ -20,8 +20,8 @@ if (request_is_post()) {
         $rank_id = $_POST['rank_id'];
     if (isset($_POST['user_id']))
         $user_id = $_POST['user_id'];
-    if (isset($_POST['badge']))
-        $badge_title = $_POST['badge'];
+    if (isset($_POST['badge_id']))
+        $badge_id = $_POST['badge_id'];
 }
 ?>
 
@@ -64,11 +64,9 @@ if (request_is_post()) {
             } ?>
             </select>
             <br>
-            <label for="user_id">User_id: </label>
-            <input type="text" name="user_id" id="user_id" value="<?php echo $user_id; ?>">
+            <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>">
             <br>
-            <label for="badge">Badge: </label>
-            <input type="text" name="badge" id="badge" value="<?php echo $badge_title; ?>">
+            <input type="hidden" name="badge_id" id="badge_id" value="<?php echo $badge_id; ?>">
             <br>
             <button name="submit-option" value="give" onclick="this.form.submit();">Give
                 Badge</button>
@@ -82,9 +80,9 @@ if (request_is_post()) {
             // if submit-option is set then run give or remove, else run update
                 if (isset($_POST['submit-option'])) {
                     if ($_POST['submit-option'] == 'give') {
-                        give_badge($user_name, $badge_title);
+                        give_badge($user_id, $badge_id);
                     } else if ($_POST['submit-option'] == 'remove') {
-                        remove_badge($user_name, $badge_title);
+                        remove_badge($user_id, $badge_id);
                     }
                 }
                 display_user_badges($user_id, $rank_id);
@@ -92,11 +90,9 @@ if (request_is_post()) {
         </div>
         <!--End of form div-->
     </div>
-</div>
-
-<div id="badge-box">
-    <h2>Missing Badges: </h2>
-    <?php 
+    <div id="badge-box">
+        <h2>Missing Badges: </h2>
+        <?php 
         if (request_is_post()) {
             if (!is_empty($user_id)) {
                 $badge_set = find_user_badges($user_id, $rank_id);
@@ -104,23 +100,26 @@ if (request_is_post()) {
                 while ($badge = mysqli_fetch_assoc($badge_set)) {
                     if ($badge['badge_earned'] === 'false') { 
                     ?>
-    <div data-rank="<?php echo $badge['badge_title']; ?>" class="badge-item 
+        <div data-rank="<?php echo $badge['badge_id']; ?>" class="badge-item 
         <?php echo even_odd($count); ?>">
-        <p>
-            <?php 
+            <p>
+                <?php 
                 echo $badge['badge_title'];
                 if ($badge['badge_required'] == 'true')
                     echo "*";
                 ?>
-        </p>
-    </div>
+            </p>
+        </div>
 
-    <?php } $count++;
+        <?php } $count++;
     }
 }
 }
 ?>
+    </div>
 </div>
+
+
 </div>
 <?php include_once SHARED_PATH . '/default_footer.php'; ?>
 
@@ -138,7 +137,7 @@ function display_user_badges($user_id, $rank_id)
         $count = 0;
         while ($badge = mysqli_fetch_assoc($badge_set)) { 
             if ($badge['badge_earned'] === 'true') { ?>
-<div data-rank="<?php echo $badge['badge_title']; ?>" class="badge-item 
+<div data-rank="<?php echo $badge['badge_id']; ?>" class="badge-item 
         <?php echo even_odd($count); ?>">
     <p>
         <?php 
@@ -154,42 +153,17 @@ function display_user_badges($user_id, $rank_id)
 }
 }
 // Given user_name and badge_title gives user badge or displays errors
-function give_badge($user_name, $badge_title)
+function give_badge($user_id, $badge_id)
 {
-    global $db;
-    if ($user_name != '' && $badge_title != '') {
-        $user = find_user($user_name);
-        confirm_result($user);
-        $badge = find_badge($badge_title);
-        confirm_result($badge);
-        $sql = "INSERT INTO User_Badge VALUES (" . $user['user_id'] . ", ";
-        $sql .= $badge['badge_id'] . ", now())";
-        $result = mysqli_query($db, $sql);
-        if ($result) {
-            echo "Badge " . $badge_title . " given to user " . $user_name;
-        } else {
-            echo "Badge insert failed: " . mysqli_error($db);
-        }
+    if (!is_empty($user_id) && !is_empty($badge_id)) {
+        $result = give_user_badge($user_id, $badge_id, $_SESSION['user_id']);
     } else {
         echo "Badge insert failed: You must select a user and a badge.";
     }
 }
-function remove_badge($user_name, $badge_title)
-{
-    global $db;
-    if ($user_name != '' && $badge_title != '') {
-        $user = find_user($user_name);
-        confirm_result($user);
-        $badge = find_badge($badge_title);
-        confirm_result($badge);
-        $sql = "DELETE FROM User_Badge WHERE user_id = " . $user['user_id'];
-        $sql .= " AND badge_id = " . $badge['badge_id'] . ";";
-        $result = mysqli_query($db, $sql);
-        if ($result) {
-            echo "Rank " . $badge_title . " removed from user " . $user_name;
-        } else {
-            echo "Rank deletion failed: " . mysqli_error($db);
-        }
+function remove_badge($user_id, $badge_id) {
+    if (!is_empty($user_id) && !is_empty($badge_id)) {
+        $result = remove_user_badge($user_id, $badge_id);
     } else {
         echo "Badge deletion failed: You must select a user and badge.";
     }

@@ -112,14 +112,14 @@ input {
     font-size: 1.4em;
 }
 
-button {
+form button {
     padding: 5px;
     font-size: 1.4em;
     border-radius: 10px;
     border: 3px solid rgb(200,200,200);
 }
 
-button:hover {
+form button:hover {
     padding: 5px;
     border: 3px solid rgb(100,100,100);
 }

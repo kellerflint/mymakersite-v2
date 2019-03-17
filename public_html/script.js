@@ -51,7 +51,7 @@ if (is_rank_page) {
     form_item = document.getElementById('rank');
 } else {
     items = document.getElementsByClassName('badge-item');
-    form_item = document.getElementById('badge');
+    form_item = document.getElementById('badge_id');
 }
 
 // Adds event listeners for users
