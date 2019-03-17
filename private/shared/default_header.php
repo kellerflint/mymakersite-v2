@@ -38,9 +38,11 @@ if (!isset($page_title)) {
                 <li><a href="<?php echo url_for("/user/progress.php"); ?>">Progress</a></li>
                 <li><a href="<?php echo url_for("/user/ranks.php"); ?>">Ranks</a></li>
                 <?php } ?>
-
+                <?php if (in_session() && check_permission(PMT)) { ?>
+                <li><a class="promoter" href="<?php echo url_for("/promoter/give_badge.php"); ?>">Give Badge</a></li>
+                <?php } ?>
                 <?php if (in_session() && check_permission(ADM)) { ?>
-                <li><a href="<?php echo url_for("/admin/create_badge.php"); ?>">Create Badge</a></li>
+                <li><a class="admin" href="<?php echo url_for("/admin/create_badge.php"); ?>">Create Badge</a></li>
                 <?php } ?>
             </ul>
         </nav>

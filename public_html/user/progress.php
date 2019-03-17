@@ -16,10 +16,10 @@
     <?php $badge_set = find_user_badges($_SESSION['user_id'], $rank['rank_id']);
         while ($badge = mysqli_fetch_assoc($badge_set)) { 
             $class_list = "";
-            if ($badge['badge_earned'] == 'true') {
+            if ($badge['badge_earned'] === 'true') {
                 $class_list .= "earned ";
             }
-            if ($badge['badge_required'] == 'true') {
+            if ($badge['badge_required'] === 'true') {
                 $class_list .= "required ";
             }
         ?>

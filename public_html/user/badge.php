@@ -22,6 +22,11 @@ if ($_SESSION['session_id'] != find_badge_session_by_id($_GET['id'])['session_id
     
     if ($_POST['submit'] == 'delete') {
         $result = delete_badge($badge['badge_id']);
+
+        if ($result === true) {
+            redirect_to(url_for("/user/progress.php"));
+        }
+
     } else if ($_POST['submit'] == 'update') {
         $result = edit_badge($badge);
     }

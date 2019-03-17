@@ -28,9 +28,23 @@ li a {
   font-size: 1.2em;
 }
 
+.admin {
+  background-color: maroon;
+}
+
+.promoter {
+  background-color: purple;
+}
+
+.manager {
+  background-color: darkblue;
+}
+
+
 li a:hover {
   background-color: darkgreen;
 }
+
 
 .content {
   margin-left: 2%;

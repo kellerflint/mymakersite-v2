@@ -14,6 +14,7 @@ $page_style = 'leaders';
     <?php 
     $leader_set = find_leader_data($_SESSION['session_id']);
     while ($leader = mysqli_fetch_assoc($leader_set)) {
+        // Only displays if the leader user permission
         if (has_permission($_SESSION['session_id'], $leader['user_id'], USR)) {
     ?>
 

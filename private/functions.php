@@ -65,4 +65,11 @@ function in_data_set($set, $param, $value) {
     return false;
 }
 
+function even_odd($number) {
+    if ($number % 2 == 0)
+        return "odd";
+    else
+        return "even";
+}
+
 ?>

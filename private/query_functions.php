@@ -32,6 +32,23 @@ function find_user_by_id($id)
     return mysqli_fetch_assoc($user_set);
 }
 
+function find_users_by_session($session_id) {
+    global $db;
+    $query = "SELECT User.user_id, User.user_first, User.user_last FROM User
+    INNER JOIN User_Session ON User_Session.user_id = User.user_id
+    WHERE User_Session.session_id = ?";
+    
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("i", $session_id);
+    $stmt->execute();
+
+    $user_set = $stmt->get_result();
+
+    $stmt->close();
+    
+    return $user_set;
+}
+
 function add_new_user($new_user) 
 {
     global $db;

@@ -23,6 +23,7 @@
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
 
 <form id="update-badge" action="create_badge.php" method="POST">
+    <h2>Create Badge</h2>
     <label for="title-edit">Title</label>
     <input name="badge_title" id="title-edit" type="text">
     <br>
