@@ -35,6 +35,8 @@ let users = document.getElementsByClassName('user-item');
 
 let form_user = document.getElementById('user_id');
 
+let form_item = document.getElementById('item_id');
+
 let is_rank_page;
 
 if (document.getElementsByClassName('rank-item').length == 0) {
@@ -45,13 +47,11 @@ if (document.getElementsByClassName('rank-item').length == 0) {
 
 // sets items to ranks or badges and forms depending on which page is used
 let items;
-let form_item;
+
 if (is_rank_page) {
     items = document.getElementsByClassName('rank-item');
-    form_item = document.getElementById('rank');
 } else {
     items = document.getElementsByClassName('badge-item');
-    form_item = document.getElementById('badge_id');
 }
 
 // Adds event listeners for users

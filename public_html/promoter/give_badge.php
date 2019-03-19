@@ -36,8 +36,10 @@ if (request_is_post()) {
         while ($user = mysqli_fetch_assoc($user_set)) { ?>
         <div data-user="<?php echo $user['user_id'] ?>" class="user-item 
             <?php echo even_odd($count); ?>">
-            <p class="user-p">
+            <p>
                 <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
+                <br>
+                <img class="rank-img-user" src="<?php echo $rank['image_path']; ?>" alt="">
             </p>
         </div>
         <?php $count++;
@@ -65,16 +67,14 @@ if (request_is_post()) {
             </select>
             <br>
             <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>">
-            <br>
-            <input type="hidden" name="badge_id" id="badge_id" value="<?php echo $badge_id; ?>">
-            <br>
-            <button name="submit-option" value="give" onclick="this.form.submit();">Give
+            <input type="hidden" name="badge_id" id="item_id" value="<?php echo $badge_id; ?>">
+            <button name="submit-option" value="give" id="give">Give
                 Badge</button>
-            <button name="submit-option" value="remove" onclick="this.form.submit();">Remove
+            <button name="submit-option" value="remove" id="remove">Remove
                 Badge</button>
         </form>
         <!-- Displays result of give badge query -->
-        <div id="result-box">
+        <div id=" result-box">
             <?php 
             if (request_is_post()) {
             // if submit-option is set then run give or remove, else run update

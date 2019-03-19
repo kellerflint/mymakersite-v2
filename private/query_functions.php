@@ -389,6 +389,61 @@ function remove_user_badge($user_id, $badge_id) {
     }
 }
 
+function find_rank_by_user($session_id, $user_id) {
+    global $db;
+
+    $query = "SELECT Rank.rank_title, Image.image_path FROM Rank
+    INNER JOIN Image ON Image.image_id = Rank.image_id
+    INNER JOIN User_Rank ON Rank.rank_id = User_Rank.rank_id
+    WHERE Rank.session_id = ? AND User_Rank.user_id = ? ORDER BY Rank.rank_level DESC";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $session_id, $user_id);
+    $stmt->execute();
+
+    $rank_set = $stmt->get_result();
+
+    $stmt->close();
+
+    return mysqli_fetch_assoc($rank_set);
+}
+
+function give_user_rank($user_id, $rank_id,  $giver_id) {
+    global $db;
+
+    $query = "INSERT INTO User_Rank VALUES (?, ?, now(), ?)";
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('iii', $user_id, $rank_id, $giver_id);
+    
+    $result = $stmt->execute();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function remove_user_rank($user_id, $rank_id) {
+    global $db;
+
+    $query = "DELETE FROM User_Rank WHERE user_id = ? AND rank_id = ?";
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('ii', $user_id, $rank_id);
+    
+    $result = $stmt->execute();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /* Validation functions */
 
 function validate_edit_badge($badge) {
