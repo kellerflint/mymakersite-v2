@@ -29,20 +29,24 @@ if (request_is_post()) {
     <div id="user-box">
         <h2>Users</h2>
         <?php 
-        // Get and confirm user set
         $user_set = find_users_by_session($_SESSION['session_id']);
-        // Iterate over users and displays names
-        $count = 0;
-        while ($user = mysqli_fetch_assoc($user_set)) { ?>
+        $user_count = 0;
+        while ($user = mysqli_fetch_assoc($user_set)) {
+            $rank = find_rank_by_user($_SESSION['session_id'], $user['user_id']);
+            ?>
+
         <div data-user="<?php echo $user['user_id'] ?>" class="user-item 
-            <?php echo even_odd($count); ?>">
+            <?php echo even_odd($user_count); ?>">
             <p>
                 <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
                 <br>
-                <img class="rank-img-user" src="<?php echo $rank['image_path']; ?>" alt="">
+                <img class="rank-img-user" src="<?php echo $rank['image_path']; ?>"
+                    alt="<?php echo $rank['rank_title']; ?>">
             </p>
         </div>
-        <?php $count++;
+
+        <?php
+        $user_count++;
     } ?>
         <!-- End of userbox -->
     </div>

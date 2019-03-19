@@ -68,6 +68,7 @@ if (request_is_post()) {
         $rank_set = find_rank_data($_SESSION['session_id']);
         $rank_count = 0;
         while ($rank = mysqli_fetch_assoc($rank_set)) { ?>
+        <h3><?php echo $rank['rank_title']; ?></h3>
         <div data-rank="<?php echo $rank['rank_id']; ?>" class="rank-item 
             <?php echo even_odd($rank_count); ?>">
             <p>
@@ -105,8 +106,10 @@ function form_options() {
         
     } else if ($_POST['submit'] == 'remove') {
         remove_user_rank($_POST['user_id'], $_POST['rank_id']);
+        redirect_to(url_for('/promoter/give_rank.php'));
     } else if ($_POST['submit'] == 'give') {
         give_user_rank($_POST['user_id'], $_POST['rank_id'], $_SESSION['session_id']);
+        redirect_to(url_for('/promoter/give_rank.php'));
     }
 }
 
