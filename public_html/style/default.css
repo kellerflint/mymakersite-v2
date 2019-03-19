@@ -38,9 +38,15 @@ li a {
 
 .manager {
   background-color: darkblue;
-  /*gradiant between blue and purple for permissions (since it's both)*/
 }
 
+.manager-admin {
+  background-image: linear-gradient(to left, darkblue, rgb(0, 126, 150), maroon);
+}
+
+.owner {
+  background-color: rgb(0, 126, 150)
+}
 
 li a:hover {
   background-color: darkgreen;

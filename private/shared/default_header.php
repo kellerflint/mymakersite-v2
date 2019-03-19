@@ -42,6 +42,14 @@ if (!isset($page_title)) {
                 <li><a class="promoter" href="<?php echo url_for("/promoter/give_badge.php"); ?>">Give Badge</a></li>
                 <li><a class="promoter" href="<?php echo url_for("/promoter/give_rank.php"); ?>">Give Rank</a></li>
                 <?php } ?>
+                <?php if (in_session() && check_permission(MNG)) { ?>
+                <li><a class="manager" href="<?php echo url_for("/manager/add_user.php"); ?>">Add User</a></li>
+                <?php } ?>
+                <?php if (in_session() && (check_permission(MNG) || check_permission(ADM) || check_permission(OWN))) { ?>
+                <li><a class="manager-admin" href="<?php echo url_for("/manager/assign_permissions.php"); ?>">Assign
+                        Permissions</a>
+                </li>
+                <?php } ?>
                 <?php if (in_session() && check_permission(ADM)) { ?>
                 <li><a class="admin" href="<?php echo url_for("/admin/create_badge.php"); ?>">Create Badge</a></li>
                 <?php } ?>

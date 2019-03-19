@@ -94,7 +94,7 @@ function form_options() {
         $badge_set = find_user_badges($_POST['user_id'], $_POST['rank_id']);
         while ($badge = mysqli_fetch_assoc($badge_set)) {
             if ($badge['badge_required'] === 'true' && $badge['badge_earned'] === 'false') {
-                $missing_badge_html =  "<h2>" . $badge['badge_title'] . "</h2>";
+                $missing_badge_html .=  "<h2>" . $badge['badge_title'] . "</h2>";
             }
         }
         if (!is_empty($missing_badge_html)) {
