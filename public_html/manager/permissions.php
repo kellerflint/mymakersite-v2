@@ -19,11 +19,6 @@ if (request_is_post()) {
 ?>
 
 <div class="content">
-
-    <!-- checkboxes or lists? (like in gives). Same layout as gives though (users left, form center, items right) -->
-    <!-- user can't have no permissions. Must be seperate button to delete them from session for clarity. 
-    (even thought it would totally work)-->
-
     <div id="user-box">
         <h2>Users</h2>
         <?php 

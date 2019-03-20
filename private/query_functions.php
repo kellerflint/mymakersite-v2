@@ -451,8 +451,6 @@ function remove_user_rank($user_id, $rank_id) {
 function update_permissions($permission_array, $user_id, $session_id, $giver_id) {
     global $db;
 
-    
-
     $result = false;
     
     for ($i = 0; $i < sizeof($permission_array); $i++) {
@@ -477,6 +475,33 @@ function update_permissions($permission_array, $user_id, $session_id, $giver_id)
     } else {
         return false;
     }
+}
+
+// Returns set of users not in session by a search
+function find_users_like($session_id, $user_search) {
+    global $db;
+    
+    $search = '%';
+    $search .= $user_search;
+    $search .= '%';
+
+    $query = "SELECT DISTINCT User.user_id, User.user_name FROM User 
+    WHERE User.user_id NOT IN (SELECT user_id FROM User_Session WHERE session_id = ?) 
+    AND User.user_name LIKE ?";
+    
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("is", $session_id, $search);
+    $stmt->execute();
+
+    $user_set = $stmt->get_result();
+
+    $stmt->close();
+
+    while ($user = mysqli_fetch_assoc($user_set)) {
+        echo $user['user_name'];
+    }
+
+    return $user_set;
 }
 
 /* Validation functions */

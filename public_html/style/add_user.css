@@ -1,0 +1,96 @@
+#user-box {
+    float: left;
+    width: 30%;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#form-box {
+    float: left;
+    margin-left: 2%;
+    width: 31%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#result-box {
+    float: left;
+    width: 30%;
+    margin-left: 2%;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+p {
+    padding-top: 5px;
+}
+
+.user-item {
+    height: 35px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgb(200,200,200);
+    padding-bottom: 5px;
+    margin: 15px;
+}
+
+form button {
+    font-weight: bold;
+    padding: 5px;
+    width: 95%;
+    font-size: 1.2em;
+    border-width: 0px;
+    margin-top: 10px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+input {
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+
+button#add {
+    color: green;
+    font-weight: bold;
+}
+
+button#remove {
+    color: red;
+    font-weight: bold;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.even {
+    background-color: rgb(230, 230, 230);
+}
+
+.odd {
+    background-color: rgb(200, 200, 200);
+}
+
+.permission-checkbox-label {
+    font-size: 1.5em;
+}
+
+.selected {
+    background-color: green;
+}
+
