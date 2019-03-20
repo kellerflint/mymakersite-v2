@@ -37,25 +37,25 @@ insert into Permission values (default, 'manager', 'Can invite users to a sessio
 insert into Permission values (default, 'admin', 'Can add, edit and delete badges and ranks in a session. Can grant and revoke any permission (other than owner).');
 insert into Permission values (default, 'owner', 'Can delete, edit or duplicate a session. Can grant and revoke any permission.');
 
-insert into User_Permission values (@keller, @session1, 1, now());
-insert into User_Permission values (@keller, @session1, 2, now());
-insert into User_Permission values (@keller, @session1, 3, now());
-insert into User_Permission values (@keller, @session1, 4, now());
-insert into User_Permission values (@keller, @session1, 5, now());
-insert into User_Permission values (@keller, @session1, 6, now());
+insert into User_Permission values (@keller, @session1, 1, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session1, 2, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session1, 3, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session1, 4, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session1, 5, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session1, 6, now(), @SYSTEM);
 
-insert into User_Permission values (@keller, @session2, 1, now());
-insert into User_Permission values (@keller, @session2, 2, now());
-insert into User_Permission values (@keller, @session2, 3, now());
-insert into User_Permission values (@keller, @session2, 4, now());
-insert into User_Permission values (@keller, @session2, 5, now());
-insert into User_Permission values (@keller, @session2, 6, now());
+insert into User_Permission values (@keller, @session2, 1, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session2, 2, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session2, 3, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session2, 4, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session2, 5, now(), @SYSTEM);
+insert into User_Permission values (@keller, @session2, 6, now(), @SYSTEM);
 
-insert into User_Permission values (@testuser1, @session1, 1, now());
-insert into User_Permission values (@testuser1, @session1, 2, now());
+insert into User_Permission values (@testuser1, @session1, 1, now(), @SYSTEM);
+insert into User_Permission values (@testuser1, @session1, 2, now(), @SYSTEM);
 
-insert into User_Permission values (@testuser2, @session1, 1, now());
-insert into User_Permission values (@testuser2, @session1, 2, now());
+insert into User_Permission values (@testuser2, @session1, 1, now(), @SYSTEM);
+insert into User_Permission values (@testuser2, @session1, 2, now(), @SYSTEM);
 
 insert into Image values (default, 'unranked', '/mymakersite.com/public_html/style/img/rank/unranked.png');
 insert into Image values (default, 'novice', '/mymakersite.com/public_html/style/img/rank/novice.png');

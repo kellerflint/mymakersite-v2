@@ -419,6 +419,8 @@ function give_user_rank($user_id, $rank_id,  $giver_id) {
     
     $result = $stmt->execute();
 
+    $stmt->close();
+
     if ($result) {
         return true;
     } else {
@@ -437,6 +439,39 @@ function remove_user_rank($user_id, $rank_id) {
     
     $result = $stmt->execute();
 
+    $stmt->close();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function update_permissions($permission_array, $user_id, $session_id, $giver_id) {
+    global $db;
+
+    
+
+    $result = false;
+    
+    for ($i = 0; $i < sizeof($permission_array); $i++) {
+        $permission_id = ($i + 1);
+        if ($permission_array[$i] == "true") {
+            $query = "INSERT INTO User_Permission VALUES(?,?,?, now(), ?)";
+            $stmt = $db->prepare($query);
+            $stmt->bind_param('iiii', $user_id, $session_id, $permission_id, $giver_id);
+            $result = $stmt->execute();
+            $stmt->close();
+        } else {
+            $query = "DELETE FROM User_Permission WHERE user_id = ? AND session_id = ? AND permission_id = ?";
+            $stmt = $db->prepare($query);
+            $stmt->bind_param('iii', $user_id, $session_id, $permission_id);
+            $result = $stmt->execute();
+            $stmt->close();
+        }
+    }
+    
     if ($result) {
         return true;
     } else {

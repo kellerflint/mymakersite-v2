@@ -78,9 +78,13 @@ if (request_is_post()) {
             <?php
             if (request_is_post()) {
                 if(isset($_POST['submit-option'])) {
-                    if ($_POST['submit-option'] == 'update') {
-                        // Do update logic
-                    }
+                    $permission_array = explode(',', $_POST['permissions_string']);
+                    $result = update_permissions($permission_array, $_POST['user_id'], 
+                                                    $_SESSION['session_id'], $_SESSION['user_id']);
+                        // redirect only works if I delete buttons and input due to headers already sent.
+                        // But this works perfectly on give_rank.php so I have no idea what the problem is.
+                        // So until I figure it out the page has to be reloaded to show changes to the permissions.
+                        //redirect_to(url_for('/manager/permissions.php'));
                 }
             }
             ?>

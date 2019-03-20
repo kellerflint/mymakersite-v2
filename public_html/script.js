@@ -148,5 +148,5 @@ function set_permissions_array() {
 }
 
 function set_permission_string() {
-    return permission_string = permissions.join(",");
+    return permissions.join(",");
 }
