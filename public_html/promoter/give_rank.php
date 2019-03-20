@@ -28,7 +28,7 @@ if (request_is_post()) {
             $rank = find_rank_by_user($_SESSION['session_id'], $user['user_id']);
             ?>
 
-        <div data-user="<?php echo $user['user_id'] ?>" class="user-item 
+        <div data-user="<?php echo $user['user_id']; ?>" class="user-item 
             <?php echo even_odd($user_count); ?>">
             <p>
                 <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
@@ -90,7 +90,18 @@ if (request_is_post()) {
 <?php
 function form_options() {
     if ($_POST['submit'] == 'pre') {
-        $missing_badge_html = '';
+        pre();
+    } else if ($_POST['submit'] == 'remove') {
+        remove_user_rank($_POST['user_id'], $_POST['rank_id']);
+        redirect_to(url_for('/promoter/give_rank.php'));
+    } else if ($_POST['submit'] == 'give') {
+        give_user_rank($_POST['user_id'], $_POST['rank_id'], $_SESSION['session_id']);
+        redirect_to(url_for('/promoter/give_rank.php'));
+    }
+}
+
+function pre() {
+    $missing_badge_html = '';
         $badge_set = find_user_badges($_POST['user_id'], $_POST['rank_id']);
         while ($badge = mysqli_fetch_assoc($badge_set)) {
             if ($badge['badge_required'] === 'true' && $badge['badge_earned'] === 'false') {
@@ -103,14 +114,6 @@ function form_options() {
         } else {
             echo "<h1 class='green'>Prerequisites Met</h1>";
         }
-        
-    } else if ($_POST['submit'] == 'remove') {
-        remove_user_rank($_POST['user_id'], $_POST['rank_id']);
-        redirect_to(url_for('/promoter/give_rank.php'));
-    } else if ($_POST['submit'] == 'give') {
-        give_user_rank($_POST['user_id'], $_POST['rank_id'], $_SESSION['session_id']);
-        redirect_to(url_for('/promoter/give_rank.php'));
-    }
 }
 
 ?>

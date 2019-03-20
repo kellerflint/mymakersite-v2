@@ -57,9 +57,11 @@ CREATE TABLE User_Permission
     session_id int,
     permission_id int,
     user_permission_date datetime NOT NULL,
+    user_permission_granter int NOT NULL,
 
     PRIMARY KEY (user_id, session_id, permission_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_permission_granter) REFERENCES User (user_id) ON UPDATE CASCADE,
     FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
     FOREIGN KEY (permission_id) REFERENCES Permission (permission_id) ON UPDATE CASCADE
 

@@ -1,0 +1,82 @@
+#user-box {
+    float: left;
+    width: 31%;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#form-box {
+    float: left;
+    margin-left: 3%;
+    width: 62%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+p {
+    padding-top: 5px;
+}
+
+.user-item {
+    height: 35px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgb(200,200,200);
+    padding-bottom: 5px;
+    margin: 15px;
+}
+
+.rank-item {
+    height: 120px;
+}
+
+form button {
+    font-weight: bold;
+    padding: 5px;
+    width: 95%;
+    font-size: 1.2em;
+    border-width: 0px;
+    margin-top: 10px;
+}
+
+button#give {
+    color: green;
+    font-weight: bold;
+}
+
+button#remove {
+    color: red;
+    font-weight: bold;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.even {
+    background-color: rgb(230, 230, 230);
+}
+
+.odd {
+    background-color: rgb(200, 200, 200);
+}
+
+.permission-checkbox {
+    
+}
+
+.permission-checkbox-label {
+    font-size: 1.5em;
+}
+
+.selected {
+    background-color: green;
+}
+

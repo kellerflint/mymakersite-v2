@@ -23,12 +23,9 @@ function remove_visible_sections() {
     }
 }
 
-// GIVE BADGE SCRIPTS
+// GIVE SCRIPTS
 
-// script for coloring and autofilling input data on give forms (give badge and give rank) 
-
-// Get badge-form
-let form = document.getElementById('badge-form');
+// script for coloring and autofilling input data on give forms (give badge and give rank and permissions) 
 
 // Get user form and user items
 let users = document.getElementsByClassName('user-item');
@@ -38,6 +35,7 @@ let form_user = document.getElementById('user_id');
 let form_item = document.getElementById('item_id');
 
 let is_rank_page;
+let is_badge_page;
 
 if (document.getElementsByClassName('rank-item').length == 0) {
     is_rank_page = false;
@@ -45,8 +43,22 @@ if (document.getElementsByClassName('rank-item').length == 0) {
     is_rank_page = true;
 }
 
+if (document.getElementById('badge-form')) {
+    is_badge_page = true;
+} else {
+    is_badge_page = false;
+}
+
 // sets items to ranks or badges and forms depending on which page is used
 let items;
+let form;
+
+// Get form (for badge or  permission)
+if (is_badge_page) {
+    form = document.getElementById('badge-form');
+} else {
+    form = document.getElementById('permission-form');
+}
 
 if (is_rank_page) {
     items = document.getElementsByClassName('rank-item');
@@ -66,7 +78,7 @@ for (let index = 0; index < users.length; index++) {
     users[index].addEventListener('click', function () {
         form_user.value = users[index].getAttribute('data-user');
 
-        if (!is_rank_page)
+        if (is_badge_page || (!is_badge_page && !is_rank_page))
             form.submit();
 
         // Only need these because of give rank
@@ -102,4 +114,39 @@ for (let index = 0; index < items.length; index++) {
             }
         }
     });
+}
+
+// Create permissions string for permissions.php
+
+let checkboxs;
+if (document.getElementsByTagName("title")[0].innerText.includes("Permissions"))
+    checkboxs = document.getElementsByClassName("permission-checkbox");
+
+
+let permissions = ["false", "false", "false", "false", "false", "false"];
+if (document.getElementsByTagName("title")[0].innerText.includes("Permissions")) {
+    set_permissions_array();
+    document.getElementById("permissions_string").value = set_permission_string();
+}
+
+for (let i = 0; i < checkboxs.length; i++) {
+    checkboxs[i].addEventListener("click", function () {
+        set_permissions_array();
+        document.getElementById("permissions_string").value = '';
+        document.getElementById("permissions_string").value = set_permission_string();
+    });
+}
+
+function set_permissions_array() {
+    for (let i = 0; i < checkboxs.length; i++) {
+        if (checkboxs[i].checked == true) {
+            permissions[i] = "true";
+        } else {
+            permissions[i] = "false";
+        }
+    }
+}
+
+function set_permission_string() {
+    return permission_string = permissions.join(",");
 }

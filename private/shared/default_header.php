@@ -46,8 +46,8 @@ if (!isset($page_title)) {
                 <li><a class="manager" href="<?php echo url_for("/manager/add_user.php"); ?>">Add User</a></li>
                 <?php } ?>
                 <?php if (in_session() && (check_permission(MNG) || check_permission(ADM) || check_permission(OWN))) { ?>
-                <li><a class="manager-admin" href="<?php echo url_for("/manager/assign_permissions.php"); ?>">Assign
-                        Permissions</a>
+                <li><a class="manager-owner-admin"
+                        href="<?php echo url_for("/manager/permissions.php"); ?>">Permissions</a>
                 </li>
                 <?php } ?>
                 <?php if (in_session() && check_permission(ADM)) { ?>

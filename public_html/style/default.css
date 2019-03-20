@@ -40,7 +40,7 @@ li a {
   background-color: darkblue;
 }
 
-.manager-admin {
+.manager-owner-admin {
   background-image: linear-gradient(to left, darkblue, rgb(0, 126, 150), maroon);
 }
 
@@ -50,6 +50,10 @@ li a {
 
 li a:hover {
   background-color: darkgreen;
+}
+
+.manager-owner-admin:hover {
+  background: darkgreen;
 }
 
 

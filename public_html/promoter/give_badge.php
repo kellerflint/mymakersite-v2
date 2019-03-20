@@ -104,7 +104,7 @@ if (request_is_post()) {
                 while ($badge = mysqli_fetch_assoc($badge_set)) {
                     if ($badge['badge_earned'] === 'false') { 
                     ?>
-        <div data-rank="<?php echo $badge['badge_id']; ?>" class="badge-item 
+        <div data-rank="<?php echo $badge['badge_id']; ?>" class="badge-item  
         <?php echo even_odd($count); ?>">
             <p>
                 <?php 
