@@ -1,0 +1,24 @@
+.rank-image {
+    width: 256px;
+    height: 128px;
+}
+
+.badge-item {
+    display: inline-block;
+    margin-right: 2%;
+    vertical-align: text-top;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.badge-image {
+    margin-top: 30px;
+    width: 200px;
+    height: 200px;
+}
+
+h3 {
+    margin-top: 0px;
+    text-align: center;
+    color: black;
+}

@@ -7,7 +7,7 @@ $page_style = 'leaders';
 
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
 
-<div class="content">
+<div class="content" id="leaders">
 
     <h2>Leaders</h2>
 
@@ -18,8 +18,8 @@ $page_style = 'leaders';
         if (has_permission($_SESSION['session_id'], $leader['user_id'], USR)) {
     ?>
 
-    <div class="user-container">
-
+    <form class="user-container" method="POST" action="profile.php">
+        <input type="hidden" name="user_id" value="<?php echo $leader['user_id']; ?>">
         <div class="image-container">
             <img class="leader-rank-image" src="<?php echo $leader['image_path']; ?>"
                 alt="<?php echo $leader['rank_title']; ?>">
@@ -27,7 +27,7 @@ $page_style = 'leaders';
 
         <p class="leader-name"><?php echo $leader["user_first"]; ?></p>
 
-    </div>
+    </form>
 
     <?php } } ?>
 

@@ -23,7 +23,7 @@ function remove_visible_sections() {
     }
 }
 
-// GIVE SCRIPTS
+// SCRIPTS FOR SELECTING ITEMS IN LISTS
 
 // script for coloring and autofilling input data on give forms (give badge and give rank and permissions) 
 
@@ -157,4 +157,16 @@ function set_permissions_array() {
 
 function set_permission_string() {
     return permissions.join(",");
+}
+
+// SUBMITTING FORMS ON CLICK FOR LEADERBOARD -> PROFILES
+
+if (document.getElementById("leaders")) {
+
+    let user_forms = document.getElementsByClassName("user-container");
+    for (let i = 0; i < user_forms.length; i++) {
+        user_forms[i].addEventListener("click", function () {
+            user_forms[i].submit();
+        });
+    }
 }

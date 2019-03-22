@@ -241,6 +241,27 @@ function find_user_badges($user_id, $rank_id) {
     return $badge_set;
 }
 
+function find_profile_badges($session_id, $user_id) {
+    global $db;
+    
+    $query = "SELECT Badge.badge_id, Badge.badge_title, Image.image_path, Image.image_name FROM Badge
+	INNER JOIN Image ON Badge.image_id = Image.image_id
+    INNER JOIN User_Badge ON Badge.badge_id = User_Badge.badge_id
+    INNER JOIN User ON User_Badge.user_id = User.user_id
+    INNER JOIN User_Session ON User.user_id = User_Session.user_id
+    WHERE User.user_id = ? AND User_Session.session_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $user_id, $session_id);
+    $stmt->execute();
+
+    $badge_set = $stmt->get_result();
+
+    $stmt->close();
+
+    return $badge_set;
+}
+
 function find_badge_by_id($badge_id) {
     global $db;
     
@@ -514,11 +535,9 @@ function add_user_session($session_id, $user_id) {
 
     $stmt->close();
 
-    $default_permissions = ['true', 'true', 'false', 'false', 'false', 'false'];
-
-    update_permissions($default_permissions, $user_id, $session_id, 1);
-
     if ($result) {
+        $default_permissions = ['true', 'true', 'false', 'false', 'false', 'false'];
+        update_permissions($default_permissions, $user_id, $session_id, 1);
         return true;
     } else {
         return false;
@@ -537,12 +556,10 @@ function remove_user_session($session_id, $user_id) {
     $result = $stmt->get_result();
 
     $stmt->close();
-
-    $no_permissions = ['false', 'false', 'false', 'false', 'false', 'false'];
-
-    update_permissions($default_permissions, $user_id, $session_id, 1);
-
+    
     if ($result) {
+        $no_permissions = ['false', 'false', 'false', 'false', 'false', 'false'];
+        update_permissions($default_permissions, $user_id, $session_id, 1);
         return true;
     } else {
         return false;
@@ -551,7 +568,7 @@ function remove_user_session($session_id, $user_id) {
 
 /* Validation functions */
 
-// at least check if owner
+// at least check if owner is being deleted
 function validate_user_deletion() {
     
 }

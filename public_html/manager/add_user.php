@@ -85,12 +85,12 @@ function display_results() {
                 while ($user = mysqli_fetch_assoc($user_set)) {
                     ?>
 <div data-user="<?php echo $user['user_id']; ?>" class="user-item 
-            <?php echo even_odd($user_count); ?>">
+                        <?php echo even_odd($user_count); ?>">
     <p>
         <?php echo $user['user_name']; ?>
     </p>
 </div>
-<?php $user_count++;
+<?php               $user_count++;
                 }
 }
 ?>

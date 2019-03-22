@@ -128,8 +128,8 @@ CREATE TABLE User_Rank
 CREATE TABLE Style
 (
     style_id int,
-    style_title varchar(255) UNIQUE,
-    style_css varchar(5000),
+    style_title varchar(255) NOT NULL,
+    style_css_link varchar(255) NOT NULL,
     session_id int NOT NULL,
     rank_id int,
     badge_id int,
@@ -175,13 +175,12 @@ CREATE TABLE Custom_Page_Item
 
 CREATE TABLE Profile
 (
-    session_id int,
     user_id int,
+    session_id int,
     style_id int,
-    profile_css varchar(5000),
 
-    PRIMARY KEY (session_id, user_id),
-    FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
+    PRIMARY KEY (user_id, session_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
     FOREIGN KEY (style_id) REFERENCES Style (style_id) ON UPDATE CASCADE
 );
