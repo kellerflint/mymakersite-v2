@@ -56,14 +56,20 @@ if (request_is_post()) {
         <button name="submit-option" value="remove" id="remove">Remove</button>
     </form>
 
-    <div id="result-box">
+    <div id="global-user-box">
         <h2>Global User List</h2>
         <?php 
         if(request_is_post()) {
+            display_results();
             if ($_POST['submit-option'] == "search") {
-                find_users_like($_SESSION['session_id'], $_POST['search']);
+                display_results();
+            } else if ($_POST['submit-option'] == "add") {
+                add_user_session($_SESSION['session_id'], $_POST['user_id']);
+                redirect_to(url_for('/manager/add_user.php'));
+            } else if ($_POST['submit-option'] == "remove") {
+                remove_user_session($_SESSION['session_id'], $_POST['user_id']);
+                redirect_to(url_for('/manager/add_user.php'));
             }
-            
         }
         ?>
     </div>
@@ -71,3 +77,20 @@ if (request_is_post()) {
 
 
 <?php include_once SHARED_PATH . '/default_footer.php'; ?>
+
+<?php 
+function display_results() {
+    $user_set = find_users_like($_SESSION['session_id'], $_POST['search']);
+                $user_count = 0;
+                while ($user = mysqli_fetch_assoc($user_set)) {
+                    ?>
+<div data-user="<?php echo $user['user_id']; ?>" class="user-item 
+            <?php echo even_odd($user_count); ?>">
+    <p>
+        <?php echo $user['user_name']; ?>
+    </p>
+</div>
+<?php $user_count++;
+                }
+}
+?>

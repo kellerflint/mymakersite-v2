@@ -478,6 +478,7 @@ function update_permissions($permission_array, $user_id, $session_id, $giver_id)
 }
 
 // Returns set of users not in session by a search
+// TODO running this query in workbench returns as expected but in php producing duplicate search results
 function find_users_like($session_id, $user_search) {
     global $db;
     
@@ -497,14 +498,63 @@ function find_users_like($session_id, $user_search) {
 
     $stmt->close();
 
-    while ($user = mysqli_fetch_assoc($user_set)) {
-        echo $user['user_name'];
-    }
-
     return $user_set;
 }
 
+function add_user_session($session_id, $user_id) {
+    global $db;
+
+    $query = "INSERT INTO User_Session VALUES (?, ?, now())";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $user_id, $session_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $stmt->close();
+
+    $default_permissions = ['true', 'true', 'false', 'false', 'false', 'false'];
+
+    update_permissions($default_permissions, $user_id, $session_id, 1);
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function remove_user_session($session_id, $user_id) {
+    global $db;
+
+    $query = "DELETE FROM User_Session WHERE user_id = ? AND session_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $user_id, $session_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $stmt->close();
+
+    $no_permissions = ['false', 'false', 'false', 'false', 'false', 'false'];
+
+    update_permissions($default_permissions, $user_id, $session_id, 1);
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /* Validation functions */
+
+// at least check if owner
+function validate_user_deletion() {
+    
+}
 
 function validate_edit_badge($badge) {
     $errors = [];

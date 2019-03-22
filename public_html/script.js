@@ -34,19 +34,25 @@ let form_user = document.getElementById('user_id');
 
 let form_item = document.getElementById('item_id');
 
-let is_rank_page;
-let is_badge_page;
+let is_rank_page = false;
+let is_badge_page = false;
+let is_permission_page = false;
+let is_user_page = false;
 
 if (document.getElementsByClassName('rank-item').length == 0) {
     is_rank_page = false;
-} else {
-    is_rank_page = true;
 }
 
 if (document.getElementById('badge-form')) {
     is_badge_page = true;
-} else {
-    is_badge_page = false;
+}
+
+if (document.getElementById('permission-form')) {
+    is_permission_page = true;
+}
+
+if (document.getElementById('global-user-box')) {
+    is_user_page = true;
 }
 
 // sets items to ranks or badges and forms depending on which page is used
@@ -78,7 +84,7 @@ for (let index = 0; index < users.length; index++) {
     users[index].addEventListener('click', function () {
         form_user.value = users[index].getAttribute('data-user');
 
-        if (is_badge_page || (!is_badge_page && !is_rank_page))
+        if (is_badge_page || is_permission_page)
             form.submit();
 
         // Only need these because of give rank
@@ -129,12 +135,14 @@ if (document.getElementsByTagName("title")[0].innerText.includes("Permissions"))
     document.getElementById("permissions_string").value = set_permission_string();
 }
 
-for (let i = 0; i < checkboxs.length; i++) {
-    checkboxs[i].addEventListener("click", function () {
-        set_permissions_array();
-        document.getElementById("permissions_string").value = '';
-        document.getElementById("permissions_string").value = set_permission_string();
-    });
+if (checkboxs) {
+    for (let i = 0; i < checkboxs.length; i++) {
+        checkboxs[i].addEventListener("click", function () {
+            set_permissions_array();
+            document.getElementById("permissions_string").value = '';
+            document.getElementById("permissions_string").value = set_permission_string();
+        });
+    }
 }
 
 function set_permissions_array() {
