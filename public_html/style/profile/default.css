@@ -1,6 +1,6 @@
 .rank-image {
-    width: 256px;
-    height: 128px;
+    width: 512px;
+    height: 256px;
 }
 
 .badge-item {
@@ -17,8 +17,29 @@
     height: 200px;
 }
 
+/* Name */
+h1 {
+    font-size: 3.5em;
+    font-family: serif;
+}
+
+/* Badge Title */
 h3 {
     margin-top: 0px;
     text-align: center;
     color: black;
+}
+
+#profile {
+    display: inline-block;
+}
+
+#buttons {
+    position: absolute;
+    top: 70px;
+    right: 10px;
+}
+
+#badges {
+
 }

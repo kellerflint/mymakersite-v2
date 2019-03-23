@@ -129,16 +129,29 @@ CREATE TABLE Style
 (
     style_id int,
     style_title varchar(255) NOT NULL,
-    style_css_link varchar(255) NOT NULL,
+    style_css_url varchar(255) NOT NULL,
     session_id int NOT NULL,
-    rank_id int,
-    badge_id int,
+    badge_id int NOT NULL,
 
     PRIMARY KEY (style_id),
-    FOREIGN KEY (rank_id) REFERENCES Rank (rank_id) ON UPDATE CASCADE,
     FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
     FOREIGN KEY (badge_id) REFERENCES Badge (badge_id) ON UPDATE CASCADE
 );
+
+CREATE TABLE Profile
+(
+    user_id int,
+    session_id int,
+    style_id int,
+
+    PRIMARY KEY (user_id, session_id),
+    FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
+    FOREIGN KEY (style_id) REFERENCES Style (style_id) ON UPDATE CASCADE
+);
+
+/* Not sure if I'm gonna keep these. But I want some type of optional customizable static page for a session. 
+Just upload html maybe?*/
 
 CREATE TABLE Page_Item
 (
@@ -173,14 +186,3 @@ CREATE TABLE Custom_Page_Item
     FOREIGN KEY (page_item_id) REFERENCES Page_Item (page_item_id) ON UPDATE CASCADE
 );
 
-CREATE TABLE Profile
-(
-    user_id int,
-    session_id int,
-    style_id int,
-
-    PRIMARY KEY (user_id, session_id),
-    FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
-    FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,
-    FOREIGN KEY (style_id) REFERENCES Style (style_id) ON UPDATE CASCADE
-);

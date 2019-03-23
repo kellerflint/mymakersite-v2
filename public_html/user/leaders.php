@@ -18,7 +18,7 @@ $page_style = 'leaders';
         if (has_permission($_SESSION['session_id'], $leader['user_id'], USR)) {
     ?>
 
-    <form class="user-container" method="POST" action="profile.php">
+    <form class="user-container" method="GET" action="profile.php?user_id=<?php echo leader['user_id']; ?>">
         <input type="hidden" name="user_id" value="<?php echo $leader['user_id']; ?>">
         <div class="image-container">
             <img class="leader-rank-image" src="<?php echo $leader['image_path']; ?>"

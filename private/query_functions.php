@@ -566,6 +566,10 @@ function remove_user_session($session_id, $user_id) {
     }
 }
 
+function find_profile_styles ($session_id, $user_id) {
+    
+}
+
 /* Validation functions */
 
 // at least check if owner is being deleted
