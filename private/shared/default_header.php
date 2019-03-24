@@ -14,7 +14,12 @@ if (!isset($page_title)) {
         <?php if (isset($page_style) && $page_style != '') { ?>
         <link rel="stylesheet" href="<?php echo url_for('/style/' . $page_style . '.css'); ?>">
         <?php 
-    } ?>
+        } ?>
+
+        <?php if (isset($profile_style) && $page_style != '') { ?>
+        <link rel="stylesheet" href="<?php echo url_for('/style/profile/' . $profile_style); ?>">
+        <?php 
+        } ?>
 
     </head>
 

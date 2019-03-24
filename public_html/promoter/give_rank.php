@@ -69,7 +69,7 @@ if (request_is_post()) {
         $rank_count = 0;
         while ($rank = mysqli_fetch_assoc($rank_set)) { ?>
         <h3><?php echo $rank['rank_title']; ?></h3>
-        <div data-rank="<?php echo $rank['rank_id']; ?>" class="rank-item 
+        <div data-item="<?php echo $rank['rank_id']; ?>" class="rank-item 
             <?php echo even_odd($rank_count); ?>">
             <p>
                 <img class="rank-img-rank" src="<?php echo $rank['image_path']; ?>"

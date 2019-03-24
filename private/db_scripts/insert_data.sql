@@ -134,3 +134,7 @@ insert into Badge values (default, 'Whatever Floats Your Boat', @expert, 'true',
 set @novice_badge1 = (select badge_id from Badge where badge_title = "Animate from Scratch");
 
 insert into User_Badge values (@keller, @novice_badge1, 1, now(), @SYSTEM);
+
+/* Styles */
+
+insert into Style values (default, 'blackout', 'blackout.css', @session1, @novice_badge1);

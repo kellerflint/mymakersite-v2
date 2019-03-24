@@ -127,7 +127,7 @@ CREATE TABLE User_Rank
 
 CREATE TABLE Style
 (
-    style_id int,
+    style_id int NOT NULL AUTO_INCREMENT,
     style_title varchar(255) NOT NULL,
     style_css_url varchar(255) NOT NULL,
     session_id int NOT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE Profile
 (
     user_id int,
     session_id int,
-    style_id int,
+    style_id int,   
 
     PRIMARY KEY (user_id, session_id),
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON UPDATE CASCADE,
@@ -152,7 +152,7 @@ CREATE TABLE Profile
 
 /* Not sure if I'm gonna keep these. But I want some type of optional customizable static page for a session. 
 Just upload html maybe?*/
-
+/*
 CREATE TABLE Page_Item
 (
     page_item_id int,
@@ -186,3 +186,4 @@ CREATE TABLE Custom_Page_Item
     FOREIGN KEY (page_item_id) REFERENCES Page_Item (page_item_id) ON UPDATE CASCADE
 );
 
+*/

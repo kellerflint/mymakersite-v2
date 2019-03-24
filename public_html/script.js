@@ -34,10 +34,11 @@ let form_user = document.getElementById('user_id');
 
 let form_item = document.getElementById('item_id');
 
-let is_rank_page = false;
+let is_rank_page = true;
 let is_badge_page = false;
 let is_permission_page = false;
 let is_user_page = false;
+let is_edit_profile_page = false;
 
 if (document.getElementsByClassName('rank-item').length == 0) {
     is_rank_page = false;
@@ -55,6 +56,10 @@ if (document.getElementById('global-user-box')) {
     is_user_page = true;
 }
 
+if (document.getElementById('styles')) {
+    is_edit_profile_page = true;
+}
+
 // sets items to ranks or badges and forms depending on which page is used
 let items;
 let form;
@@ -62,14 +67,20 @@ let form;
 // Get form (for badge or  permission)
 if (is_badge_page) {
     form = document.getElementById('badge-form');
-} else {
+    items = document.getElementsByClassName('badge-item');
+}
+
+if (is_permission_page) {
     form = document.getElementById('permission-form');
 }
 
 if (is_rank_page) {
     items = document.getElementsByClassName('rank-item');
-} else {
-    items = document.getElementsByClassName('badge-item');
+}
+
+if (is_edit_profile_page) {
+    form = document.getElementById('styles-form');
+    items = document.getElementsByClassName('style-wrapper');
 }
 
 // Adds event listeners for users
@@ -100,26 +111,30 @@ for (let index = 0; index < users.length; index++) {
 }
 
 // Adds event listeners for items
-for (let index = 0; index < items.length; index++) {
+if (items) {
+    for (let index = 0; index < items.length; index++) {
 
-    // If username input is already set to valid data, select that item
-    if (items[index].getAttribute('data-rank') == form_item.value) {
-        items[index].classList.remove('selected');
-        items[index].classList.add('selected');
-    }
+        console.log("test");
 
-    items[index].addEventListener('click', function () {
-        form_item.value = items[index].getAttribute('data-rank');
-
-        items[index].classList.remove('selected');
-        items[index].classList.add('selected');
-
-        for (let i = 0; i < items.length; i++) {
-            if (index != i) {
-                items[i].classList.remove('selected');
-            }
+        // If username input is already set to valid data, select that item
+        if (items[index].getAttribute('data-item') == form_item.value) {
+            items[index].classList.remove('selected');
+            items[index].classList.add('selected');
         }
-    });
+
+        items[index].addEventListener('click', function () {
+            form_item.value = items[index].getAttribute('data-item');
+
+            items[index].classList.remove('selected');
+            items[index].classList.add('selected');
+
+            for (let i = 0; i < items.length; i++) {
+                if (index != i) {
+                    items[i].classList.remove('selected');
+                }
+            }
+        });
+    }
 }
 
 // Create permissions string for permissions.php
@@ -127,7 +142,6 @@ for (let index = 0; index < items.length; index++) {
 let checkboxs;
 if (document.getElementsByTagName("title")[0].innerText.includes("Permissions"))
     checkboxs = document.getElementsByClassName("permission-checkbox");
-
 
 let permissions = ["false", "false", "false", "false", "false", "false"];
 if (document.getElementsByTagName("title")[0].innerText.includes("Permissions")) {
@@ -169,4 +183,10 @@ if (document.getElementById("leaders")) {
             user_forms[i].submit();
         });
     }
+}
+
+// EDIT PROFILE PAGE SELECTION AND SUBMIT
+
+if (is_edit_profile_page) {
+
 }

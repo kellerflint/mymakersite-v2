@@ -566,8 +566,58 @@ function remove_user_session($session_id, $user_id) {
     }
 }
 
-function find_profile_styles ($session_id, $user_id) {
-    
+function find_profile_styles($session_id, $user_id) {
+    global $db;
+
+    $query = "SELECT Style.style_id, Style.style_title, Style.style_css_url FROM Style
+	INNER JOIN Profile ON Profile.style_id = Style.style_id
+    WHERE Profile.session_id = ? AND Profile.user_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $session_id, $user_id);
+    $stmt->execute();
+
+    $style_set = $stmt->get_result();
+
+    $stmt->close();
+
+    return $style_set;
+}
+
+function find_profile_style($session_id, $user_id) {
+    global $db;
+
+    $query = "SELECT Profile.style_id, Style.style_css_url FROM Profile
+	INNER JOIN Style ON Style.style_id = Profile.style_id
+    WHERE Profile.session_id = ? AND Profile.user_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $session_id, $user_id);
+    $stmt->execute();
+
+    $style_set = $stmt->get_result();
+
+    $stmt->close();
+
+    return mysqli_fetch_assoc($style_set);
+}
+
+function set_profile_style($session_id, $user_id, $style_id) {
+    $query = "UPDATE Profile SET style_id = ? WHERE session_id = ? AND user_id = ?";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("iii", $style_id, $session_id, $user_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $stmt->close();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /* Validation functions */

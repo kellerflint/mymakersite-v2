@@ -27,7 +27,6 @@ h1 {
 h3 {
     margin-top: 0px;
     text-align: center;
-    color: black;
 }
 
 #profile {
@@ -42,4 +41,8 @@ h3 {
 
 #badges {
 
+}
+
+.content-text {
+    color: black;
 }
