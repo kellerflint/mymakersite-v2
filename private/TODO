@@ -1,0 +1,18 @@
+Things I need to fix before production:
+1. Either get rid of emails and figure out another way to do login and passwords, or ensure the security
+2. Progress (i.e. badges) should display the required badges before the not required badges
+3. Figure out and implement a way to link styles to badges
+4. Add and delete sessions and edit session data
+
+Before Full Beta Release:
+1. Fix permissions not reloading after updating them
+2. Improve overall style of websites, at least for users, ideally for everyone
+3. Add more complex and interesting styles and css animations for user's profiles
+4. Ensure security of email addresses and passwords
+5. Fix GET security flaws where managers, admins and owners can edit and delete badges, 
+users, ranks, etc for sessions other than their own editing html in forms.
+6. Implement password resetting and account verification over email.
+7. Implement payment method (optional, depends on if it's going to be open or 
+closed beta testing but high use would be kind of expeinsive for me so I don't really want to go completely free)
+8. Upload custom images for badges
+9. Implement adding, removing and editing ranks
