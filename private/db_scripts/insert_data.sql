@@ -136,5 +136,10 @@ set @novice_badge1 = (select badge_id from Badge where badge_title = "Animate fr
 insert into User_Badge values (@keller, @novice_badge1, 1, now(), @SYSTEM);
 
 /* Styles */
+insert into Style values (default, 'classic', '_template.css', @session1, NULL);
+insert into Style values (default, 'blackout', 'blackout.css', @session1, NULL);
+insert into Style values (default, 'sunset', 'sunset.css', @session1, NULL);
+insert into Style values (default, 'rainbow', 'rainbow.css', @session1, NULL);
+insert into Style values (default, 'dark rainbow', 'dark_rainbow.css', @session1, NULL);
 
-insert into Style values (default, 'blackout', 'blackout.css', @session1, @novice_badge1);
+insert into Profile values (@keller, @session1, NULL);

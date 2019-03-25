@@ -17,7 +17,7 @@ $rank = find_rank_by_user($_SESSION['session_id'], $user['user_id']);
 <div class="content">
     <div id="profile">
         <img src="<?php echo $rank['image_path']; ?>" alt="<?php echo $rank['image_title']; ?>" class="rank-image">
-        <h1 class="content-text"><?php echo $user['user_first'] . ' ' . $user['user_last']; ?></h1>
+        <h1 class="content-text user-full-name"><?php echo $user['user_first'] . ' ' . $user['user_last']; ?></h1>
     </div>
     <?php if ($user['user_id'] == $_SESSION['user_id']) { ?>
     <div id="buttons">
@@ -35,7 +35,7 @@ $rank = find_rank_by_user($_SESSION['session_id'], $user['user_id']);
             <img class="badge-image" src="<?php echo $badge['image_path']; ?>"
                 alt="<?php echo $badge['badge_title']; ?>">
 
-            <h3 class="content-text"><?php echo $badge['badge_title']; ?></h3>
+            <h3 class="content-text badge-title"><?php echo $badge['badge_title']; ?></h3>
         </div>
 
         <?php } ?>

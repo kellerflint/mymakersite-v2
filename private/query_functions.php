@@ -59,7 +59,7 @@ function add_new_user($new_user)
         return $errors;
     }
 
-    $query = "INSERT INTO User Values (default, ?, ?, ?, ?, ?, now())";
+    $query = "INSERT INTO User VALUES (default, ?, ?, ?, ?, ?, now())";
 
     $stmt = $db->prepare($query);
     $stmt->bind_param("sssss", 
@@ -538,10 +538,31 @@ function add_user_session($session_id, $user_id) {
     if ($result) {
         $default_permissions = ['true', 'true', 'false', 'false', 'false', 'false'];
         update_permissions($default_permissions, $user_id, $session_id, 1);
+        create_user_profile($session_id, $user_id);
         return true;
     } else {
         return false;
     }
+}
+
+function create_user_profile($session_id, $user_name) {
+    global $db;
+
+    $query = "INSERT INTO Profile VALUES (?, ?, NULL)";
+
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ii", $user_id, $session_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $stmt->close();
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    } 
 }
 
 function remove_user_session($session_id, $user_id) {
@@ -569,12 +590,11 @@ function remove_user_session($session_id, $user_id) {
 function find_profile_styles($session_id, $user_id) {
     global $db;
 
-    $query = "SELECT Style.style_id, Style.style_title, Style.style_css_url FROM Style
-	INNER JOIN Profile ON Profile.style_id = Style.style_id
-    WHERE Profile.session_id = ? AND Profile.user_id = ?";
+    $query = "SELECT style_id, style_title, style_css_url FROM Style
+    WHERE session_id = ?";
 
     $stmt = $db->prepare($query);
-    $stmt->bind_param("ii", $session_id, $user_id);
+    $stmt->bind_param("i", $session_id);
     $stmt->execute();
 
     $style_set = $stmt->get_result();
@@ -602,7 +622,9 @@ function find_profile_style($session_id, $user_id) {
     return mysqli_fetch_assoc($style_set);
 }
 
-function set_profile_style($session_id, $user_id, $style_id) {
+function update_profile_style($session_id, $user_id, $style_id) {
+    global $db;
+
     $query = "UPDATE Profile SET style_id = ? WHERE session_id = ? AND user_id = ?";
 
     $stmt = $db->prepare($query);

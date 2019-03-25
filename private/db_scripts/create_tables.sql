@@ -131,7 +131,7 @@ CREATE TABLE Style
     style_title varchar(255) NOT NULL,
     style_css_url varchar(255) NOT NULL,
     session_id int NOT NULL,
-    badge_id int NOT NULL,
+    badge_id int,
 
     PRIMARY KEY (style_id),
     FOREIGN KEY (session_id) REFERENCES Session (session_id) ON UPDATE CASCADE,

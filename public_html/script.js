@@ -114,8 +114,6 @@ for (let index = 0; index < users.length; index++) {
 if (items) {
     for (let index = 0; index < items.length; index++) {
 
-        console.log("test");
-
         // If username input is already set to valid data, select that item
         if (items[index].getAttribute('data-item') == form_item.value) {
             items[index].classList.remove('selected');
@@ -124,6 +122,9 @@ if (items) {
 
         items[index].addEventListener('click', function () {
             form_item.value = items[index].getAttribute('data-item');
+
+            if (is_edit_profile_page)
+                form.submit();
 
             items[index].classList.remove('selected');
             items[index].classList.add('selected');
