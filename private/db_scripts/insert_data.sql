@@ -1,6 +1,21 @@
 /* source /var/www/html/mymakersite.com/private/db_scripts/insert_data.sql */
 
 /* Hashed password is adminpass */
+
+/* WITHOUT EMAIL TEST USERS*/
+insert into User values (default, 'SYSTEM', 'SYSTEM', 'SYSTEM', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', now());
+
+insert into User values (default, 'kellerflint', 'Keller', 'Flint', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', now());
+
+insert into User values (default, 'testuser1', 'TestA', 'UserA', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', now());
+
+insert into User values (default, 'testuser2', 'TestB', 'UserB', 
+'$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', now());
+
+/* WITH EMAIL TEST USERS
 insert into User values (default, 'SYSTEM', 'SYSTEM', 'SYSTEM', 
 '$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'kflint0068@gmail.com', now());
 
@@ -12,6 +27,7 @@ insert into User values (default, 'testuser1', 'TestA', 'UserA',
 
 insert into User values (default, 'testuser2', 'TestB', 'UserB', 
 '$2y$10$jM8vtCbP3ml.x5OlvkhkpObt7M0agzz4AVwB7s0vMkN1E9N8Qp89G', 'nothing@gmail.com', now());
+*/
 
 set @system = (select user_id from User where user_name = 'SYSTEM');
 set @keller = (select user_id from User where user_name = 'kellerflint');

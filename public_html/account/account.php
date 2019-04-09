@@ -1,5 +1,5 @@
 <?php require_once '../../private/initialize.php' ?>
-<?php 
+<?php
 $page_title = 'Account';
 $page_style = 'account';
 unset_session();
@@ -9,23 +9,23 @@ require_login();
 
 <?php include_once '../../private/shared/default_header.php'; ?>
 
-<?php 
+<?php
 
 $user = find_user_by_id($_SESSION['user_id']);
 
-if(request_is_post()) {
-    
+if (request_is_post()) {
+
     $user['user_name'] = hsc($_POST['username']);
     $user['user_first'] = hsc($_POST['firstname']);
     $user['user_last'] = hsc($_POST['lastname']);
-    $user['user_email'] = hsc($_POST['email']);
-    
+    //$user['user_email'] = hsc($_POST['email']);
+
     $result = edit_user($user, $_SESSION['user_id']);
 
     if ($result !== true) {
         $errors = $result;
     }
-} 
+}
 ?>
 
 <div class="content">
@@ -47,10 +47,12 @@ if(request_is_post()) {
         <br>
         <input type="text" name="username" id="username" value="<?php echo $user['user_name']; ?>">
         <br>
+        <!--
         <label for="email">Email</label>
         <br>
         <input type="text" name="email" id="email" value="<?php echo $user['user_email']; ?>">
         <br>
+        -->
         <button name="submit" id="submitBtn">Submit</button>
     </form>
 
