@@ -74,74 +74,74 @@ insert into User_Permission values (@testuser2, @session1, 1, now(), @SYSTEM);
 insert into User_Permission values (@testuser2, @session1, 2, now(), @SYSTEM);
 
 insert into Image values (default, 'unranked', '/mymakersite.com/public_html/style/img/rank/unranked.png');
-insert into Image values (default, 'novice', '/mymakersite.com/public_html/style/img/rank/novice.png');
-insert into Image values (default, 'apprentice', '/mymakersite.com/public_html/style/img/rank/apprentice.png');
-insert into Image values (default, 'adept', '/mymakersite.com/public_html/style/img/rank/adept.png');
+insert into Image values (default, 'bronze', '/mymakersite.com/public_html/style/img/rank/bronze.png');
+insert into Image values (default, 'silver', '/mymakersite.com/public_html/style/img/rank/silver.png');
+insert into Image values (default, 'gold', '/mymakersite.com/public_html/style/img/rank/gold.png');
 insert into Image values (default, 'expert', '/mymakersite.com/public_html/style/img/rank/expert.png');
 insert into Image values (default, 'master', '/mymakersite.com/public_html/style/img/rank/master.png');
 insert into Image values (default, 'badge_default', '/mymakersite.com/public_html/style/img/badge/default.png');
 
 set @unranked_img = (select image_id from Image where image_name = 'unranked');
-set @novice_img = (select image_id from Image where image_name = 'novice');
-set @apprentice_img = (select image_id from Image where image_name = 'apprentice');
-set @adept_img = (select image_id from Image where image_name = 'adept');
+set @novice_img = (select image_id from Image where image_name = 'bronze');
+set @apprentice_img = (select image_id from Image where image_name = 'silver');
+set @adept_img = (select image_id from Image where image_name = 'gold');
 set @expert_img = (select image_id from Image where image_name = 'expert');
 set @master_img = (select image_id from Image where image_name = 'master');
 
 insert into Rank values (default, @session1, 'Unranked', 0, "TODO", @unranked_img);
-insert into Rank values (default, @session1, 'Novice', 1, "TODO", @novice_img);
-insert into Rank values (default, @session1, 'Apprentice', 2, "TODO", @apprentice_img);
-insert into Rank values (default, @session2, 'Adept', 3, "TODO", @adept_img);
+insert into Rank values (default, @session1, 'Bronze', 1, "TODO", @novice_img);
+insert into Rank values (default, @session1, 'Silver', 2, "TODO", @apprentice_img);
+insert into Rank values (default, @session2, 'Gold', 3, "TODO", @adept_img);
 insert into Rank values (default, @session2, 'Expert', 4, "TODO", @expert_img);
 insert into Rank values (default, @session2, 'Master', 5, "TODO", @master_img);
 
 set @unranked = (select rank_id from Rank where rank_title = 'Unranked');
-set @novice = (select rank_id from Rank where rank_title = 'Novice');
-set @apprentice = (select rank_id from Rank where rank_title = 'Apprentice');
-set @adept = (select rank_id from Rank where rank_title = 'Adept');
+set @bronze = (select rank_id from Rank where rank_title = 'Bronze');
+set @silver = (select rank_id from Rank where rank_title = 'Silver');
+set @gold = (select rank_id from Rank where rank_title = 'Gold');
 set @expert = (select rank_id from Rank where rank_title = 'Expert');
 set @master = (select rank_id from Rank where rank_title = 'Master');
 
 insert into User_Rank values (@keller, @unranked, now(), @system);
-insert into User_Rank values (@keller, @novice, now(), @system);
-insert into User_Rank values (@keller, @apprentice, now(), @system);
-insert into User_Rank values (@keller, @adept, now(), @system);
+insert into User_Rank values (@keller, @bronze, now(), @system);
+insert into User_Rank values (@keller, @silver, now(), @system);
+insert into User_Rank values (@keller, @gold, now(), @system);
 insert into User_Rank values (@keller, @expert, now(), @system);
 insert into User_Rank values (@keller, @master, now(), @system);
 
 insert into User_Rank values (@testuser1, @unranked, now(), @system);
-insert into User_Rank values (@testuser1, @novice, now(), @system);
+insert into User_Rank values (@testuser1, @bronze, now(), @system);
 
 insert into User_Rank values (@testuser2, @unranked, now(), @system);
 
-/* Novice Badges */
-insert into Badge values (default, 'Animate from Scratch', @novice, 'true', 'novice badge 1', 
+/* bronze Badges */
+insert into Badge values (default, 'Animate from Scratch', @bronze, 'true', 'bronze badge 1', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-insert into Badge values (default, 'Musical Storyteller', @novice, 'false', 'novice badge 2', 
+insert into Badge values (default, 'Musical Storyteller', @bronze, 'false', 'bronze badge 2', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-insert into Badge values (default, 'My First Game', @novice, 'true', 'novice badge 3', 
+insert into Badge values (default, 'My First Game', @bronze, 'true', 'bronze badge 3', 
 'https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf', '7');
 
-/* Apprentice Badges */
+/* silver Badges */
 
-insert into Badge values (default, 'Move to the Code', @apprentice, 'true', 'apprentice badge 1', 
+insert into Badge values (default, 'Move to the Code', @silver, 'true', 'silver badge 1', 
 'https://codeclubprojects.org/en-GB/scratch/lost-in-space/', '7');
 
-insert into Badge values (default, 'Who You Gonna Call', @apprentice, 'true', 'apprentice badge 2', 
+insert into Badge values (default, 'Who You Gonna Call', @silver, 'true', 'silver badge 2', 
 'https://codeclubprojects.org/en-GB/scratch/ghostbusters/', '7');
 
-insert into Badge values (default, 'Talk to the Bot', @apprentice, 'true', 'apprentice badge 3', 
+insert into Badge values (default, 'Talk to the Bot', @silver, 'true', 'silver badge 3', 
 'https://codeclubprojects.org/en-GB/scratch/chatbot/', '7');
 
-insert into Badge values (default, 'Artistic License', @apprentice, 'true', 'apprentice badge 4', 
+insert into Badge values (default, 'Artistic License', @silver, 'true', 'silver badge 4', 
 'https://codeclubprojects.org/en-GB/scratch/paint-box/', '7');
 
-insert into Badge values (default, 'Whatever Floats Your Boat', @expert, 'true', 'apprentice badge 5', 
+insert into Badge values (default, 'Whatever Floats Your Boat', @expert, 'true', 'silver badge 5', 
 'https://codeclubprojects.org/en-GB/scratch/boat-race/', '7');
 
-/* Adept Badges */
+/* gold Badges */
 
 /* Expert Badges */
 
