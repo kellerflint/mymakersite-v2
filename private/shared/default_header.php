@@ -13,22 +13,24 @@ if (!isset($page_title)) {
         <link rel="stylesheet" href="<?php echo url_for('/style/default.css'); ?>">
         <?php if (isset($page_style) && $page_style != '') { ?>
         <link rel="stylesheet" href="<?php echo url_for('/style/' . $page_style . '.css'); ?>">
-        <?php 
-        } ?>
+        <?php
+} ?>
 
         <?php if (isset($profile_style) && $page_style != '') { ?>
         <link rel="stylesheet" href="<?php echo url_for('/style/profile/' . $profile_style); ?>">
-        <?php 
-        } ?>
+        <?php
+} ?>
 
     </head>
 
     <body>
         <nav>
             <ul>
-                <?php if (is_logged_in()){ ?>
+                <?php if (is_logged_in()) { ?>
                 <div class="dropdown">
-                    <button class="dropdown-button"><?php echo $_SESSION['user_name'] ?? ''; ?></button>
+                    <a href="<?php echo url_for('/user/profile.php') . '?user_id=' . $_SESSION['user_id']; ?>"><button
+                            class="dropdown-button">
+                            <?php echo $_SESSION['user_name'] ?? ''; ?></button></a>
                     <div class="dropdown-content">
                         <a href="<?php echo url_for("account/sessions.php"); ?>">Sessions</a>
                         <a href="<?php echo url_for('/account/account.php'); ?>">Account</a>
