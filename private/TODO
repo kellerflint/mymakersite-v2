@@ -16,3 +16,4 @@ users, ranks, etc for sessions other than their own editing html in forms.
 closed beta testing but high use would be kind of expeinsive for me so I don't really want to go completely free)
 8. Upload custom images for badges
 9. Implement adding, removing and editing ranks
+10. Finish validation functions for everything. Only have it for create and update user right now.

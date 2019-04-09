@@ -16,7 +16,8 @@
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 20px;
-    border: 5px solid grey;
+    border: 5px solid lightgrey;
+    background-color: lightgrey;
 }
 
 .badge-image {
@@ -26,7 +27,8 @@
 }
 
 .required {
-    border: 5px solid red;
+    border: 5px solid rgb(255, 70, 70);
+    background-color: rgb(255, 70, 70);
 }
 
 .badge-item:hover {
