@@ -42,13 +42,13 @@ insert into User_Permission values (@keller, @session2, 4, now(), @SYSTEM);
 insert into User_Permission values (@keller, @session2, 5, now(), @SYSTEM);
 insert into User_Permission values (@keller, @session2, 6, now(), @SYSTEM);
 
-insert into Image values (default, 'unranked', '/mymakersite.com/public_html/style/img/rank/unranked.png');
-insert into Image values (default, 'bronze', '/mymakersite.com/public_html/style/img/rank/bronze.png');
-insert into Image values (default, 'silver', '/mymakersite.com/public_html/style/img/rank/silver.png');
-insert into Image values (default, 'gold', '/mymakersite.com/public_html/style/img/rank/gold.png');
-insert into Image values (default, 'expert', '/mymakersite.com/public_html/style/img/rank/expert.png');
-insert into Image values (default, 'master', '/mymakersite.com/public_html/style/img/rank/master.png');
-insert into Image values (default, 'badge_default', '/mymakersite.com/public_html/style/img/badge/default.png');
+insert into Image values (default, 'unranked', '/style/img/rank/unranked.png');
+insert into Image values (default, 'bronze', '/style/img/rank/bronze.png');
+insert into Image values (default, 'silver', '/style/img/rank/silver.png');
+insert into Image values (default, 'gold', '/style/img/rank/gold.png');
+insert into Image values (default, 'expert', '/style/img/rank/expert.png');
+insert into Image values (default, 'master', '/style/img/rank/master.png');
+insert into Image values (default, 'badge_default', '/style/img/badge/default.png');
 
 set @unranked_img = (select image_id from Image where image_name = 'unranked');
 set @novice_img = (select image_id from Image where image_name = 'bronze');
