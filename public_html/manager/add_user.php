@@ -1,14 +1,14 @@
 <?php require_once '../../private/initialize.php'; ?>
-<?php 
-    require_permission(MNG);
-    $page_title = 'Add User';
-    $page_style = 'add_user';
+<?php
+require_permission(MNG);
+$page_title = 'Add User';
+$page_style = 'add_user';
 ?>
 
 
 <?php include_once SHARED_PATH . '/default_header.php'; ?>
 
-<?php 
+<?php
 // Default form submit values
 $user_id = '';
 
@@ -29,22 +29,22 @@ if (request_is_post()) {
 <div class="content">
     <div id="user-box">
         <h2>Users</h2>
-        <?php 
+        <?php
         $user_set = find_users_by_session($_SESSION['session_id']);
         $user_count = 0;
         while ($user = mysqli_fetch_assoc($user_set)) {
             ?>
 
         <div data-user="<?php echo $user['user_id']; ?>" class="user-item 
-            <?php echo even_odd($user_count); ?>">
+                                    <?php echo even_odd($user_count); ?>">
             <p>
                 <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
             </p>
         </div>
 
         <?php
-        $user_count++;
-    } ?>
+            $user_count++;
+        } ?>
     </div>
 
     <form action="add_user.php" id="form-box" method="POST">
@@ -58,8 +58,8 @@ if (request_is_post()) {
 
     <div id="global-user-box">
         <h2>Global User List</h2>
-        <?php 
-        if(request_is_post()) {
+        <?php
+        if (request_is_post()) {
             display_results();
             if ($_POST['submit-option'] == "search") {
                 display_results();
@@ -78,19 +78,20 @@ if (request_is_post()) {
 
 <?php include_once SHARED_PATH . '/default_footer.php'; ?>
 
-<?php 
-function display_results() {
+<?php
+function display_results()
+{
     $user_set = find_users_like($_SESSION['session_id'], $_POST['search']);
-                $user_count = 0;
-                while ($user = mysqli_fetch_assoc($user_set)) {
-                    ?>
+    $user_count = 0;
+    while ($user = mysqli_fetch_assoc($user_set)) {
+        ?>
 <div data-user="<?php echo $user['user_id']; ?>" class="user-item 
-                        <?php echo even_odd($user_count); ?>">
+                                                                        <?php echo even_odd($user_count); ?>">
     <p>
         <?php echo $user['user_name']; ?>
     </p>
 </div>
-<?php               $user_count++;
-                }
+<?php $user_count++;
+    }
 }
 ?>
