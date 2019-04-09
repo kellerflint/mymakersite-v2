@@ -71,14 +71,6 @@ insert into Rank values (default, @session2, 'Gold', 3, "You understand all of t
 insert into Rank values (default, @session2, 'Expert', 4, "You have great practical understanding of how coding and block interactions work and you can create any type of game you can image on your own.", @expert_img);
 insert into Rank values (default, @session2, 'Master', 5, "Good luck!", @master_img);
 
-
-set @unranked = (select rank_id from Rank where rank_title = 'Unranked');
-set @bronze = (select rank_id from Rank where rank_title = 'Bronze');
-set @silver = (select rank_id from Rank where rank_title = 'Silver');
-set @gold = (select rank_id from Rank where rank_title = 'Gold');
-set @expert = (select rank_id from Rank where rank_title = 'Expert');
-set @master = (select rank_id from Rank where rank_title = 'Master');
-
 /* Styles */
 insert into Style values (default, 'classic', '_template.css', @session1, NULL);
 insert into Style values (default, 'blackout', 'blackout.css', @session1, NULL);
