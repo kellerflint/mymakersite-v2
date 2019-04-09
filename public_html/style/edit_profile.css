@@ -1,0 +1,16 @@
+.style-wrapper {
+    width: 200px;
+    height: 100px;
+    background: grey;
+}
+
+p {
+    font-weight: bold;
+    font-size: 1.4em;
+    position: relative;
+    top: 35px;
+}
+
+.selected {
+    background-color: green;
+}

@@ -1,3 +1,6 @@
+html {
+  height: 100%;
+}
 
 body {
     margin: 0px;
@@ -5,13 +8,10 @@ body {
 
 /* Nav styles */
 nav {
-    margin-bottom: 20px;
-}
-
-ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  margin-bottom: 20px;
+  padding: 0px;
   overflow: hidden;
   background-color: #333;
 }
@@ -19,6 +19,7 @@ ul {
 li {
   float: right;
   border-left:1px solid #bbb;
+  list-style-type: none;
 }
 
 li a {
@@ -27,22 +28,115 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  font-size: 1.2em;
+}
+
+.admin {
+  background-color: maroon;
+}
+
+.promoter {
+  background-color: purple;
+}
+
+.manager {
+  background-color: darkblue;
+}
+
+.manager-owner-admin {
+  background-image: linear-gradient(to left, darkblue, rgb(0, 126, 150), maroon);
+}
+
+.owner {
+  background-color: rgb(0, 126, 150)
 }
 
 li a:hover {
   background-color: darkgreen;
 }
 
+.manager-owner-admin:hover {
+  background: darkgreen;
+}
+
+
 .content {
-    margin-left: 2%;
-    margin-right: 2%;
-    text-align: center;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: center;
 }
 
-.instructor {
-  background-color: darkred;
+ul {
+  margin: 0px;
 }
 
-.admin {
-  background-color: darkblue;
+/* signin dropdown menu */
+
+.dropdown {
+  float: right;
+}
+
+.dropdown-button {
+  background-color: #333;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  border: none;
+  border-left:1px solid #bbb;
+  font-size: 1.2em;
+}
+
+.dropdown-content {
+  width: 100%;
+  display: none;
+  position: absolute;
+  background-color: #333;
+  z-index: 1;
+  font-size: 1.2em;
+
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  text-decoration: none;
+  
+}
+
+.dropdown a:hover {
+  background-color: darkgreen;
+}
+
+.dropdown-content a {
+  border-top: 1px solid #bbb;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-left:1px solid #bbb;
+}
+
+.dropdown-button:hover {
+  background-color: rgb(200,200,200);
+}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Errors */
+
+.errors {
+  color: red;
+}
+
+.errors ul {
+  margin-top: 0px;
+}
+
+.errors ul li {
+  float: none;
+  border: none;
 }

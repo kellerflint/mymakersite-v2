@@ -1,6 +1,6 @@
 <?php
 if (!isset($page_title)) {
-    $page_title = 'Student';
+    $page_title = 'Untitled';
 }
 ?>
 
@@ -13,35 +13,52 @@ if (!isset($page_title)) {
         <link rel="stylesheet" href="<?php echo url_for('/style/default.css'); ?>">
         <?php if (isset($page_style) && $page_style != '') { ?>
         <link rel="stylesheet" href="<?php echo url_for('/style/' . $page_style . '.css'); ?>">
-        <?php 
-    } ?>
+        <?php
+} ?>
+
+        <?php if (isset($profile_style) && $page_style != '') { ?>
+        <link rel="stylesheet" href="<?php echo url_for('/style/profile/' . $profile_style); ?>">
+        <?php
+} ?>
 
     </head>
 
     <body>
         <nav>
             <ul>
-                <!--If role is student show these links-->
-                <?php if (check_role_access(STU)) { ?>
-                <li><a href="<?php echo url_for('/student/resources.php'); ?>">Resources</a></li>
-                <li><a href="<?php echo url_for('/student/index.php'); ?>">Leaderboard</a></li>
-                <!--<li><a href="<?php echo url_for('/student/profile.php'); ?>">Profile</a></li>-->
-                <li><a href="<?php echo url_for('/student/ranks.php'); ?>">Ranks</a></li>
-                <li><a href="<?php echo url_for('/student/progress.php'); ?>">Progress</a></li>
+                <?php if (is_logged_in()) { ?>
+                <div class="dropdown">
+                    <a href="<?php echo url_for('/user/profile.php') . '?user_id=' . $_SESSION['user_id']; ?>"><button
+                            class="dropdown-button">
+                            <?php echo $_SESSION['user_name'] ?? ''; ?></button></a>
+                    <div class="dropdown-content">
+                        <a href="<?php echo url_for("account/sessions.php"); ?>">Sessions</a>
+                        <a href="<?php echo url_for('/account/account.php'); ?>">Account</a>
+                        <a href="<?php echo url_for('/logout.php'); ?>">Logout</a>
+                    </div>
+                </div>
+                <?php } else { ?>
+                <li><a href="<?php echo url_for("index.php"); ?>">Login</a></li>
                 <?php } ?>
-                <?php if (check_role_access(INS)) { ?>
-                <!--If role is instructor/admin show these links-->
-                <li class="instructor"><a href="<?php echo url_for('/instructor/add_user.php'); ?>">Add User</a></li>
-                <li class="instructor"><a href="<?php echo url_for('/instructor/give_badge.php'); ?>">Give Badge</a>
+                <?php if (in_session() && check_permission(VWR)) { ?>
+                <li><a href="<?php echo url_for("/user/leaders.php"); ?>">Leaders</a></li>
+                <li><a href="<?php echo url_for("/user/progress.php"); ?>">Badges</a></li>
+                <li><a href="<?php echo url_for("/user/ranks.php"); ?>">Ranks</a></li>
+                <?php } ?>
+                <?php if (in_session() && check_permission(PMT)) { ?>
+                <li><a class="promoter" href="<?php echo url_for("/promoter/give_badge.php"); ?>">Give Badge</a></li>
+                <li><a class="promoter" href="<?php echo url_for("/promoter/give_rank.php"); ?>">Give Rank</a></li>
+                <?php } ?>
+                <?php if (in_session() && check_permission(MNG)) { ?>
+                <li><a class="manager" href="<?php echo url_for("/manager/add_user.php"); ?>">Add User</a></li>
+                <?php } ?>
+                <?php if (in_session() && (check_permission(MNG) || check_permission(ADM) || check_permission(OWN))) { ?>
+                <li><a class="manager-owner-admin"
+                        href="<?php echo url_for("/manager/permissions.php"); ?>">Permissions</a>
                 </li>
-                <li class="instructor"><a href="<?php echo url_for('/instructor/give_rank.php'); ?>">Give Rank</a></li>
                 <?php } ?>
-                <?php if (check_role_access(ADM)) { ?>
-                <!--If role is admin show these-->
-                <li class="admin"><a href="<?php echo url_for('/admin/add_badge.php'); ?>">Add Badge</a></li>
+                <?php if (in_session() && check_permission(ADM)) { ?>
+                <li><a class="admin" href="<?php echo url_for("/admin/create_badge.php"); ?>">Create Badge</a></li>
                 <?php } ?>
-                <!--Always show these-->
-                <li><a href="<?php echo url_for('/logout.php'); ?>">Logout</a></li>
-                <li><a href="">User: <?php echo $_SESSION['username'] ?? ''; ?></a></li>
             </ul>
         </nav>

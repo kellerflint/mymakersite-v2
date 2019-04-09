@@ -1,0 +1,74 @@
+.content {
+    padding: 10px;
+    float: left;
+    text-align: left;
+    border: 3px solid black;
+    width: 40%;
+    margin-left: 5%;
+}
+
+h1 {
+    margin-bottom: 0px;
+}
+
+p {
+    font-size: 1.4em;
+    text-align: left;
+}
+
+form#update-badge {
+    padding: 10px;
+    float: left;
+    text-align: left;
+    width: 40%;
+    border: 3px solid black;
+    margin-left: 5%;
+}
+
+.badge-link {
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+input {
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+label {
+    width: 20%;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+input#required-edit {
+    width: 4%;
+}
+
+textarea {
+    width: 95%;
+}
+
+form button {
+    padding: 5px;
+    width: 95%;
+    font-size: 1.2em;
+    border-width: 0px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: rgb(200,200,200);
+}
+
+button#delete {
+    color: red;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+}

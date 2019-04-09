@@ -1,0 +1,38 @@
+.content {
+    margin-left: 30%;
+    width: 40%;
+    margin-right: 30%;
+}
+
+.session-wrapper {
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.owner {
+    background-color: rgb(0, 126, 150);
+}
+
+.options {
+    display: inline-block;
+}
+
+.session-wrapper p {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+.descript {
+    width: 100%;
+    border-top: 1px solid black;
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: inline-block;
+}

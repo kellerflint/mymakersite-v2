@@ -41,4 +41,35 @@ function request_is_get()
     return $_SERVER['REQUEST_METHOD'] == 'GET';
 }
 
+function display_errors($errors=array()) {
+    $output = '';
+    if(!empty($errors)) {
+        $output .= "<div class='errors'>";
+        $output .= "Please fix the following errors:";
+        $output .= "<ul>";
+        foreach($errors as $error) {
+            $output .= "<li>" . hsc($error) . "</li>";
+        }
+        $output .= "</ul>";
+        $output .= "</div>";
+    }
+    return $output;
+}
+
+function in_data_set($set, $param, $value) {
+    while ($data = mysqli_fetch_assoc($set)) {
+        if ($data[$param] == $value) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function even_odd($number) {
+    if ($number % 2 == 0)
+        return "odd";
+    else
+        return "even";
+}
+
 ?>

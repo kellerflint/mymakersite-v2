@@ -23,11 +23,11 @@
 }
 
 p {
-    padding-top: 0px;
+    padding-top: 5px;
 }
 
 .user-item {
-    height: 60px;
+    height: 100px;
     font-size: 1.4em;
     font-weight: bold;
     border-radius: 10px;
@@ -37,7 +37,7 @@ p {
 }
 
 .rank-item {
-    height: 100px;
+    height: 120px;
     border-radius: 10px;
 }
 
@@ -55,7 +55,7 @@ p {
 
 
 .rank-img-user {
-    height: 40px;
+    height: 60px;
     display: inline;
 }
 
@@ -112,19 +112,34 @@ input {
     font-size: 1.4em;
 }
 
-button {
+form button {
+    font-weight: bold;
     padding: 5px;
-    font-size: 1.4em;
-    border-radius: 10px;
-    border: 3px solid rgb(200,200,200);
+    width: 95%;
+    font-size: 1.2em;
+    border-width: 0px;
+    margin-top: 10px;
+}
+
+button#give {
+    color: green;
+    font-weight: bold;
+}
+
+button#remove {
+    color: red;
+    font-weight: bold;
 }
 
 button:hover {
-    padding: 5px;
-    border: 3px solid rgb(100,100,100);
+    background-color: rgb(200,200,200);
 }
 
-.user-p {
-    padding-top: 15px;
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
 }
 

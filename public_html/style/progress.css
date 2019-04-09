@@ -13,24 +13,37 @@
     margin-right: 2%;
     width: 300px;
     vertical-align: text-top;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 5px solid lightgrey;
+    background-color: lightgrey;
 }
 
 .badge-image {
     margin-top: 50px;
     width: 200px;
     height: 200px;
-    border-radius: 100%;
-    border: 5px solid grey;
 }
 
 .required {
-    border: 5px solid red;
+    border: 5px solid rgb(255, 70, 70);
+    background-color: rgb(255, 70, 70);
 }
 
-.badge-image:hover {
+.badge-item:hover {
     border: 5px solid green;
+    opacity: 1;
+}
+
+.earned {
+    opacity: 0.2;
 }
 
 p {
     font-size: 1.4em;
+}
+
+.badge-a {
+    color: black;
 }

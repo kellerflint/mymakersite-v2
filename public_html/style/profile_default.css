@@ -1,0 +1,48 @@
+.rank-image {
+    width: 512px;
+    height: 256px;
+}
+
+.badge-item {
+    display: inline-block;
+    margin-right: 2%;
+    vertical-align: text-top;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.badge-image {
+    margin-top: 30px;
+    width: 200px;
+    height: 200px;
+}
+
+/* Name */
+h1 {
+    font-size: 3.5em;
+    font-family: serif;
+}
+
+/* Badge Title */
+h3 {
+    margin-top: 0px;
+    text-align: center;
+}
+
+#profile {
+    display: inline-block;
+}
+
+#buttons {
+    position: absolute;
+    top: 70px;
+    right: 10px;
+}
+
+#badges {
+
+}
+
+.content-text {
+    color: black;
+}

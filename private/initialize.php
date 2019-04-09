@@ -16,6 +16,7 @@ require_once 'query_functions.php';
 require_once 'auth_functions.php';
 
 $db = db_connect();
+$errors = [];
 
 /*
 SERVER:

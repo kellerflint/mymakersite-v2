@@ -1,0 +1,50 @@
+/* Entire page */
+body {
+    background-image: linear-gradient(to left, rgb(92, 0, 92), rgb(0, 0, 85), darkgreen, rgb(134, 100, 12), maroon);
+}
+
+/* Under nav, around all items */
+.content {
+
+}
+
+/* Anywhere text appears on page */
+.content-text {
+    color: silver;
+}
+
+/* Profile div */
+#profile {
+
+}
+
+.rank-image {
+
+}
+
+.user-full-name {
+
+}
+
+/* Control buttons div */
+#buttons {
+
+}
+
+/* Badges div */
+#badges {
+
+}
+
+/* Wrapper for badge elements */
+.badge-item {
+
+}
+
+.badge-image {
+
+}
+
+.badge-title {
+
+}
