@@ -18,19 +18,26 @@ $new_user['user_email'] = '';
 
 if (request_is_post()) {
 
-    $hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $user = find_user_by_username("SYSTEM");
 
-    $new_user['user_name'] = hsc($_POST['username']);
-    $new_user['user_first'] = hsc($_POST['firstname']);
-    $new_user['user_last'] = hsc($_POST['lastname']);
-    $new_user['user_hashed_password'] = $hashed_password;
-    $new_user['user_password'] = $_POST['password'];
-    //$new_user['user_email'] = hsc($_POST['email']);
+    if (!password_verify($_POST['SYS_password'], $user['user_password'])) {
+        redirect_to(url_for('/index.php'));
+    } else {
 
-    $result = add_new_user($new_user);
+        $hashed_password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    if ($result !== true) {
-        $errors = $result;
+        $new_user['user_name'] = hsc($_POST['username']);
+        $new_user['user_first'] = hsc($_POST['firstname']);
+        $new_user['user_last'] = hsc($_POST['lastname']);
+        $new_user['user_hashed_password'] = $hashed_password;
+        $new_user['user_password'] = $_POST['password'];
+        //$new_user['user_email'] = hsc($_POST['email']);
+
+        $result = add_new_user($new_user);
+
+        if ($result !== true) {
+            $errors = $result;
+        }
     }
 }
 ?>
@@ -64,6 +71,14 @@ if (request_is_post()) {
         <br>
         <!--Change type back to password for beta version-->
         <input type="text" name="password" id="password">
+        <br>
+
+
+        <!--Just a temporary solution so kids can't get on and create an annoying numbers of fake accounts-->
+        <label for="SYS_password">SYSTEM PASSWORD</label>
+        <br>
+        <!--Change type back to password for beta version-->
+        <input type="password" name="SYS_password" id="SYS_password">
         <br>
         <button name="submit" id="submitBtn">Create Account</button>
     </form>
