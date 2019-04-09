@@ -60,9 +60,17 @@ set @master_img = (select image_id from Image where image_name = 'master');
 insert into Rank values (default, @session1, 'Unranked', 0, "You are new to the makerspace and learning the basics of Scratch coding.", @unranked_img);
 insert into Rank values (default, @session1, 'Bronze', 1, "You know how to do the basics in Scratch. You can make simple games and animations on your own.", @novice_img);
 insert into Rank values (default, @session1, 'Silver', 2, "You understand how to use most blocks in scratch and how to apply them to make games on your own.", @apprentice_img);
+insert into Rank values (default, @session1, 'Gold', 3, "You understand all of the blocks in scratch and can use them to create good games on your own.", @adept_img);
+insert into Rank values (default, @session1, 'Expert', 4, "You have great practical understanding of how coding and block interactions work and you can create any type of game you can image on your own.", @expert_img);
+insert into Rank values (default, @session1, 'Master', 5, "Good luck!", @master_img);
+
+insert into Rank values (default, @session2, 'Unranked', 0, "You are new to the makerspace and learning the basics of Scratch coding.", @unranked_img);
+insert into Rank values (default, @session2, 'Bronze', 1, "You know how to do the basics in Scratch. You can make simple games and animations on your own.", @novice_img);
+insert into Rank values (default, @session2, 'Silver', 2, "You understand how to use most blocks in scratch and how to apply them to make games on your own.", @apprentice_img);
 insert into Rank values (default, @session2, 'Gold', 3, "You understand all of the blocks in scratch and can use them to create good games on your own.", @adept_img);
 insert into Rank values (default, @session2, 'Expert', 4, "You have great practical understanding of how coding and block interactions work and you can create any type of game you can image on your own.", @expert_img);
 insert into Rank values (default, @session2, 'Master', 5, "Good luck!", @master_img);
+
 
 set @unranked = (select rank_id from Rank where rank_title = 'Unranked');
 set @bronze = (select rank_id from Rank where rank_title = 'Bronze');
