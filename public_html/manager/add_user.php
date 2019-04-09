@@ -36,7 +36,7 @@ if (request_is_post()) {
             ?>
 
         <div data-user="<?php echo $user['user_id']; ?>" class="user-item 
-                                    <?php echo even_odd($user_count); ?>">
+                                                <?php echo even_odd($user_count); ?>">
             <p>
                 <?php echo $user['user_first'] . ' ' . $user['user_last']; ?>
             </p>
@@ -62,7 +62,7 @@ if (request_is_post()) {
         if (request_is_post()) {
             display_results();
             if ($_POST['submit-option'] == "search") {
-                display_results();
+                //skip for now
             } else if ($_POST['submit-option'] == "add") {
                 add_user_session($_SESSION['session_id'], $_POST['user_id']);
                 redirect_to(url_for('/manager/add_user.php'));
@@ -85,8 +85,9 @@ function display_results()
     $user_count = 0;
     while ($user = mysqli_fetch_assoc($user_set)) {
         ?>
-<div data-user="<?php echo $user['user_id']; ?>" class="user-item 
-                                                                        <?php echo even_odd($user_count); ?>">
+<div data-user="<?php echo $user['user_id']; ?>"
+    class="user-item 
+                                                                                                <?php echo even_odd($user_count); ?>">
     <p>
         <?php echo $user['user_name']; ?>
     </p>
