@@ -32,7 +32,7 @@ if (!isset($page_title)) {
                             class="dropdown-button">
                             <?php echo $_SESSION['user_name'] ?? ''; ?></button></a>
                     <div class="dropdown-content">
-                        <a href="<?php echo url_for("account/sessions.php"); ?>">Sessions</a>
+                        <a href="<?php echo url_for("/account/sessions.php"); ?>">Sessions</a>
                         <a href="<?php echo url_for('/account/account.php'); ?>">Account</a>
                         <a href="<?php echo url_for('/logout.php'); ?>">Logout</a>
                     </div>
@@ -40,6 +40,7 @@ if (!isset($page_title)) {
                 <?php } else { ?>
                 <li><a href="<?php echo url_for("index.php"); ?>">Login</a></li>
                 <?php } ?>
+                <li><a href="<?php echo url_for("/resources.php"); ?>">Resources</a></li>
                 <?php if (in_session() && check_permission(VWR)) { ?>
                 <li><a href="<?php echo url_for("/user/leaders.php"); ?>">Leaders</a></li>
                 <li><a href="<?php echo url_for("/user/progress.php"); ?>">Badges</a></li>
